@@ -88,7 +88,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             //Pass input to animator
             if (hasAuthority) {
-                anim.SetFloat("Vertical", Input.GetAxis("Vertical"));
+                anim.SetFloat("Vertical", Mathf.Abs(Input.GetAxis("Vertical")));
             }
         }
 
