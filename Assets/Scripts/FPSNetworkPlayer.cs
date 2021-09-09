@@ -7,6 +7,7 @@ public class FPSNetworkPlayer : NetworkBehaviour
 {
     public float speed;
     public Animator anim;
+    public NetworkAnimator networkAnimator;
 
     [AddComponentMenu("")]
     void FixedUpdate()
@@ -17,10 +18,10 @@ public class FPSNetworkPlayer : NetworkBehaviour
     }
 
     void Update() {
-        Debug.LogFormat("Should have played animation: {0}", Input.GetAxis("Vertical"));
-
         if (Input.GetKeyDown(KeyCode.Space)) {
-            anim.Play("Base Layer.Shoot", 0, 0.25f);
+            networkAnimator.ResetTrigger("Shoot");
+            networkAnimator.SetTrigger("Shoot");
+            Debug.LogFormat("Should have played animation");
         }
     }
 
