@@ -329,6 +329,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   speed: 5
+  anim: {fileID: 5300283976951750601}
 --- !u!114 &-2682138738644088490
 MonoBehaviour:
   m_ObjectHideFlags: 0
