@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 400000}
   - component: {fileID: 14300000}
   - component: {fileID: 11400000}
+  - component: {fileID: 5400000}
   - component: {fileID: 8200000}
   - component: {fileID: -7421492430885608312}
   - component: {fileID: 4612038259322965025}
@@ -184,6 +185,22 @@ MonoBehaviour:
   m_JumpSound: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
   m_LandSound: {fileID: 8300000, guid: 3b09d59f4499d45428baa7a21e954296, type: 3}
   anim: {fileID: 5300283976951750601}
+--- !u!54 &5400000
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!82 &8200000
 AudioSource:
   m_ObjectHideFlags: 0
@@ -451,36 +468,6 @@ Behaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100002}
   m_Enabled: 1
---- !u!54 &5648536699644062233
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1451733898377223945}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!136 &4627352036849727752
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1451733898377223945}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.27
-  m_Height: 2.3559508
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.6779754, z: 0}
 --- !u!1001 &1793824187226776152
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -548,11 +535,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: YBot
       objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: e016c8c129f6c45b6a2b2a7761fc2d22,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: e016c8c129f6c45b6a2b2a7761fc2d22,
         type: 3}
       propertyPath: m_Controller
@@ -570,12 +552,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e016c8c129f6c45b6a2b2a7761fc2d22, type: 3}
---- !u!1 &1451733898377223945 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e016c8c129f6c45b6a2b2a7761fc2d22,
-    type: 3}
-  m_PrefabInstance: {fileID: 1793824187226776152}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2264827812669719987 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e016c8c129f6c45b6a2b2a7761fc2d22,
