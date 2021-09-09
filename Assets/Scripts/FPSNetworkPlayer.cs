@@ -18,7 +18,7 @@ public class FPSNetworkPlayer : NetworkBehaviour
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.E)) {
             networkAnimator.ResetTrigger("Shoot");
             networkAnimator.SetTrigger("Shoot");
             Debug.LogFormat("Should have played animation");
