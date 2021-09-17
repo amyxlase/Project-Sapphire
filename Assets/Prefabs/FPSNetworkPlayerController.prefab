@@ -316,6 +316,7 @@ MonoBehaviour:
   speed: 5
   anim: {fileID: 5300283976951750601}
   networkAnimator: {fileID: 232260825608169460}
+  collider: {fileID: 14300000}
 --- !u!114 &-2682138738644088490
 MonoBehaviour:
   m_ObjectHideFlags: 0
