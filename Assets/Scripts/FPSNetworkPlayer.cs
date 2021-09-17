@@ -10,44 +10,20 @@ public class FPSNetworkPlayer : NetworkBehaviour
     public NetworkAnimator networkAnimator;
 
     [AddComponentMenu("")]
+    [ClientCallback]
     void FixedUpdate()
     {
-        anim.SetFloat("Vertical", Mathf.Abs(Input.GetAxis("Vertical")));
-        if (hasAuthority)
+        //anim.SetFloat("Vertical", Mathf.Abs(Input.GetAxis("Vertical")));
+        if (isLocalPlayer)
             transform.Translate(new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0) * speed * Time.deltaTime);
     }
 
     void Update() {
-        /*if (Input.GetKeyDown(KeyCode.E)) {
-            networkAnimator.ResetTrigger("Shoot");
-            networkAnimator.SetTrigger("Shoot");
-            Debug.Log("Shots fired");
-
-            RaycastHit hit;
-            Ray fromCamera = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(fromCamera, out hit)) {
-                Debug.LogFormat("Raycast hit collider: {0}", hit.transform.gameObject.name);
-                Debug.DrawRay(fromCamera.origin, fromCamera.direction, Color.red, 20, true);
-
-
-                Transform target = hit.transform;
-                SkinnedMeshRenderer smr = target.GetChild(1).GetComponent<SkinnedMeshRenderer>();
-
-                if (smr != null) {
-                    Debug.LogFormat("SKinned mesh renderer not null");
-                    Material[] mats = smr.materials;
-                    mats[0] = (Material)Resources.Load("Prefabs/YellowSmooth");
-                    smr.materials = mats;
-                }
-            } else {
-                Debug.Log("Nothing was shot");
-            }
-        }*/
-
-        //shot debug
+        
         if (Input.GetKeyDown(KeyCode.F)) {
             networkAnimator.ResetTrigger("Shoot");
             networkAnimator.SetTrigger("Shoot");
+
             Debug.Log("Shots fired");
 
             RaycastHit hit;
@@ -58,12 +34,14 @@ public class FPSNetworkPlayer : NetworkBehaviour
             } else {
                 Debug.Log("Nothing was shot");
             }
-        }
+        } 
     }
 
     public override void OnStartAuthority() {
-        Camera camera = transform.Find("FirstPersonCharacter").GetComponent<Camera>();
-        camera.enabled = true;
+        Transform fpc = transform.Find("FirstPersonCharacter");
+        fpc.GetComponent<Camera>().enabled = true;
+        fpc.GetComponent<AudioListener>().enabled = true;
+
         
     }
 }
