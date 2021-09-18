@@ -4,6 +4,8 @@
 [Bb]uild/
 [Bb]uilds/
 Assets/Imported
+Assets/Imported.meta
+
 
 # Visual Studio cache directory
 .vs/
