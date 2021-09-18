@@ -15,6 +15,8 @@ public class FPSNetworkPlayer : NetworkBehaviour
 
     void Update() {
         
+        if (!hasAuthority) return;
+
         if (Input.GetKeyDown(KeyCode.F)) {
             networkAnimator.ResetTrigger("Shoot");
             networkAnimator.SetTrigger("Shoot");
@@ -35,17 +37,7 @@ public class FPSNetworkPlayer : NetworkBehaviour
                         Debug.DrawRay(fromCamera.origin, fromCamera.direction*1000000, Color.red, 1000, true);
                     }
 
-                    Transform target = hit.transform;
-                    SkinnedMeshRenderer smr = target.GetChild(1).GetChild(1).GetComponent<SkinnedMeshRenderer>();
-
-                if (smr != null) {
-                    Debug.LogFormat("SKinned mesh renderer not null");
-                    Material[] mats = smr.materials;
-                    mats[0] = (Material)Resources.Load("Prefabs/Red");
-                    smr.materials = mats;
-                } else {
-                    Debug.Log("Nothing was shot");
-                }
+                    changeColorOnShot(hit.transform);
 
                 } else {
                     Debug.Log("Nothing was shot");
@@ -58,7 +50,19 @@ public class FPSNetworkPlayer : NetworkBehaviour
         Transform fpc = transform.Find("FirstPersonCharacter");
         fpc.GetComponent<Camera>().enabled = true;
         fpc.GetComponent<AudioListener>().enabled = true;
+    }
 
-        
+    [ClientRpc]
+    public void changeColorOnShot(Transform target) {
+        SkinnedMeshRenderer smr = target.GetChild(1).GetChild(1).GetComponent<SkinnedMeshRenderer>();
+
+        if (smr != null) {
+            Debug.LogFormat("SKinned mesh renderer not null");
+            Material[] mats = smr.materials;
+            mats[0] = (Material)Resources.Load("Prefabs/Red");
+            smr.materials = mats;
+        } else {
+            Debug.Log("Nothing was shot");
+        }
     }
 }
