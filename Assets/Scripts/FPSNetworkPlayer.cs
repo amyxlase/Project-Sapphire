@@ -11,12 +11,6 @@ public class FPSNetworkPlayer : NetworkBehaviour
     public Collider collider;
 
     [AddComponentMenu("")]
-    [ClientCallback]
-    void FixedUpdate()
-    {
-        //if (isLocalPlayer)
-        //    transform.Translate(new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0) * speed * Time.deltaTime);
-    }
 
 
     void Update() {
@@ -40,6 +34,18 @@ public class FPSNetworkPlayer : NetworkBehaviour
                     } else {
                         Debug.DrawRay(fromCamera.origin, fromCamera.direction*1000000, Color.red, 1000, true);
                     }
+
+                    Transform target = hit.transform;
+                    SkinnedMeshRenderer smr = target.GetChild(1).GetChild(1).GetComponent<SkinnedMeshRenderer>();
+
+                if (smr != null) {
+                    Debug.LogFormat("SKinned mesh renderer not null");
+                    Material[] mats = smr.materials;
+                    mats[0] = (Material)Resources.Load("Prefabs/Red");
+                    smr.materials = mats;
+                } else {
+                    Debug.Log("Nothing was shot");
+                }
 
                 } else {
                     Debug.Log("Nothing was shot");
