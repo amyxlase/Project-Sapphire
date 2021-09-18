@@ -14,9 +14,8 @@ public class FPSNetworkPlayer : NetworkBehaviour
     [ClientCallback]
     void FixedUpdate()
     {
-        //anim.SetFloat("Vertical", Mathf.Abs(Input.GetAxis("Vertical")));
-        if (isLocalPlayer)
-            transform.Translate(new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0) * speed * Time.deltaTime);
+        //if (isLocalPlayer)
+        //    transform.Translate(new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0) * speed * Time.deltaTime);
     }
 
 
@@ -34,7 +33,7 @@ public class FPSNetworkPlayer : NetworkBehaviour
                 RaycastHit hit;
                 Ray fromCamera = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (collider.Raycast(fromCamera, out hit, Mathf.Infinity)) {
-                    Debug.LogFormat("hit registered {0} of origin {1} and direction/length {2}", hit.transform.gameObject.name, fromCamera.origin, fromCamera.direction);
+                    Debug.LogFormat("hit registered {0} of origin {1} collider position {3} and direction/length {2}", hit.transform.gameObject.name, fromCamera.origin, fromCamera.direction, collider.transform.position);
 
                     if (hit.transform.gameObject.name == "FPSNetworkPlayerController(Clone)") {
                         Debug.DrawRay(fromCamera.origin, fromCamera.direction*1000000, Color.blue, 1000, true);
