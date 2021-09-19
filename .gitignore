@@ -35,3 +35,9 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+# Changed by Koke_Cacao(Hanke)
+.vscode/ # You don't
+**.log
+Logs/
+UserSettings/ # individual settings about unity?
