@@ -9,20 +9,48 @@ public class FPSNetworkPlayer : NetworkBehaviour
     public Animator anim;
     public NetworkAnimator networkAnimator;
     public Collider collider;
+    public bool zoomToggle = false;
+    public GameObject crosshair;
+    public GameObject crosshair2;
 
     public bool isActive;
 
     [AddComponentMenu("")]
 
+    void Awake() {
+        crosshair = GameObject.Find("ScopedCrosshairImage");
+        crosshair2 = GameObject.Find("DefaultCrosshairImage");
+        crosshair.SetActive(false);
+    }
 
     void Update() {
         
         if (!hasAuthority) return;
 
+        if (Input.GetKeyDown(KeyCode.Q)) {
+            if (zoomToggle) {
+                Camera.main.fieldOfView += 35;
+                Camera.main.orthographicSize += 0.5f;
+                zoomToggle = false;
+                crosshair.SetActive(false);
+                crosshair2.SetActive(true);
+                Debug.Log("Scoping out");
+            }
+            else {
+                Camera.main.fieldOfView -= 35;
+                Camera.main.orthographicSize -= 0.5f;
+                zoomToggle = true;
+                crosshair2.SetActive(false);
+                crosshair.SetActive(true);
+                Debug.Log("Scoping in");
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.F)) {
             networkAnimator.ResetTrigger("Shoot");
             networkAnimator.SetTrigger("Shoot");
             Debug.Log("Shots fired");
+
 
             CapsuleCollider[] colliders = FindObjectsOfType<CapsuleCollider>();
             foreach (Collider collider in colliders) {
