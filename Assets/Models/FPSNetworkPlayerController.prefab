@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4612038259322965025}
   - component: {fileID: -2682138738644088490}
   - component: {fileID: 232260825608169460}
+  - component: {fileID: -2933671948203336886}
   m_Layer: 0
   m_Name: FPSNetworkPlayerController
   m_TagString: Untagged
@@ -70,8 +71,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05ec5cf00ca181d45a42ba1870e148c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
   m_IsWalking: 0
   m_WalkSpeed: 5
   m_RunSpeed: 10
@@ -184,7 +183,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8bc94ec6ed537e743b481638bdcd503d, type: 3}
   m_JumpSound: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
   m_LandSound: {fileID: 8300000, guid: 3b09d59f4499d45428baa7a21e954296, type: 3}
-  anim: {fileID: 5300283976951750601}
 --- !u!82 &8200000
 AudioSource:
   m_ObjectHideFlags: 0
@@ -330,6 +328,7 @@ MonoBehaviour:
   anim: {fileID: 5300283976951750601}
   networkAnimator: {fileID: 232260825608169460}
   collider: {fileID: 14300000}
+  health: 100
 --- !u!114 &-2682138738644088490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,6 +374,18 @@ MonoBehaviour:
   syncInterval: 0.1
   clientAuthority: 1
   animator: {fileID: 5300283976951750601}
+--- !u!114 &-2933671948203336886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad5a518a1fc184827b01ffd0127da120, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &100002
 GameObject:
   m_ObjectHideFlags: 0
