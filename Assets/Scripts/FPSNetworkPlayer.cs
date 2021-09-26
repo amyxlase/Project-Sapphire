@@ -13,6 +13,8 @@ public class FPSNetworkPlayer : NetworkBehaviour
     public GameObject crosshair;
     public GameObject crosshair2;
 
+    public bool isActive;
+
     [AddComponentMenu("")]
 
     void Awake() {
@@ -60,8 +62,10 @@ public class FPSNetworkPlayer : NetworkBehaviour
                     Debug.LogFormat("hit registered {0} of origin {1} collider position {3} and direction/length {2}", hit.transform.gameObject.name, fromCamera.origin, fromCamera.direction, collider.transform.position);
 
                     if (hit.transform.gameObject.name == "FPSNetworkPlayerController(Clone)") {
+                        Debug.Log("FPS Player Shot");
                         Debug.DrawRay(fromCamera.origin, fromCamera.direction*1000000, Color.blue, 1000, true);
                     } else {
+                        Debug.Log("no FPS Player Shot");
                         Debug.DrawRay(fromCamera.origin, fromCamera.direction*1000000, Color.red, 1000, true);
                     }
 
@@ -78,6 +82,8 @@ public class FPSNetworkPlayer : NetworkBehaviour
         Transform fpc = transform.Find("FirstPersonCharacter");
         fpc.GetComponent<Camera>().enabled = true;
         fpc.GetComponent<AudioListener>().enabled = true;
+
+        isActive = true;
     }
 
     [ClientRpc]
@@ -92,5 +98,10 @@ public class FPSNetworkPlayer : NetworkBehaviour
         } else {
             Debug.Log("Nothing was shot");
         }
+
+        Health playerHealth = target.gameObject.GetComponent<Health>();
+        playerHealth.Remove(20);
+        print(playerHealth.getHealth());
     }
+
 }

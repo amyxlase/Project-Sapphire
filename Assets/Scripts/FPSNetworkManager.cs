@@ -13,6 +13,7 @@ public class FPSNetworkManager : NetworkManager
         Debug.Log(numPlayers);
         // add player at correct spawn position
         Transform start = playerSpawn.transform;
+        start.position += Vector3.right * numPlayers;
         GameObject player = Instantiate(playerPrefab, start.position, start.rotation);
         NetworkServer.AddPlayerForConnection(conn, player);
     }
@@ -22,4 +23,5 @@ public class FPSNetworkManager : NetworkManager
         // call base functionality (actually destroys the player)
         base.OnServerDisconnect(conn);
     }
+
 }
