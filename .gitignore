@@ -37,3 +37,8 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+# Added by Hanke (Koke_Cacao)
+*.log
+Logs/
+.vscode/
