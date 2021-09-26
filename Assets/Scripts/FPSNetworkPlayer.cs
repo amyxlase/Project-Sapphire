@@ -49,6 +49,7 @@ public class FPSNetworkPlayer : NetworkBehaviour
             networkAnimator.SetTrigger("Shoot");
             Debug.Log("Shots fired");
 
+
             CapsuleCollider[] colliders = FindObjectsOfType<CapsuleCollider>();
             foreach (Collider collider in colliders) {
                 Debug.DrawRay(collider.transform.position, Vector3.up*1000000, Color.green, 1000, true);
