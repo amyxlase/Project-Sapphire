@@ -201,6 +201,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 return;
             }
+            // IndexOutOfRange when no enough sound to play
+            if (m_FootstepSounds.Length < 2) {
+                Debug.LogError("Hay, Basil! Add some Footstep Sounds!");
+                return;
+            }
+
             // pick & play a random footstep sound from the array,
             // excluding sound at index 0
             int n = Random.Range(1, m_FootstepSounds.Length);
