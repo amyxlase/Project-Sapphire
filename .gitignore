@@ -42,3 +42,4 @@ sysinfo.txt
 *.log
 Logs/
 .vscode/
+UserSettings/
