@@ -30,6 +30,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private AudioClip m_JumpSound;           // the sound played when character leaves the ground.
         [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
         [SerializeField] private Animator anim;
+        [SerializeField] private float m_JetpackFuel;
 
         private Camera m_Camera;
         private bool m_Jump;
@@ -43,6 +44,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_StepCycle;
         private float m_NextStep;
         private bool m_Jumping;
+        private bool m_Jetpack;
         private AudioSource m_AudioSource;
 
         // Use this for initialization
@@ -73,8 +75,15 @@ namespace UnityStandardAssets.Characters.FirstPerson
             if (!m_Jump)
             {
                 m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
-            }
-
+            }    
+            if (!m_CharacterController.isGrounded && m_JetpackFuel > 0 && Input.GetKeyDown(KeyCode.Space))
+            {
+                m_Jetpack = !m_Jetpack;           
+            } 
+            if (m_Jetpack && m_JetpackFuel < 1) 
+            {
+                m_Jetpack = false;
+            }       
             if (!m_PreviouslyGrounded && m_CharacterController.isGrounded)
             {
                 StartCoroutine(m_JumpBob.DoBobCycle());
@@ -123,16 +132,28 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_MoveDir.z = desiredMove.z*speed;
 
 
+            if (!m_CharacterController.isGrounded && m_Jetpack) 
+            {
+                Debug.Log(m_JetpackFuel); 
+                m_JetpackFuel -= 5 * Time.fixedDeltaTime;
+                m_MoveDir.y = m_JumpSpeed * 0.75f;
+            }
+
             if (m_CharacterController.isGrounded)
             {
                 m_MoveDir.y = -m_StickToGroundForce;
-
                 if (m_Jump)
                 {
                     m_MoveDir.y = m_JumpSpeed;
                     PlayJumpSound();
                     m_Jump = false;
                     m_Jumping = true;
+                }
+
+                if (m_JetpackFuel < 10 && !m_Jetpack) 
+                {
+                    Debug.Log(m_JetpackFuel); 
+                    m_JetpackFuel += Time.fixedDeltaTime;
                 }
             }
             else
@@ -229,6 +250,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_IsWalking = !Input.GetKey(KeyCode.LeftShift);
 #endif
             // set the desired speed to be walking or running
+            Debug.Log("Shift Toggled");
             speed = m_IsWalking ? m_WalkSpeed : m_RunSpeed;
             m_Input = new Vector2(horizontal, vertical);
 
