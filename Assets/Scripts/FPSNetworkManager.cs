@@ -13,10 +13,14 @@ public class FPSNetworkManager : NetworkManager
         start.position += Vector3.right * numPlayers;
         GameObject player = Instantiate(playerPrefab, start.position, start.rotation);
         NetworkServer.AddPlayerForConnection(conn, player);
+
+        //Activate various things
         FPSNetworkPlayer playerScript = player.GetComponent<FPSNetworkPlayer>();
         playerScript.enabled = true;
         NetworkIdentity identity = player.GetComponent<NetworkIdentity>();
         identity.AssignClientAuthority(conn);
+        CapsuleCollider collider = player.GetComponent<CapsuleCollider>();
+        collider.enabled = true;
 
     }
 

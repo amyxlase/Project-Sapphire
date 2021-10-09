@@ -21,7 +21,7 @@ public class FPSNetworkPlayer : NetworkBehaviour
     }
 
     void Update() {        
-        //if (!hasAuthority) return;
+        if (!hasAuthority) return;
 
         ScopeToggle();              // Bound to Q
         Shoot();                    // Bound to F
@@ -59,7 +59,7 @@ public class FPSNetworkPlayer : NetworkBehaviour
     public void Shoot() {
         if (Input.GetKeyDown(KeyCode.F)) {
 
-            Debug.Log("Shooting from netid " + netId);
+            Debug.Log("Shooting from netid " + netId + "and client authority is " + hasAuthority);
 
 
             networkAnimator.ResetTrigger("Shoot");
@@ -67,44 +67,35 @@ public class FPSNetworkPlayer : NetworkBehaviour
             Debug.Log("Shots fired");
 
 
+           
             RaycastHit hit;
             Ray fromCamera = Camera.main.ScreenPointToRay(Input.mousePosition);
-            Collider collider = this.GetComponent<Collider>();
             if (Physics.Raycast(fromCamera, out hit, Mathf.Infinity)) {
-                Debug.LogFormat("hit registered {0} of origin {1} collider position {3} and direction/length {2}", hit.transform.gameObject.name, fromCamera.origin, fromCamera.direction, collider.transform.position);
-
+                Debug.LogFormat("hit registered {0}", hit.transform.gameObject.name);
                 if (hit.transform.gameObject.name == "FPSNetworkPlayerController(Clone)") {
+                    DealDamage(hit.transform);
                     Debug.Log("FPS Player Shot");
                     Debug.DrawRay(fromCamera.origin, fromCamera.direction*1000000, Color.blue, 1000, true);
-                } else {
-                    Debug.Log("no FPS Player Shot");
-                    Debug.DrawRay(fromCamera.origin, fromCamera.direction*1000000, Color.red, 1000, true);
                 }
-
-                changeColorOnShot(hit.transform);
-
             } else {
                 Debug.Log("Nothing was shot");
             }
             
+            
         } 
     }
 
-    public void changeColorOnShot(Transform target) {
-        SkinnedMeshRenderer smr = target.GetChild(1).GetChild(1).GetComponent<SkinnedMeshRenderer>();
-
-        if (smr != null) {
-            Debug.LogFormat("SKinned mesh renderer not null");
-            Material[] mats = smr.materials;
-            mats[0] = (Material)Resources.Load("Prefabs/Red");
-            smr.materials = mats;
-        } else {
-            Debug.Log("Nothing was shot");
-        }
-
+    public void DealDamage(Transform target) {
+        NetworkIdentity targetIdentity = target.gameObject.GetComponent<NetworkIdentity>();
         Health playerHealth = target.gameObject.GetComponent<Health>();
         playerHealth.Remove(20);
-        print(playerHealth.getHealth());
+        Debug.Log("Hit player " + targetIdentity.netId + "with remaining health " + playerHealth.getHealth());
+        BroadcastDamage();
+    }
+
+    [Command]
+    public void BroadcastDamage() {
+        Debug.Log("i hit u");
     }
 
 }
