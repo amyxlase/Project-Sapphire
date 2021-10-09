@@ -17,16 +17,11 @@ public class FPSNetworkPlayer : NetworkBehaviour
     [AddComponentMenu("")]
 
     void Awake() {
-        crosshair = GameObject.Find("ScopedCrosshairImage");
-        crosshair2 = GameObject.Find("DefaultCrosshairImage");
         crosshair.SetActive(false);
     }
 
-    void Update() {
-        uint playerNumber = this.gameObject.GetComponent<NetworkIdentity>().netId;
-        Debug.Log("Updating from netid " + netId);
-        
-        if (!hasAuthority) return;
+    void Update() {        
+        //if (!hasAuthority) return;
 
         ScopeToggle();              // Bound to Q
         Shoot();                    // Bound to F
@@ -64,7 +59,6 @@ public class FPSNetworkPlayer : NetworkBehaviour
     public void Shoot() {
         if (Input.GetKeyDown(KeyCode.F)) {
 
-            uint playerNumber = this.gameObject.GetComponent<NetworkIdentity>().netId;
             Debug.Log("Shooting from netid " + netId);
 
 
@@ -96,10 +90,6 @@ public class FPSNetworkPlayer : NetworkBehaviour
         } 
     }
 
-
-    //CHECK THAT TRANSFORM  IS A VALID ARGUMENT
-
-    [Command]
     public void changeColorOnShot(Transform target) {
         SkinnedMeshRenderer smr = target.GetChild(1).GetChild(1).GetComponent<SkinnedMeshRenderer>();
 

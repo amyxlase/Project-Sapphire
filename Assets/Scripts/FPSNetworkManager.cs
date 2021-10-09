@@ -9,15 +9,15 @@ public class FPSNetworkManager : NetworkManager
     [AddComponentMenu("")]
     public override void OnServerAddPlayer(NetworkConnection conn)
     {
-        Debug.Log("Called OnServerAddPlayer");
-        Debug.Log(numPlayers);
-        // add player at correct spawn position
         Transform start = playerSpawn.transform;
         start.position += Vector3.right * numPlayers;
         GameObject player = Instantiate(playerPrefab, start.position, start.rotation);
         NetworkServer.AddPlayerForConnection(conn, player);
         FPSNetworkPlayer playerScript = player.GetComponent<FPSNetworkPlayer>();
         playerScript.enabled = true;
+        NetworkIdentity identity = player.GetComponent<NetworkIdentity>();
+        identity.AssignClientAuthority(conn);
+
     }
 
     public override void OnServerDisconnect(NetworkConnection conn)
