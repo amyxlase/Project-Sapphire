@@ -16,6 +16,8 @@ public class FPSNetworkManager : NetworkManager
         start.position += Vector3.right * numPlayers;
         GameObject player = Instantiate(playerPrefab, start.position, start.rotation);
         NetworkServer.AddPlayerForConnection(conn, player);
+        FPSNetworkPlayer playerScript = player.GetComponent<FPSNetworkPlayer>();
+        playerScript.enabled = true;
     }
 
     public override void OnServerDisconnect(NetworkConnection conn)

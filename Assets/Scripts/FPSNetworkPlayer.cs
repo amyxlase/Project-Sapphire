@@ -8,7 +8,6 @@ public class FPSNetworkPlayer : NetworkBehaviour
     public float speed;
     public Animator anim;
     public NetworkAnimator networkAnimator;
-    public Collider collider;
     public bool zoomToggle = false;
     public GameObject crosshair;
     public GameObject crosshair2;
@@ -24,9 +23,24 @@ public class FPSNetworkPlayer : NetworkBehaviour
     }
 
     void Update() {
+        uint playerNumber = this.gameObject.GetComponent<NetworkIdentity>().netId;
+        Debug.Log("Updating from netid " + netId);
         
         if (!hasAuthority) return;
 
+        ScopeToggle();              // Bound to Q
+        Shoot();                    // Bound to F
+    }
+
+    public override void OnStartAuthority() {
+        Transform fpc = transform.Find("FirstPersonCharacter");
+        fpc.GetComponent<Camera>().enabled = true;
+        fpc.GetComponent<AudioListener>().enabled = true;
+
+        isActive = true;
+    }
+
+    public void ScopeToggle() {
         if (Input.GetKeyDown(KeyCode.Q)) {
             if (zoomToggle) {
                 Camera.main.fieldOfView += 35;
@@ -45,48 +59,47 @@ public class FPSNetworkPlayer : NetworkBehaviour
                 Debug.Log("Scoping in");
             }
         }
+    }
 
+    public void Shoot() {
         if (Input.GetKeyDown(KeyCode.F)) {
+
+            uint playerNumber = this.gameObject.GetComponent<NetworkIdentity>().netId;
+            Debug.Log("Shooting from netid " + netId);
+
+
             networkAnimator.ResetTrigger("Shoot");
             networkAnimator.SetTrigger("Shoot");
             Debug.Log("Shots fired");
 
 
-            CapsuleCollider[] colliders = FindObjectsOfType<CapsuleCollider>();
-            foreach (Collider collider in colliders) {
-                Debug.DrawRay(collider.transform.position, Vector3.up*1000000, Color.green, 1000, true);
+            RaycastHit hit;
+            Ray fromCamera = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Collider collider = this.GetComponent<Collider>();
+            if (Physics.Raycast(fromCamera, out hit, Mathf.Infinity)) {
+                Debug.LogFormat("hit registered {0} of origin {1} collider position {3} and direction/length {2}", hit.transform.gameObject.name, fromCamera.origin, fromCamera.direction, collider.transform.position);
 
-                RaycastHit hit;
-                Ray fromCamera = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (collider.Raycast(fromCamera, out hit, Mathf.Infinity)) {
-                    Debug.LogFormat("hit registered {0} of origin {1} collider position {3} and direction/length {2}", hit.transform.gameObject.name, fromCamera.origin, fromCamera.direction, collider.transform.position);
-
-                    if (hit.transform.gameObject.name == "FPSNetworkPlayerController(Clone)") {
-                        Debug.Log("FPS Player Shot");
-                        Debug.DrawRay(fromCamera.origin, fromCamera.direction*1000000, Color.blue, 1000, true);
-                    } else {
-                        Debug.Log("no FPS Player Shot");
-                        Debug.DrawRay(fromCamera.origin, fromCamera.direction*1000000, Color.red, 1000, true);
-                    }
-
-                    changeColorOnShot(hit.transform);
-
+                if (hit.transform.gameObject.name == "FPSNetworkPlayerController(Clone)") {
+                    Debug.Log("FPS Player Shot");
+                    Debug.DrawRay(fromCamera.origin, fromCamera.direction*1000000, Color.blue, 1000, true);
                 } else {
-                    Debug.Log("Nothing was shot");
+                    Debug.Log("no FPS Player Shot");
+                    Debug.DrawRay(fromCamera.origin, fromCamera.direction*1000000, Color.red, 1000, true);
                 }
+
+                changeColorOnShot(hit.transform);
+
+            } else {
+                Debug.Log("Nothing was shot");
             }
+            
         } 
     }
 
-    public override void OnStartAuthority() {
-        Transform fpc = transform.Find("FirstPersonCharacter");
-        fpc.GetComponent<Camera>().enabled = true;
-        fpc.GetComponent<AudioListener>().enabled = true;
 
-        isActive = true;
-    }
+    //CHECK THAT TRANSFORM  IS A VALID ARGUMENT
 
-    [ClientRpc]
+    [Command]
     public void changeColorOnShot(Transform target) {
         SkinnedMeshRenderer smr = target.GetChild(1).GetChild(1).GetComponent<SkinnedMeshRenderer>();
 
