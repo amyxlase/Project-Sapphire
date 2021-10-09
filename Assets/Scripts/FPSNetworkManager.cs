@@ -19,9 +19,6 @@ public class FPSNetworkManager : NetworkManager
         playerScript.enabled = true;
         NetworkIdentity identity = player.GetComponent<NetworkIdentity>();
         identity.AssignClientAuthority(conn);
-        CapsuleCollider collider = player.GetComponent<CapsuleCollider>();
-        collider.enabled = true;
-
     }
 
     public override void OnServerDisconnect(NetworkConnection conn)

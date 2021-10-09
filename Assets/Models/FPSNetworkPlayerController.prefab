@@ -312,9 +312,9 @@ MonoBehaviour:
   anim: {fileID: 5300283976951750601}
   networkAnimator: {fileID: 232260825608169460}
   zoomToggle: 0
-  crosshair: {fileID: 5209053689870043432, guid: 55e89a8b16b1047d4a982291135f5901,
+  crosshair: {fileID: 1381032980825920870, guid: 0529c63d5906d4e1dba84bfb9f1f9409,
     type: 3}
-  crosshair2: {fileID: 1381032980825920870, guid: 0529c63d5906d4e1dba84bfb9f1f9409,
+  crosshair2: {fileID: 5209053689870043432, guid: 55e89a8b16b1047d4a982291135f5901,
     type: 3}
   isActive: 0
 --- !u!114 &-2682138738644088490

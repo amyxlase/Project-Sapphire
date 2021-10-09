@@ -31,7 +31,6 @@ public class FPSNetworkPlayer : NetworkBehaviour
         Transform fpc = transform.Find("FirstPersonCharacter");
         fpc.GetComponent<Camera>().enabled = true;
         fpc.GetComponent<AudioListener>().enabled = true;
-
         isActive = true;
     }
 
@@ -43,7 +42,6 @@ public class FPSNetworkPlayer : NetworkBehaviour
                 zoomToggle = false;
                 crosshair.SetActive(false);
                 crosshair2.SetActive(true);
-                Debug.Log("Scoping out");
             }
             else {
                 Camera.main.fieldOfView -= 35;
@@ -51,7 +49,6 @@ public class FPSNetworkPlayer : NetworkBehaviour
                 zoomToggle = true;
                 crosshair2.SetActive(false);
                 crosshair.SetActive(true);
-                Debug.Log("Scoping in");
             }
         }
     }
@@ -59,45 +56,27 @@ public class FPSNetworkPlayer : NetworkBehaviour
     public void Shoot() {
         if (Input.GetKeyDown(KeyCode.F)) {
 
-            Debug.Log("Shooting from netid " + netId + "and client authority is " + hasAuthority);
-
-
+            //Start animation
             networkAnimator.ResetTrigger("Shoot");
             networkAnimator.SetTrigger("Shoot");
-            Debug.Log("Shots fired");
 
-
-           
+            // Draw Raycast
             RaycastHit hit;
             Ray fromCamera =  Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-            Debug.Log("ray here" + fromCamera);
-            Debug.DrawRay(fromCamera.origin, fromCamera.direction*1000000, Color.blue, 1000, true);
             if (Physics.Raycast(fromCamera, out hit, Mathf.Infinity)) {
-                Debug.LogFormat("hit registered {0}", hit.transform.gameObject.name);
-
                 if (hit.transform.gameObject.name == "FPSNetworkPlayerController(Clone)") {
-                    DealDamage(hit.transform);
-                    Debug.Log("FPS Player Shot");
+                    CmdDealDamage(hit.transform);
                 }
-            } else {
-                Debug.Log("Nothing was shot");
             }
-            
-            
         } 
     }
 
-    public void DealDamage(Transform target) {
+    [Command]
+    public void CmdDealDamage(Transform target) {
         NetworkIdentity targetIdentity = target.gameObject.GetComponent<NetworkIdentity>();
         Health playerHealth = target.gameObject.GetComponent<Health>();
         playerHealth.Remove(20);
         Debug.Log("Hit player " + targetIdentity.netId + "with remaining health " + playerHealth.getHealth());
-        BroadcastDamage();
-    }
-
-    [Command]
-    public void BroadcastDamage() {
-        Debug.Log("i hit u");
     }
 
 }
