@@ -17,6 +17,8 @@ public class FPSNetworkPlayer : NetworkBehaviour
     [AddComponentMenu("")]
 
     void Awake() {
+        crosshair = GameObject.Find("ScopedCrosshairImage");
+        crosshair2 = GameObject.Find("DefaultCrosshairImage");
         crosshair.SetActive(false);
     }
 
