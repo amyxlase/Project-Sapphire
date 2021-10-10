@@ -46,7 +46,6 @@ public class Health : NetworkBehaviour
 
     [Server]
     public void HandleDeath() {
-        print("player died");
         Destroy(gameObject);
     }
 
