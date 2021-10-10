@@ -22,7 +22,7 @@ public class FPSNetworkPlayer : NetworkBehaviour
         crosshair.SetActive(false);
     }
 
-    void Update() {        
+    void Update() {
         if (!hasAuthority) return;
 
         ScopeToggle();              // Bound to Q
@@ -70,14 +70,18 @@ public class FPSNetworkPlayer : NetworkBehaviour
                     CmdDealDamage(hit.transform);
                 }
             }
-        } 
+        }
     }
 
     [Command]
     public void CmdDealDamage(Transform target) {
         NetworkIdentity targetIdentity = target.gameObject.GetComponent<NetworkIdentity>();
+        Damageable playerDamage = target.gameObject.GetComponent<Damageable>();
         Health playerHealth = target.gameObject.GetComponent<Health>();
-        playerHealth.Remove(20);
+        Shield playerShield = target.gameObject.GetComponent<Shield>();
+        playerDamage.dealDamage(20);
+        print("health: " + playerHealth.getHealth());
+        print("shield: " + playerShield.getShield());
         Debug.Log("Hit player " + targetIdentity.netId + "with remaining health " + playerHealth.getHealth());
     }
 
