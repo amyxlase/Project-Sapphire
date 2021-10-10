@@ -99,9 +99,12 @@ public class FPSNetworkPlayer : NetworkBehaviour
             Debug.Log("Nothing was shot");
         }
 
+        Damageable playerDamage = target.gameObject.GetComponent<Damageable>();
         Health playerHealth = target.gameObject.GetComponent<Health>();
-        playerHealth.Remove(20);
-        print(playerHealth.getHealth());
+        Shield playerShield = target.gameObject.GetComponent<Shield>();
+        playerDamage.dealDamage(20);
+        print("health: " + playerHealth.getHealth());
+        print("shield: " + playerShield.getShield());
     }
 
 }

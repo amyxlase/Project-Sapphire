@@ -18,6 +18,8 @@ GameObject:
   - component: {fileID: -2682138738644088490}
   - component: {fileID: 232260825608169460}
   - component: {fileID: -2933671948203336886}
+  - component: {fileID: 8971697785896603156}
+  - component: {fileID: 1554921899372389803}
   m_Layer: 0
   m_Name: FPSNetworkPlayerController
   m_TagString: Untagged
@@ -376,6 +378,34 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   maxHealth: 100
+--- !u!114 &8971697785896603156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa66ad482c04f455bbb64aee638c5d35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+--- !u!114 &1554921899372389803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 009b0e045a88a410a90c04ecc7f72caf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
 --- !u!1 &100002
 GameObject:
   m_ObjectHideFlags: 0
