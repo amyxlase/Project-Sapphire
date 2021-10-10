@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Mirror;
 
 public class Health : NetworkBehaviour
@@ -9,6 +10,7 @@ public class Health : NetworkBehaviour
 
     [SyncVar]
     private float health = 0f;
+    private Slider HP; 
 
     //public static event EventHandler<DeathEventArgs> OnDeath;
     //public static event EventHandler<HealthChangedEventArgs> OnHealthChanged;
@@ -18,10 +20,14 @@ public class Health : NetworkBehaviour
     public override void OnStartServer()
     {
         health = maxHealth;
+        HP = GameObject.Find("HealthSystem").GetComponent<Slider>();
+        HP.maxValue = maxHealth;
+        HP.value = health;
     }
 
     public float getHealth()
     {
+        HP.value = health;
         return health;
     }
 
@@ -30,6 +36,7 @@ public class Health : NetworkBehaviour
     {
         value = Mathf.Max(value, 0);
         health = Mathf.Max(health + value, 0);
+        HP.value = health;
     }
 
     [Server]
@@ -37,6 +44,8 @@ public class Health : NetworkBehaviour
     {
         value = Mathf.Max(value, 0);
         health = Mathf.Max(health - value, 0);
+        HP.value = health;
+
 
         if (health <= 0) 
         {
