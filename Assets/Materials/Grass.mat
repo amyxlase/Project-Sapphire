@@ -37,10 +37,13 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Wind_Density: 0.5
+    - Vector1_169bb5d7b3a84d37a36c8ce8222fb748: 7.97
+    - Vector1_c592bcfc2cde42aba64419638678b69d: 0.025
+    - Vector1_fb1c8acc9f144c7ea36a3df5be4d7e71: 0
+    - _Wind_Density: 1
     - _Wind_Direction: 0
-    - _Wind_Speed: 0.5
-    - _Wind_Strength: 0.5
+    - _Wind_Speed: 1
+    - _Wind_Strength: 1
     m_Colors:
     - _MainColor: {r: 1, g: 1, b: 1, a: 0}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
