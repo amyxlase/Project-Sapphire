@@ -8,9 +8,13 @@ public class FPSNetworkPlayer : NetworkBehaviour
     public float speed;
     public Animator anim;
     public NetworkAnimator networkAnimator;
+    
     public bool zoomToggle = false;
     public GameObject crosshair;
     public GameObject crosshair2;
+
+    public GameObject leaderboard;
+    public bool leaderOn = false;
 
     public bool isActive;
 
@@ -20,6 +24,8 @@ public class FPSNetworkPlayer : NetworkBehaviour
         crosshair = GameObject.Find("ScopedCrosshairImage");
         crosshair2 = GameObject.Find("DefaultCrosshairImage");
         crosshair.SetActive(false);
+        leaderboard = GameObject.Find("LeaderBoard");
+        leaderboard.SetActive(false);
     }
 
     void Update() {
@@ -27,6 +33,7 @@ public class FPSNetworkPlayer : NetworkBehaviour
 
         ScopeToggle();              // Bound to Q
         Shoot();                    // Bound to F
+        ViewBoard();                // Bound to Tab
     }
 
     public override void OnStartAuthority() {
@@ -71,6 +78,19 @@ public class FPSNetworkPlayer : NetworkBehaviour
                 }
             }
         }
+    }
+
+    public void ViewBoard(){
+         if (Input.GetKeyDown(KeyCode.Tab)) {
+            if (leaderOn) {
+                leaderboard.SetActive(false);
+                leaderOn = false;
+            }
+            else {
+                leaderOn = true;
+                leaderboard.SetActive(true);
+            }
+         }
     }
 
     [Command]
