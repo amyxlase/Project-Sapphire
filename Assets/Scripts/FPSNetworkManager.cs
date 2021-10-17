@@ -5,6 +5,7 @@ using Mirror;
 public class FPSNetworkManager : NetworkManager
 {
     public GameObject playerSpawn;
+    public GameObject botSpawn;
 
     [AddComponentMenu("")]
     public override void OnServerAddPlayer(NetworkConnection conn)
@@ -13,6 +14,7 @@ public class FPSNetworkManager : NetworkManager
         start.position += Vector3.right * numPlayers;
         GameObject player = Instantiate(playerPrefab, start.position, start.rotation);
         NetworkServer.AddPlayerForConnection(conn, player);
+        GameObject bot = Instantiate(botPrefab, start.position, start.rotation);
 
         //Activate various things
         FPSNetworkPlayer playerScript = player.GetComponent<FPSNetworkPlayer>();
