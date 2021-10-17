@@ -1167,6 +1167,7 @@ GameObject:
   - component: {fileID: 802624195}
   - component: {fileID: 802624196}
   - component: {fileID: 802624198}
+  - component: {fileID: 802624199}
   m_Layer: 0
   m_Name: Network Manager
   m_TagString: Untagged
@@ -1260,6 +1261,35 @@ MonoBehaviour:
   showGUI: 1
   offsetX: 0
   offsetY: 0
+--- !u!114 &802624199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802624194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aab4c8111b7c411b9b92cf3dbc5bd4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 1
+  PersistNetworkManagerToOfflineScene: 0
+  runInBackground: 1
+  autoStartServerBuild: 1
+  serverTickRate: 30
+  offlineScene: 
+  onlineScene: 
+  transport: {fileID: 802624195}
+  networkAddress: localhost
+  maxConnections: 100
+  disconnectInactiveConnections: 0
+  disconnectInactiveTimeout: 60
+  authenticator: {fileID: 0}
+  playerPrefab: {fileID: 0}
+  autoCreatePlayer: 1
+  playerSpawnMethod: 0
+  spawnPrefabs: []
 --- !u!224 &843029422 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4445991565155838295, guid: a3ddda2eac8df4a35af140009b0cf6e5,
@@ -2478,7 +2508,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -2593,6 +2623,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1968654917}
     m_Modifications:
+    - target: {fileID: 325101040603403933, guid: 7151bba7e9a9443c8a103fff9f015b06,
+        type: 3}
+      propertyPath: m_FontData.m_RichText
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 325101041226325836, guid: 7151bba7e9a9443c8a103fff9f015b06,
         type: 3}
       propertyPath: m_Name
