@@ -203,7 +203,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
             // IndexOutOfRange when no enough sound to play
             if (m_FootstepSounds.Length < 2) {
-                Debug.LogError("Hay, Basil! Add some Footstep Sounds!");
+                //Debug.LogError("Hay, Basil! Add some Footstep Sounds!");
                 return;
             }
 
