@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Mirror;
 
 public class FPSNetworkPlayer : NetworkBehaviour
@@ -68,6 +69,7 @@ public class FPSNetworkPlayer : NetworkBehaviour
             if (Physics.Raycast(fromCamera, out hit, Mathf.Infinity)) {
                 if (hit.transform.gameObject.name == "FPSNetworkPlayerController(Clone)") {
                     CmdDealDamage(hit.transform);
+                    UpdateHealth(hit.transform);
                 }
             }
         }
@@ -85,4 +87,18 @@ public class FPSNetworkPlayer : NetworkBehaviour
         Debug.Log("Hit player " + targetIdentity.netId + "with remaining health " + playerHealth.getHealth());
     }
 
+<<<<<<< Updated upstream
 }
+=======
+    public void UpdateHealth(Transform target) {
+        NetworkIdentity targetIdentity = target.gameObject.GetComponent<NetworkIdentity>();
+        Slider HP = target.gameObject.GetComponent<Slider>();
+        Health playerHealth = target.gameObject.GetComponent<Health>();
+        HP.value = playerHealth.getHealth();
+        Debug.Log("Updating Health of " + targetIdentity.netId + "with remaining health " + playerHealth.getHealth());
+    }   
+
+    
+
+}
+>>>>>>> Stashed changes

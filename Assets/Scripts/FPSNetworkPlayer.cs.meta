@@ -3,7 +3,12 @@ guid: e9f7b74f46dd242b8ba4f625cd7deeb7
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - anim: {instanceID: 0}
+  - networkAnimator: {instanceID: 0}
+  - crosshair: {instanceID: 0}
+  - crosshair2: {instanceID: 0}
+  - leaderboard: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
