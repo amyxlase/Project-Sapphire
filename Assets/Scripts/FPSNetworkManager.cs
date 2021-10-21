@@ -6,6 +6,7 @@ public class FPSNetworkManager : NetworkManager
 {
     public GameObject playerSpawn;
     public GameObject botSpawn;
+    public GameObject botPrefab;
 
     [AddComponentMenu("")]
     public override void OnServerAddPlayer(NetworkConnection conn)

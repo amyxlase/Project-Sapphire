@@ -20,14 +20,6 @@ public class FPSNetworkPlayer : NetworkBehaviour
 
     [AddComponentMenu("")]
 
-    void Awake() {
-        crosshair = GameObject.Find("ScopedCrosshairImage");
-        crosshair2 = GameObject.Find("DefaultCrosshairImage");
-        crosshair.SetActive(false);
-        leaderboard = GameObject.Find("LeaderBoard");
-        leaderboard.SetActive(false);
-    }
-
     void Update() {
         if (!hasAuthority) return;
 
@@ -37,6 +29,13 @@ public class FPSNetworkPlayer : NetworkBehaviour
     }
 
     public override void OnStartAuthority() {
+
+        crosshair = GameObject.Find("ScopedCrosshairImage");
+        crosshair2 = GameObject.Find("DefaultCrosshairImage");
+        crosshair.SetActive(false);
+        leaderboard = GameObject.Find("LeaderBoard");
+        leaderboard.SetActive(false);
+
         Transform fpc = transform.Find("FirstPersonCharacter");
         fpc.GetComponent<Camera>().enabled = true;
         fpc.GetComponent<AudioListener>().enabled = true;

@@ -315,12 +315,9 @@ MonoBehaviour:
   anim: {fileID: 5300283976951750601}
   networkAnimator: {fileID: 232260825608169460}
   zoomToggle: 0
-  crosshair: {fileID: 1381032980825920870, guid: 0529c63d5906d4e1dba84bfb9f1f9409,
-    type: 3}
-  crosshair2: {fileID: 5209053689870043432, guid: 55e89a8b16b1047d4a982291135f5901,
-    type: 3}
-  leaderboard: {fileID: 325101041226325836, guid: 7151bba7e9a9443c8a103fff9f015b06,
-    type: 3}
+  crosshair: {fileID: 0}
+  crosshair2: {fileID: 0}
+  leaderboard: {fileID: 0}
   leaderOn: 0
   isActive: 0
 --- !u!114 &-2682138738644088490
@@ -504,6 +501,36 @@ Behaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100002}
   m_Enabled: 1
+--- !u!1 &1255123001222081169
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 6446043698795081333}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 688003407927071509}
+  m_Layer: 0
+  m_Name: GunHeavy (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &688003407927071509
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 6446043698795081333}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255123001222081169}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 94959675334466960}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1327538190965600180
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,7 +595,7 @@ Transform:
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 6446043698795081333}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
@@ -584,7 +611,7 @@ GameObject:
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 6446043698795081333}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5639360350986224131}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -593,6 +620,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 94959675334466960}
   m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8573395890074788527
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6933706449033459924}
+  m_Layer: 0
+  m_Name: GunHeavy (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6933706449033459924
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8573395890074788527}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 94959675334466960}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1793824187226776152
 PrefabInstance:

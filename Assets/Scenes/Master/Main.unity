@@ -1227,12 +1227,13 @@ MonoBehaviour:
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
   playerPrefab: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
-  botPrefab: {fileID: 6229488266381961754, guid: c77240dafd7494115a4b176084f2df04,
-    type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
   spawnPrefabs: []
   playerSpawn: {fileID: 333669263}
+  botSpawn: {fileID: 333669263}
+  botPrefab: {fileID: 6229488266381961754, guid: c77240dafd7494115a4b176084f2df04,
+    type: 3}
 --- !u!4 &802624197
 Transform:
   m_ObjectHideFlags: 0
@@ -2605,6 +2606,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeaderBoard
       objectReference: {fileID: 0}
+    - target: {fileID: 325101041226325836, guid: 7151bba7e9a9443c8a103fff9f015b06,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 325101041226325839, guid: 7151bba7e9a9443c8a103fff9f015b06,
         type: 3}
       propertyPath: m_Pivot.x
@@ -3340,6 +3346,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DefaultCrosshairImage
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445991564240600907, guid: a3ddda2eac8df4a35af140009b0cf6e5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4445991565155838295, guid: a3ddda2eac8df4a35af140009b0cf6e5,
         type: 3}
