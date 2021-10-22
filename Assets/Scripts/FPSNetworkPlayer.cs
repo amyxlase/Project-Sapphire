@@ -30,12 +30,16 @@ public class FPSNetworkPlayer : NetworkBehaviour
 
     public override void OnStartAuthority() {
 
+        //Configure crosshair
         crosshair = GameObject.Find("ScopedCrosshairImage");
         crosshair2 = GameObject.Find("DefaultCrosshairImage");
         crosshair.SetActive(false);
+
+        //Configure leaderboard
         leaderboard = GameObject.Find("LeaderBoard");
         leaderboard.SetActive(false);
 
+        //Enable camera & audio listener
         Transform fpc = transform.Find("FirstPersonCharacter");
         fpc.GetComponent<Camera>().enabled = true;
         fpc.GetComponent<AudioListener>().enabled = true;

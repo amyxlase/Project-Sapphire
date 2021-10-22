@@ -55,6 +55,9 @@ public class Health : NetworkBehaviour
 
     [Server]
     public void HandleDeath() {
+
+        //If bot, drop gun and spawn a new bot somewhere
+
         Destroy(gameObject);
     }
 
