@@ -82,6 +82,7 @@ public class FPSNetworkPlayer : NetworkBehaviour
         Health playerHealth = target.gameObject.GetComponent<Health>();
         Shield playerShield = target.gameObject.GetComponent<Shield>();
         playerDamage.dealDamage(20);
+        playerDamage.HP.value = playerHealth.getHealth();
         print("health: " + playerHealth.getHealth());
         print("shield: " + playerShield.getShield());
         Debug.Log("Hit player " + targetIdentity.netId + "with remaining health " + playerHealth.getHealth());

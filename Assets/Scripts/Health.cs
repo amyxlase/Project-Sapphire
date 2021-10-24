@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using Mirror;
 
-public class Health : NetworkBehaviour
+public class Health: NetworkBehaviour
 {
     [SerializeField] private float maxHealth = 100f;
 
     [SyncVar]
+<<<<<<< Updated upstream
     private float health = 0f;
+=======
+    private float health = 0f; 
+>>>>>>> Stashed changes
 
     //public static event EventHandler<DeathEventArgs> OnDeath;
     //public static event EventHandler<HealthChangedEventArgs> OnHealthChanged;
