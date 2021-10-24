@@ -153,7 +153,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 if (m_JetpackFuel < 10 && !m_Jetpack) 
                 {
                     Debug.Log(m_JetpackFuel); 
-                    m_JetpackFuel += Time.fixedDeltaTime;
+                    m_JetpackFuel += 1.75f*Time.fixedDeltaTime;
                 }
             }
             else
