@@ -84,6 +84,7 @@ public class FPSNetworkPlayer : NetworkBehaviour
             if (Physics.Raycast(fromCamera, out hit, Mathf.Infinity)) {
                 if (hit.transform.gameObject.name == "FPSNetworkPlayerController(Clone)"
                     || hit.transform.gameObject.name == "FPSNetworkBotController(Clone)") {
+                    Debug.Log("Fired at object named " + hit.transform.gameObject.name);
                     CmdDealDamage(hit.transform);
                 }
             }
@@ -107,15 +108,18 @@ public class FPSNetworkPlayer : NetworkBehaviour
 
     [Command]
     public void CmdDealDamage(Transform target) {
+        Debug.Log("Asked server to deal damage");
         NetworkIdentity targetIdentity = target.gameObject.GetComponent<NetworkIdentity>();
         if (target.gameObject.name == "FPSNetworkPlayerController(Clone)") {
             Debug.Log("player target");
             Damageable playerDamage = target.gameObject.GetComponent<Damageable>();
             playerDamage.dealDamage(20);
         } else {
-            Debug.Log("bot target");
             BotDamageable playerDamage = target.gameObject.GetComponent<BotDamageable>();
             playerDamage.dealDamage(20);
+
+            BotHealth botHealth = target.gameObject.GetComponent<BotHealth>();
+            Debug.Log("bot has " + botHealth.getHealth() + " health left");
         }
         
     }

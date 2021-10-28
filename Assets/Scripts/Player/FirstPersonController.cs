@@ -76,11 +76,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
             }    
-            if (!m_CharacterController.isGrounded && m_JetpackFuel > 0 && Input.GetKeyDown(KeyCode.Space))
+            if (!m_CharacterController.isGrounded && m_JetpackFuel > 0 && Input.GetKey(KeyCode.Space))
             {
-                m_Jetpack = !m_Jetpack;           
+                m_Jetpack = true;           
             } 
-            if (m_Jetpack && m_JetpackFuel < 1) 
+            if (!Input.GetKey(KeyCode.Space) || (m_Jetpack && m_JetpackFuel < 1)) 
             {
                 m_Jetpack = false;
             }       
@@ -131,7 +131,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_MoveDir.x = desiredMove.x*speed;
             m_MoveDir.z = desiredMove.z*speed;
 
-
+            // jetpack in use
             if (!m_CharacterController.isGrounded && m_Jetpack) 
             {
                 m_JetpackFuel -= 5 * Time.fixedDeltaTime;
@@ -149,6 +149,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                     m_Jumping = true;
                 }
 
+                // recharge jetpack
                 if (m_JetpackFuel < 10 && !m_Jetpack) 
                 {
                     m_JetpackFuel += 1.75f*Time.fixedDeltaTime;

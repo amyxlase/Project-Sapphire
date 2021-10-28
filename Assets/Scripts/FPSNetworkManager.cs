@@ -50,7 +50,6 @@ public class FPSNetworkManager : NetworkManager
     }
 
     public override void OnStartServer() {
-        Debug.Log(playerCount);
         for(int i = 0; i < 10; i++) {
            addBot();
         }
