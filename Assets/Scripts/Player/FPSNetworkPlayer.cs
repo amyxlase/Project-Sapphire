@@ -92,14 +92,9 @@ public class FPSNetworkPlayer : NetworkBehaviour
 
     public void ViewBoard(){
          if (Input.GetKey(KeyCode.Tab)) {
-            if (leaderOn) {
-                leaderboard.SetActive(false);
-                leaderOn = false;
-            }
-            else {
-                leaderOn = true;
-                leaderboard.SetActive(true);
-            }
+            leaderboard.SetActive(true);
+         } else {
+            leaderboard.SetActive(false);
          }
     }
 
