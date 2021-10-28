@@ -34,13 +34,13 @@ public class FPSNetworkManager : NetworkManager
         base.OnServerDisconnect(conn);
     }
 
-
+    [Server]
     public void addBot() {
         Transform botStart = botSpawn.transform;
         Vector3 positionOffset = new Vector3(Random.Range(1, 20), Random.Range(1, 20), Random.Range(1, 20));
         GameObject bot = Instantiate(botPrefab, botStart.position + positionOffset, botStart.rotation);
+        NetworkServer.Spawn(bot);
         botCount++;
-        Debug.Log("Bot Count: " + botCount);
     }
 
     private void Update() {
@@ -54,7 +54,6 @@ public class FPSNetworkManager : NetworkManager
         for(int i = 0; i < 10; i++) {
            addBot();
         }
-        
     }
 
 }

@@ -11,9 +11,6 @@ public class Health : NetworkBehaviour
     [SyncVar]
     private float health = 0f;
     private Slider HP; 
-
-    //public static event EventHandler<DeathEventArgs> OnDeath;
-    //public static event EventHandler<HealthChangedEventArgs> OnHealthChanged;
     
     public bool IsDead => health == 0f;
 

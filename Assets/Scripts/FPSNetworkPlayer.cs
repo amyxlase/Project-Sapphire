@@ -76,7 +76,8 @@ public class FPSNetworkPlayer : NetworkBehaviour
             RaycastHit hit;
             Ray fromCamera =  Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
             if (Physics.Raycast(fromCamera, out hit, Mathf.Infinity)) {
-                if (hit.transform.gameObject.name == "FPSNetworkPlayerController(Clone)") {
+                if (hit.transform.gameObject.name == "FPSNetworkPlayerController(Clone)"
+                    || hit.transform.gameObject.name == "FPSNetworkBotController(Clone)") {
                     CmdDealDamage(hit.transform);
                 }
             }

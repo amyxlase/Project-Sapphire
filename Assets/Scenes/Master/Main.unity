@@ -1562,11 +1562,14 @@ MonoBehaviour:
   playerPrefab: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
-  spawnPrefabs: []
+  spawnPrefabs:
+  - {fileID: 6229488266381961754, guid: c77240dafd7494115a4b176084f2df04, type: 3}
   playerSpawn: {fileID: 333669263}
   botSpawn: {fileID: 333669263}
   botPrefab: {fileID: 6229488266381961754, guid: c77240dafd7494115a4b176084f2df04,
     type: 3}
+  botCount: 0
+  playerCount: 0
 --- !u!4 &802624197
 Transform:
   m_ObjectHideFlags: 0

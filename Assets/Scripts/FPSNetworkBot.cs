@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class FPSNetworkBot : MonoBehaviour
+using Mirror;
+
+public class FPSNetworkBot : NetworkBehaviour
 {
     private CharacterController m_BotController;
 
