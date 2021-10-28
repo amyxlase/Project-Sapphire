@@ -88,7 +88,7 @@ MonoBehaviour:
     YSensitivity: 2
     clampVerticalRotation: 1
     MinimumX: -90
-    MaximumX: 90
+    MaximumX: 35
     smooth: 0
     smoothTime: 5
     lockCursor: 1
