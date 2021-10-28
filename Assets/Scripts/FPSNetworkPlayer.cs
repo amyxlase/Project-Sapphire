@@ -21,22 +21,6 @@ public class FPSNetworkPlayer : NetworkBehaviour
 
     [AddComponentMenu("")]
 
-    void Update() {
-        if (!hasAuthority) return;
-
-        ScopeToggle();              // Bound to Q
-        Shoot();                    // Bound to F
-        ViewBoard();                // Bound to Tab
-        DieOutOfBounds();
-    }
-
-    public void DieOutOfBounds() {
-        if (this.transform.position.y < -10) {
-            Destroy(this.gameObject);
-            deadText.SetActive(true);
-        }
-    }
-
     public override void OnStartAuthority() {
 
         //Configure crosshair
@@ -57,6 +41,15 @@ public class FPSNetworkPlayer : NetworkBehaviour
         fpc.GetComponent<Camera>().enabled = true;
         fpc.GetComponent<AudioListener>().enabled = true;
         isActive = true;
+    }
+
+    void Update() {
+        if (!hasAuthority) return;
+
+        ScopeToggle();              // Bound to Q
+        Shoot();                    // Bound to F
+        ViewBoard();                // Bound to Tab
+        DieOutOfBounds();
     }
 
     public void ScopeToggle() {
@@ -110,16 +103,26 @@ public class FPSNetworkPlayer : NetworkBehaviour
          }
     }
 
+    public void DieOutOfBounds() {
+        if (this.transform.position.y < -10) {
+            Destroy(this.gameObject);
+            deadText.SetActive(true);
+        }
+    }
+
     [Command]
     public void CmdDealDamage(Transform target) {
         NetworkIdentity targetIdentity = target.gameObject.GetComponent<NetworkIdentity>();
-        Damageable playerDamage = target.gameObject.GetComponent<Damageable>();
-        Health playerHealth = target.gameObject.GetComponent<Health>();
-        Shield playerShield = target.gameObject.GetComponent<Shield>();
-        playerDamage.dealDamage(20);
-        print("health: " + playerHealth.getHealth());
-        print("shield: " + playerShield.getShield());
-        Debug.Log("Hit player " + targetIdentity.netId + "with remaining health " + playerHealth.getHealth());
+        if (target.gameObject.name == "FPSNetworkPlayerController(Clone)") {
+            Debug.Log("player target");
+            Damageable playerDamage = target.gameObject.GetComponent<Damageable>();
+            playerDamage.dealDamage(20);
+        } else {
+            Debug.Log("bot target");
+            BotDamageable playerDamage = target.gameObject.GetComponent<BotDamageable>();
+            playerDamage.dealDamage(20);
+        }
+        
     }
 
 }

@@ -43,10 +43,10 @@ GameObject:
   - component: {fileID: -5559967576139996975}
   - component: {fileID: -1311630220164386451}
   - component: {fileID: 4903066365694544445}
-  - component: {fileID: 8244371599490793472}
   - component: {fileID: 826154472523701728}
-  - component: {fileID: 8782861937325096557}
   - component: {fileID: 7539142202778076202}
+  - component: {fileID: 3425471407801225415}
+  - component: {fileID: 495893029955665401}
   m_Layer: 0
   m_Name: FPSNetworkBotController
   m_TagString: Bot
@@ -149,20 +149,6 @@ MonoBehaviour:
   syncInterval: 0.1
   clientAuthority: 0
   animator: {fileID: 6316310296716128146}
---- !u!114 &8244371599490793472
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6229488266381961754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 009b0e045a88a410a90c04ecc7f72caf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
 --- !u!114 &826154472523701728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,21 +163,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
---- !u!114 &8782861937325096557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6229488266381961754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad5a518a1fc184827b01ffd0127da120, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  maxHealth: 100
 --- !u!114 &7539142202778076202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,6 +178,35 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   shieldVal: 30
+--- !u!114 &3425471407801225415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6229488266381961754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16563e57f59994d37b0ea6019a4641e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  maxHealth: 100
+--- !u!114 &495893029955665401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6229488266381961754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2fed4e41b6ff4928a3194358b128eb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
 --- !u!1 &8795231351944303345
 GameObject:
   m_ObjectHideFlags: 0
