@@ -317,6 +317,7 @@ MonoBehaviour:
   zoomToggle: 0
   crosshair: {fileID: 0}
   crosshair2: {fileID: 0}
+  deadText: {fileID: 0}
   leaderboard: {fileID: 0}
   leaderOn: 0
   isActive: 0

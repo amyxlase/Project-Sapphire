@@ -12,6 +12,7 @@ public class FPSNetworkPlayer : NetworkBehaviour
     public bool zoomToggle = false;
     public GameObject crosshair;
     public GameObject crosshair2;
+    public GameObject deadText;
 
     public GameObject leaderboard;
     public bool leaderOn = false;
@@ -26,6 +27,14 @@ public class FPSNetworkPlayer : NetworkBehaviour
         ScopeToggle();              // Bound to Q
         Shoot();                    // Bound to F
         ViewBoard();                // Bound to Tab
+        DieOutOfBounds();
+    }
+
+    public void DieOutOfBounds() {
+        if (this.transform.position.y < -10) {
+            Destroy(this.gameObject);
+            deadText.SetActive(true);
+        }
     }
 
     public override void OnStartAuthority() {
@@ -38,6 +47,10 @@ public class FPSNetworkPlayer : NetworkBehaviour
         //Configure leaderboard
         leaderboard = GameObject.Find("LeaderBoard");
         leaderboard.SetActive(false);
+
+        //Configure dead text
+        deadText = GameObject.Find("Died");
+        deadText.SetActive(false);
 
         //Enable camera & audio listener
         Transform fpc = transform.Find("FirstPersonCharacter");
