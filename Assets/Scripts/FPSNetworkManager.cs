@@ -14,18 +14,23 @@ public class FPSNetworkManager : NetworkManager
     [AddComponentMenu("")]
     public override void OnServerAddPlayer(NetworkConnection conn)
     {
+
+        //Move spawn rightward
         Transform start = playerSpawn.transform;
         start.position += Vector3.right * numPlayers;
         GameObject player = Instantiate(playerPrefab, start.position, start.rotation);
         NetworkServer.AddPlayerForConnection(conn, player);
         playerCount++;
-        
 
         //Activate various things
         FPSNetworkPlayer playerScript = player.GetComponent<FPSNetworkPlayer>();
         playerScript.enabled = true;
         NetworkIdentity identity = player.GetComponent<NetworkIdentity>();
         identity.AssignClientAuthority(conn);
+
+        //Turn off death screen
+        GameObject Dead = GameObject.Find("Death");
+        Dead.SetActive(false);
     }
 
     public override void OnServerDisconnect(NetworkConnection conn)
