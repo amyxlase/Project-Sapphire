@@ -134,7 +134,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             if (!m_CharacterController.isGrounded && m_Jetpack) 
             {
-                Debug.Log(m_JetpackFuel); 
                 m_JetpackFuel -= 5 * Time.fixedDeltaTime;
                 m_MoveDir.y = m_JumpSpeed * 0.75f;
             }
@@ -152,7 +151,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
                 if (m_JetpackFuel < 10 && !m_Jetpack) 
                 {
-                    Debug.Log(m_JetpackFuel); 
                     m_JetpackFuel += 1.75f*Time.fixedDeltaTime;
                 }
             }
