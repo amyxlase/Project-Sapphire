@@ -12,10 +12,8 @@ public class FPSNetworkPlayer : NetworkBehaviour
     public bool zoomToggle = false;
     public GameObject crosshair;
     public GameObject crosshair2;
-    public GameObject deadText;
-
+    public GameObject Dead;
     public GameObject leaderboard;
-    public bool leaderOn = false;
 
     public bool isActive;
 
@@ -32,9 +30,8 @@ public class FPSNetworkPlayer : NetworkBehaviour
         leaderboard = GameObject.Find("LeaderBoard");
         leaderboard.SetActive(false);
 
-        //Configure dead text
-        deadText = GameObject.Find("Died");
-        deadText.SetActive(false);
+        //Find dead screen
+        Dead = transform.GetChild(3).gameObject;
 
         //Enable camera & audio listener
         Transform fpc = transform.Find("FirstPersonCharacter");
@@ -101,8 +98,8 @@ public class FPSNetworkPlayer : NetworkBehaviour
 
     public void DieOutOfBounds() {
         if (this.transform.position.y < -10) {
+            Dead.SetActive(true);
             Destroy(this.gameObject);
-            deadText.SetActive(true);
         }
     }
 

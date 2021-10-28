@@ -11,15 +11,21 @@ public class Health : NetworkBehaviour
     [SyncVar]
     private float health = 0f;
     private Slider HP; 
+    public GameObject Dead;
     
     public bool IsDead => health == 0f;
 
     public override void OnStartServer()
     {
         health = maxHealth;
+
+        // Configure health bar
         HP = GameObject.Find("HealthSystem").GetComponent<Slider>();
         HP.maxValue = maxHealth;
         HP.value = health;
+
+        // Find death screen
+        Dead = transform.GetChild(3).gameObject;
     }
 
     public float getHealth()
@@ -52,9 +58,7 @@ public class Health : NetworkBehaviour
 
     [Server]
     public void HandleDeath() {
-
-        //If bot, drop gun and spawn a new bot somewhere
-
+        Dead.SetActive(true);
         Destroy(gameObject);
     }
 
