@@ -11,7 +11,7 @@ public class Health : NetworkBehaviour
     [SyncVar]
     private float health = 0f;
     private Slider HP; 
-    public GameObject Dead;
+    //public GameObject Dead;
     
     public bool IsDead => health == 0f;
 
@@ -25,7 +25,7 @@ public class Health : NetworkBehaviour
         HP.value = health;
 
         // Find death screen
-        Dead = transform.GetChild(3).gameObject;
+        //Dead = transform.GetChild(3).gameObject;
     }
 
     public float getHealth()
@@ -58,7 +58,7 @@ public class Health : NetworkBehaviour
 
     [Server]
     public void HandleDeath() {
-        Dead.SetActive(true);
+        //Dead.SetActive(true);
         Destroy(gameObject);
     }
 
