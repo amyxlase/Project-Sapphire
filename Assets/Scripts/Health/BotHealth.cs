@@ -48,7 +48,7 @@ public class BotHealth : NetworkBehaviour
     public void HandleDeath() {
         //Drop gun
         Debug.Log("killed bot");
-        Destroy(gameObject);
+        NetworkServer.Destroy(gameObject);
         FPSNetworkManager manager = GameObject.Find("Network Manager").GetComponent("FPSNetworkManager") as FPSNetworkManager;
         manager.botCount--;
     }

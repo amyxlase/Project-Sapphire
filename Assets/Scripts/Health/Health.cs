@@ -59,7 +59,7 @@ public class Health : NetworkBehaviour
     [Server]
     public void HandleDeath() {
         //Dead.SetActive(true);
-        Destroy(gameObject);
+        NetworkServer.Destroy(gameObject);
     }
 
 }
