@@ -6,6 +6,7 @@ using Mirror;
 
 public class BotHealth : NetworkBehaviour
 {
+    // private GameObject manager;
     [SerializeField] private float maxHealth = 100f;
 
     [SyncVar]
@@ -45,10 +46,11 @@ public class BotHealth : NetworkBehaviour
 
     [Server]
     public void HandleDeath() {
-
         //Drop gun
         Debug.Log("killed bot");
         Destroy(gameObject);
+        FPSNetworkManager manager = GameObject.Find("MonoBehaviour/NetworkManager/FPSNetworkManager").GetComponent("FPSNetworkManager") as FPSNetworkManager;
+        manager.botCount--;
     }
 
 }
