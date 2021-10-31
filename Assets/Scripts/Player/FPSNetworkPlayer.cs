@@ -17,6 +17,8 @@ public class FPSNetworkPlayer : NetworkBehaviour
 
     public bool isActive;
 
+    public Gun gun;
+
     [AddComponentMenu("")]
 
     public override void OnStartAuthority() {
