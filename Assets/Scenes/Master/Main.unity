@@ -1135,7 +1135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0110f245bfcfc7d459681f7bd9ebc590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  port: 7778
+  port: 7779
   maxMessageSize: 16384
   handshakeMaxSize: 3000
   noDelay: 1
@@ -1990,6 +1990,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1390207246}
   m_Mesh: {fileID: -3127142430814704978, guid: 6aae4a96db5e83b6db6338a9665067cc, type: 3}
+--- !u!1 &1419294169 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 325101041226325836, guid: 7151bba7e9a9443c8a103fff9f015b06,
+    type: 3}
+  m_PrefabInstance: {fileID: 2050241482}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1419294170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419294169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba5ee59e60f9e714d8768cade4aa4291, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1479064734
 GameObject:
   m_ObjectHideFlags: 0

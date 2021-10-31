@@ -15,6 +15,9 @@ public class FPSNetworkPlayer : NetworkBehaviour
     public GameObject Dead;
     public GameObject leaderboard;
 
+    [SyncVar (hook = nameof(OnKillsChanged))]
+    public int kills = 0;
+
     public bool isActive;
 
     [AddComponentMenu("")]
@@ -116,9 +119,16 @@ public class FPSNetworkPlayer : NetworkBehaviour
             playerDamage.dealDamage(20);
 
             BotHealth botHealth = target.gameObject.GetComponent<BotHealth>();
+            if (botHealth.IsDead)
+                kills += 1;
             Debug.Log("bot has " + botHealth.getHealth() + " health left");
         }
         
+    }
+
+    public void OnKillsChanged(int oldKillsCount, int newKillsCount)
+    {
+        Debug.Log($"old kills: {oldKillsCount}, new kills: {newKillsCount}");
     }
 
 }
