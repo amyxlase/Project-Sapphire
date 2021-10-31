@@ -49,7 +49,6 @@ public class FPSNetworkManager : NetworkManager
     }
 
     private void Update() {
-        Debug.Log(botCount);
         if(botCount < playerCount * 5) {
             addBot();
             Debug.Log("Calling for backup");
