@@ -997,7 +997,9 @@ PrefabInstance:
       propertyPath: sceneId
       value: 999622031
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8839750288859275320, guid: f54461245ef3d496da0c83cc4c830d9d, type: 3}
+    - {fileID: 8839750288859275323, guid: f54461245ef3d496da0c83cc4c830d9d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f54461245ef3d496da0c83cc4c830d9d, type: 3}
 --- !u!224 &590103261 stripped
 RectTransform:
@@ -1297,8 +1299,6 @@ MonoBehaviour:
   transport: {fileID: 802624195}
   networkAddress: localhost
   maxConnections: 100
-  disconnectInactiveConnections: 0
-  disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
   playerPrefab: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
   autoCreatePlayer: 1
@@ -1337,7 +1337,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGUI: 0
   offsetX: 0
   offsetY: 0
 --- !u!224 &843029422 stripped
