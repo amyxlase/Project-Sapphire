@@ -43,7 +43,7 @@ public class PickUp : MonoBehaviour
     public void pickUp()
     {
         // to make sure you don't immediately re-equip after you drop
-        bool didSomething = false; 
+        //bool didSomething = false; 
 
         // press v again to unequip
         if (Input.GetKeyDown(KeyCode.V) && IsPickedUp) {
@@ -55,10 +55,10 @@ public class PickUp : MonoBehaviour
                 player.gun = null;
                 IsPickedUp = false;
             }
-            didSomething = true;
+            //didSomething = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.V) && InPickupMode && !didSomething) {
+        if (Input.GetKeyDown(KeyCode.V) && InPickupMode /*&& !didSomething*/) {
             if (gameObject.tag == "gun" && destination.gameObject.tag == "Player") {
                 FPSNetworkPlayer player = destination.gameObject.GetComponent<FPSNetworkPlayer>();
                 Gun playerGun = player.gun;
@@ -88,9 +88,14 @@ public class PickUp : MonoBehaviour
     {
         pickUp();
         if (IsPickedUp) {
-            gameObject.GetComponent<Rigidbody>().useGravity = false;
+
+            Rigidbody rb = gameObject.GetComponent<Rigidbody>();
+            rb.useGravity = false;
+            rb.angularVelocity = Vector3.zero;
             this.transform.position = destination.position;
             this.transform.parent = GameObject.Find("Destination").transform;
+            this.transform.localPosition = Vector3.zero;
+            this.transform.localEulerAngles = new Vector3(0, 180, 0);
             exitPickupMode();
         }
     }
