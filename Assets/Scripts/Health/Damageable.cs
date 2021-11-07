@@ -4,7 +4,8 @@ using UnityEngine;
 using Mirror;
 
 public class Damageable : NetworkBehaviour
-{
+{   
+    [SyncVar]
     private Health health;
     private Shield shield;
 
@@ -34,6 +35,5 @@ public class Damageable : NetworkBehaviour
         {
             health.Remove(shieldOverflow);
         }
-        
     }
 }
