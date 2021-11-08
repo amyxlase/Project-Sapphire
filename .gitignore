@@ -43,3 +43,13 @@ sysinfo.txt
 Logs/
 .vscode/
 UserSettings/
+Assets/Standard\ Assets/**
+Assets/Standard\ Assets.meta
+Assets/Mirror/**
+Assets/Mirror.meta
+Assets/HoudiniEngineAssetCache/**
+Assets/HoudiniEngineAssetCache.meta
+Assets/Plugins/**
+Assets/Plugins.meta
+heu_session.txt
+heu_settings.ini
