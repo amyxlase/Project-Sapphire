@@ -99,7 +99,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
 
             //Pass input to animator
-            anim.SetFloat("Vertical", Mathf.Abs(Input.GetAxis("Vertical")));
+            anim.SetFloat("Vertical", Input.GetAxis("Vertical"));
             
         }
 
