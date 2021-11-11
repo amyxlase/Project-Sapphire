@@ -68,6 +68,7 @@ public class FPSNetworkPlayer : NetworkBehaviour
 
         ScopeToggle();              // Bound to Q and right click
         Shoot();                    // Bound to F and left click
+        Reload();                   // Bound to R
         ViewBoard();                // Bound to Tab
         DieOutOfBounds();
         DetectGunToAnimate();
@@ -95,7 +96,7 @@ public class FPSNetworkPlayer : NetworkBehaviour
     public void Shoot() {
 
         bool shootInput = Input.GetKeyDown(KeyCode.F) || Input.GetMouseButtonDown(0);
-        bool gunGood = this.gun != null && gun.getAmmo() > 0;
+        bool gunGood = this.gun != null && gun.getQueuedAmmo() > 0;
 
         if (shootInput && gunGood) {
 
@@ -116,7 +117,13 @@ public class FPSNetworkPlayer : NetworkBehaviour
 
             //Ammo
             gun.DecrementAmmo();
-            Debug.Log(gun.getAmmo());
+            Debug.LogFormat("TOTAL AMMO {0} aND QUEUED AMMO {1}", gun.getTotalAmmo(), gun.getQueuedAmmo());
+        }
+    }
+
+    public void Reload() {
+        if (Input.GetKey(KeyCode.R)) {
+            this.gun.Reload();
         }
     }
 
