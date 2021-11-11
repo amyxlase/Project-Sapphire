@@ -98,10 +98,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
 
-            //Pass input to animator
+            //Pass vertical movement input to animator
             anim.SetFloat("Vertical", Input.GetAxis("Vertical"));
 
-            Debug.LogFormat("animation params {0} and {1}", Input.GetAxis("Vertical"), !m_IsWalking);
+            //Pass gun info to animator
+            DetectGunToAnimate();
+        }
+
+        private void DetectGunToAnimate() {
             
         }
 
