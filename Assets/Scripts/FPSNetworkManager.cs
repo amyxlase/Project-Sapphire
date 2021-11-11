@@ -26,21 +26,36 @@ public class FPSNetworkManager : NetworkManager
         //Activate various things
         FPSNetworkPlayer playerScript = player.GetComponent<FPSNetworkPlayer>();
         playerScript.enabled = true;
+
+        Debug.Log("1: Activated fpsnetworkplayerscript");
+
         playerScript.HUD = GameObject.Find("Canvas").transform.GetChild(6).gameObject;
         playerScript.HUD.SetActive(true);
+
+        Debug.Log("2: Activated HUD");
+
         Transform gunDestination = playerScript.PistolDestination.transform;
         GameObject gun = Instantiate(handGunPrefab, Vector3.zero, Quaternion.identity);
         NetworkServer.Spawn(gun);
+
+        Debug.Log("3: spawned gun");
+
         gun.transform.parent = gunDestination;
         gun.transform.localPosition = Vector3.zero;
         gun.transform.localEulerAngles = Vector3.zero;
 
+        Debug.Log("4: moved gun");
+
         NetworkIdentity identity = player.GetComponent<NetworkIdentity>();
         identity.AssignClientAuthority(conn);
+
+        Debug.Log("5: moved gun");
 
         //Turn off death screen
         GameObject Dead = GameObject.Find("Death");
         Dead.SetActive(false);
+
+        Debug.Log("6: moved gun");
     }
 
     public override void OnServerDisconnect(NetworkConnection conn)

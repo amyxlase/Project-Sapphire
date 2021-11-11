@@ -36,7 +36,8 @@ public class CanvasHUD : MonoBehaviour
 
         //Make sure to attach these Buttons in the Inspector
         buttonHost.onClick.AddListener(ButtonOnline);
-        buttonClient.onClick.AddListener(ButtonLocal);
+        buttonServer.onClick.AddListener(ButtonHostLocal);
+        buttonClient.onClick.AddListener(ButtonClientLocal);
         buttonStop.onClick.AddListener(ButtonStop);
 
         //This updates the Unity canvas, we have to manually call it every change, unlike legacy OnGUI.
@@ -56,7 +57,14 @@ public class CanvasHUD : MonoBehaviour
         SetupCanvas();
     }
 
-    public void ButtonLocal()
+    public void ButtonClientLocal() {
+
+        NetworkManager.singleton.networkAddress = "localhost";
+        NetworkManager.singleton.StartClient();
+        SetupCanvas();
+    }
+
+    public void ButtonHostLocal()
     {
         NetworkManager.singleton.networkAddress = "localhost";
         NetworkManager.singleton.StartHost();
@@ -87,7 +95,6 @@ public class CanvasHUD : MonoBehaviour
     public void SetupCanvas()
     {
         // Here we will dump majority of the canvas UI that may be changed.
-
         if (!NetworkClient.isConnected && !NetworkServer.active)
         {
             if (NetworkClient.active)
