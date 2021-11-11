@@ -1339,41 +1339,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 3517699941685459009, guid: d745eb4f79efd4e78b49ebae60e79132, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d745eb4f79efd4e78b49ebae60e79132, type: 3}
---- !u!1 &797675936 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2823727529076536969, guid: d745eb4f79efd4e78b49ebae60e79132,
-    type: 3}
-  m_PrefabInstance: {fileID: 780337897}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &797675945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 797675936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  clientAuthority: 0
-  sendInterval: 0.05
-  syncPosition: 1
-  syncRotation: 1
-  syncScale: 0
-  interpolatePosition: 1
-  interpolateRotation: 1
-  interpolateScale: 1
-  bufferTimeMultiplier: 3
-  bufferSizeLimit: 64
-  catchupThreshold: 6
-  catchupMultiplier: 0.1
-  showGizmos: 0
-  showOverlay: 0
-  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
 --- !u!1 &802624194
 GameObject:
   m_ObjectHideFlags: 0
@@ -1450,9 +1415,13 @@ MonoBehaviour:
   playerSpawnMethod: 0
   spawnPrefabs:
   - {fileID: 6229488266381961754, guid: c77240dafd7494115a4b176084f2df04, type: 3}
+  - {fileID: 2823727529076536969, guid: d745eb4f79efd4e78b49ebae60e79132, type: 3}
+  - {fileID: 2823727529076536969, guid: 55ee7daf2a63c441fa4cfd91aeae4336, type: 3}
   playerSpawn: {fileID: 333669263}
   botSpawn: {fileID: 333669263}
   botPrefab: {fileID: 6229488266381961754, guid: c77240dafd7494115a4b176084f2df04,
+    type: 3}
+  handGunPrefab: {fileID: 2823727529076536969, guid: 55ee7daf2a63c441fa4cfd91aeae4336,
     type: 3}
   botCount: 0
   playerCount: 0

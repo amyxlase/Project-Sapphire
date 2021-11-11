@@ -7,6 +7,7 @@ public class FPSNetworkManager : NetworkManager
     public GameObject playerSpawn;
     public GameObject botSpawn;
     public GameObject botPrefab;
+    public GameObject handGunPrefab;
 
     public int botCount = 0;
     public int playerCount = 0;
@@ -25,6 +26,12 @@ public class FPSNetworkManager : NetworkManager
         //Activate various things
         FPSNetworkPlayer playerScript = player.GetComponent<FPSNetworkPlayer>();
         playerScript.enabled = true;
+        Transform gunDestination = playerScript.PistolDestination.transform;
+        GameObject gun = Instantiate(handGunPrefab, Vector3.zero, Quaternion.identity);
+        gun.transform.parent = gunDestination;
+        gun.transform.localPosition = Vector3.zero;
+        gun.transform.localEulerAngles = Vector3.zero;
+
         NetworkIdentity identity = player.GetComponent<NetworkIdentity>();
         identity.AssignClientAuthority(conn);
 
@@ -51,7 +58,6 @@ public class FPSNetworkManager : NetworkManager
     private void Update() {
         if(botCount < playerCount) {
             addBot();
-            Debug.Log("Calling for backup");
         }
     }
 
