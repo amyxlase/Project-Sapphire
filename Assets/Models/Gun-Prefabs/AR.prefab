@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 4688148432215135809}
   - component: {fileID: 3485219855889726058}
   - component: {fileID: 1816798965055688113}
-  - component: {fileID: 3517699941685459009}
   - component: {fileID: 4739390936809598485}
   - component: {fileID: 6008057611261364197}
   - component: {fileID: -2395833077334359302}
   - component: {fileID: 2112433026755122473}
+  - component: {fileID: 101633477499584113}
   m_Layer: 0
   m_Name: AR
   m_TagString: gun
@@ -93,20 +93,6 @@ CapsuleCollider:
   m_Height: 1.2
   m_Direction: 2
   m_Center: {x: 0.000000059604645, y: -0.06, z: -0.00000008940697}
---- !u!114 &3517699941685459009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2823727529076536969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bc577f6a23b9484e9fb9c82e6b99304, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
 --- !u!114 &4739390936809598485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,6 +153,22 @@ MonoBehaviour:
   visible: 0
   m_AssetId: d745eb4f79efd4e78b49ebae60e79132
   hasSpawned: 0
+--- !u!114 &101633477499584113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2823727529076536969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abeeaec60c62541878cb3f4ce9acf14a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  gunDamage: 0
+  shootingSpeed: 0
 --- !u!1001 &1798724092594553097
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gun1 : Gun
+public class AR : Gun
 {
     [SerializeField]
     private float gunDamage;

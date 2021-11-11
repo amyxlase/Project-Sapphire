@@ -105,8 +105,17 @@ namespace UnityStandardAssets.Characters.FirstPerson
             DetectGunToAnimate();
         }
 
+        //Check if gun is pistol or rifle
         private void DetectGunToAnimate() {
-            
+            bool truth = false;
+            Transform destination = this.transform.GetChild(2);
+            if (destination != null  && destination.childCount > 0) {
+                Transform gun = destination.GetChild(0);
+                truth = gun.gameObject.GetComponent<AR>() != null;
+            }
+
+            Debug.Log(truth);
+            anim.SetBool("Rifle", truth);
         }
 
 
