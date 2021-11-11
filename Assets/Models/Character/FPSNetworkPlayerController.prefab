@@ -324,6 +324,7 @@ MonoBehaviour:
   healthUI: {fileID: 0}
   HP: {fileID: 0}
   isActive: 0
+  gun: {fileID: 0}
 --- !u!114 &-2682138738644088490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2182,8 +2183,19 @@ PrefabInstance:
       propertyPath: m_CullingMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: e016c8c129f6c45b6a2b2a7761fc2d22,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e016c8c129f6c45b6a2b2a7761fc2d22, type: 3}
+--- !u!4 &2264827812669719987 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e016c8c129f6c45b6a2b2a7761fc2d22,
+    type: 3}
+  m_PrefabInstance: {fileID: 1793824187226776152}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &94959675334466960 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1852576806548013000, guid: e016c8c129f6c45b6a2b2a7761fc2d22,
@@ -2193,12 +2205,6 @@ Transform:
 --- !u!95 &5300283976951750601 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: e016c8c129f6c45b6a2b2a7761fc2d22,
-    type: 3}
-  m_PrefabInstance: {fileID: 1793824187226776152}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2264827812669719987 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e016c8c129f6c45b6a2b2a7761fc2d22,
     type: 3}
   m_PrefabInstance: {fileID: 1793824187226776152}
   m_PrefabAsset: {fileID: 0}

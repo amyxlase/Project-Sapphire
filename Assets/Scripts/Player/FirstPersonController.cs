@@ -100,6 +100,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             //Pass input to animator
             anim.SetFloat("Vertical", Input.GetAxis("Vertical"));
+
+            Debug.LogFormat("animation params {0} and {1}", Input.GetAxis("Vertical"), !m_IsWalking);
             
         }
 
@@ -255,7 +257,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_IsWalking = !Input.GetKey(KeyCode.LeftShift);
             
             //Pass input to animator
-            anim.SetBool("Running", m_IsWalking);
+            anim.SetBool("Running", !m_IsWalking);
 #endif
             // set the desired speed to be walking or running
             speed = m_IsWalking ? m_WalkSpeed : m_RunSpeed;
