@@ -28,6 +28,7 @@ public class FPSNetworkManager : NetworkManager
         playerScript.enabled = true;
         Transform gunDestination = playerScript.PistolDestination.transform;
         GameObject gun = Instantiate(handGunPrefab, Vector3.zero, Quaternion.identity);
+        NetworkServer.Spawn(gun);
         gun.transform.parent = gunDestination;
         gun.transform.localPosition = Vector3.zero;
         gun.transform.localEulerAngles = Vector3.zero;

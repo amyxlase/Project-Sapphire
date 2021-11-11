@@ -1269,12 +1269,7 @@ PrefabInstance:
     - target: {fileID: 2112433026755122473, guid: d745eb4f79efd4e78b49ebae60e79132,
         type: 3}
       propertyPath: sceneId
-      value: 723155914
-      objectReference: {fileID: 0}
-    - target: {fileID: 2112433026755122473, guid: d745eb4f79efd4e78b49ebae60e79132,
-        type: 3}
-      propertyPath: serverOnly
-      value: 0
+      value: 2794220169
       objectReference: {fileID: 0}
     - target: {fileID: 2823727529076536969, guid: d745eb4f79efd4e78b49ebae60e79132,
         type: 3}

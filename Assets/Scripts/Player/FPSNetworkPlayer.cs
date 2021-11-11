@@ -40,14 +40,13 @@ public class FPSNetworkPlayer : NetworkBehaviour
 
     public override void OnStartAuthority() {
 
+        //Find leaderboard
+        leaderboard = GameObject.Find("LeaderBoard");
+
         //Configure crosshair
         crosshair = GameObject.Find("ScopedCrosshairImage");
         crosshair2 = GameObject.Find("DefaultCrosshairImage");
         crosshair.SetActive(false);
-
-        //Configure leaderboard
-        leaderboard = GameObject.Find("LeaderBoard");
-        leaderboard.SetActive(false);
 
         //Find dead screen
         //Dead = transform.GetChild(3).gameObject;
@@ -101,6 +100,8 @@ public class FPSNetworkPlayer : NetworkBehaviour
         bool gunGood = this.gun != null && gun.getQueuedAmmo() > 0;
 
         if (shootInput && gunGood) {
+
+            Debug.LogFormat(" position {1} and rotation {1}", gun.transform.position, gun.transform.rotation);
 
             //Start animation
             networkAnimator.ResetTrigger("Shoot");
