@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 
-public class PickUp : MonoBehaviour
+public class PickUp : NetworkBehaviour
 {
     public Transform destination;
     private bool InPickupMode = false;
@@ -42,9 +42,6 @@ public class PickUp : MonoBehaviour
 
     public void pickUp()
     {
-        // to make sure you don't immediately re-equip after you drop
-        //bool didSomething = false; 
-
         // press v again to unequip
         if (Input.GetKeyDown(KeyCode.V) && IsPickedUp) {
             if (gameObject.tag == "gun" && destination.gameObject.tag == "Player") {
@@ -55,10 +52,9 @@ public class PickUp : MonoBehaviour
                 player.gun = null;
                 IsPickedUp = false;
             }
-            //didSomething = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.V) && InPickupMode /*&& !didSomething*/) {
+        if (Input.GetKeyDown(KeyCode.V) && InPickupMode) {
             if (gameObject.tag == "gun" && destination.gameObject.tag == "Player") {
                 FPSNetworkPlayer player = destination.gameObject.GetComponent<FPSNetworkPlayer>();
                 Gun playerGun = player.gun;
@@ -86,6 +82,7 @@ public class PickUp : MonoBehaviour
 
     void Update() 
     {
+
         pickUp();
         if (IsPickedUp) {
 

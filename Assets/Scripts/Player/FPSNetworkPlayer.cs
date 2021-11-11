@@ -48,7 +48,7 @@ public class FPSNetworkPlayer : NetworkBehaviour
         leaderboard.SetActive(false);
 
         //Find dead screen
-        Dead = transform.GetChild(3).gameObject;
+        //Dead = transform.GetChild(3).gameObject;
 
         //Enable camera & audio listener
         Transform fpc = transform.Find("FirstPersonCharacter");

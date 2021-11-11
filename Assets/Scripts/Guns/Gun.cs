@@ -31,6 +31,9 @@ public class Gun : NetworkBehaviour
     [SerializeField] protected float queuedAmmo;
     [SerializeField] protected float totalAmmo;
 
+    [SerializeField] protected string DestinationKey;
+
+
     public float getGunDamage() {
         return gunDamage;
     }
