@@ -6,6 +6,7 @@ public class CanvasHUD : MonoBehaviour
 {
 	public GameObject PanelStart;
 	public GameObject PanelStop;
+    public GameObject Background;
 
 	public Button buttonHost, buttonServer, buttonClient, buttonStop;
 
@@ -13,6 +14,7 @@ public class CanvasHUD : MonoBehaviour
 
 	public Text serverText;
 	public Text clientText;
+
 
 
     private void Start()
@@ -99,7 +101,8 @@ public class CanvasHUD : MonoBehaviour
         else
         {
             PanelStart.SetActive(false);
-            PanelStop.SetActive(true);
+            PanelStop.SetActive(false);
+            Background.SetActive(false);
 
             // server / client status message
             if (NetworkServer.active)
@@ -110,6 +113,15 @@ public class CanvasHUD : MonoBehaviour
             {
                 clientText.text = "Client: address=" + NetworkManager.singleton.networkAddress;
             }
+        }
+    }
+
+    void Update() {
+
+        //Hide in game
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            PanelStop.SetActive(!PanelStop.gameObject.activeInHierarchy);
+            Background.SetActive(!Background.activeInHierarchy);
         }
     }
 }

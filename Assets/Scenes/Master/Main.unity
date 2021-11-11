@@ -1236,6 +1236,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 101633477499584113, guid: d745eb4f79efd4e78b49ebae60e79132,
+        type: 3}
+      propertyPath: ammo
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 101633477499584113, guid: d745eb4f79efd4e78b49ebae60e79132,
+        type: 3}
+      propertyPath: gunDamage
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 101633477499584113, guid: d745eb4f79efd4e78b49ebae60e79132,
+        type: 3}
+      propertyPath: shootingSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2112433026755122473, guid: d745eb4f79efd4e78b49ebae60e79132,
         type: 3}
       propertyPath: sceneId

@@ -55,7 +55,7 @@ public class FPSNetworkPlayer : NetworkBehaviour
         fpc.GetComponent<Camera>().enabled = true;
         fpc.GetComponent<AudioListener>().enabled = true;
 
-        configureHP();
+        //configureHP();
         isActive = true;
     }
 
@@ -66,14 +66,15 @@ public class FPSNetworkPlayer : NetworkBehaviour
             Debug.Log("HP is null");
         }
 
-        ScopeToggle();              // Bound to Q
-        Shoot();                    // Bound to F
+        ScopeToggle();              // Bound to Q and right click
+        Shoot();                    // Bound to F and left click
         ViewBoard();                // Bound to Tab
         DieOutOfBounds();
+        DetectGunToAnimate();
     }
 
     public void ScopeToggle() {
-        if (Input.GetKeyDown(KeyCode.Q)) {
+        if (Input.GetKeyDown(KeyCode.Q) || Input.GetMouseButtonDown(1)) {
             if (zoomToggle) {
                 Camera.main.fieldOfView += 35;
                 Camera.main.orthographicSize += 0.5f;
@@ -92,7 +93,11 @@ public class FPSNetworkPlayer : NetworkBehaviour
     }
 
     public void Shoot() {
-        if (Input.GetKeyDown(KeyCode.F)) {
+
+        bool shootInput = Input.GetKeyDown(KeyCode.F) || Input.GetMouseButtonDown(0);
+        bool gunGood = this.gun != null && gun.getAmmo() > 0;
+
+        if (shootInput && gunGood) {
 
             //Start animation
             networkAnimator.ResetTrigger("Shoot");
@@ -108,6 +113,10 @@ public class FPSNetworkPlayer : NetworkBehaviour
                     CmdDealDamage(hit.transform);
                 }
             }
+
+            //Ammo
+            gun.DecrementAmmo();
+            Debug.Log(gun.getAmmo());
         }
     }
 
@@ -133,6 +142,16 @@ public class FPSNetworkPlayer : NetworkBehaviour
         HP.value = newValue;
     }
 
+    //Check if gun is pistol or rifle
+    private void DetectGunToAnimate() {
+        bool truth = false;
+        if (this.gun != null) {
+            truth = this.gun.gameObject.GetComponent<AR>() != null;
+        }
+
+        anim.SetBool("Rifle", truth);
+    }
+
     [Command]
     public void CmdDealDamage(Transform target) {
         Debug.Log("Asked server to deal damage");
@@ -145,8 +164,8 @@ public class FPSNetworkPlayer : NetworkBehaviour
             playerDamage.dealDamage(20);
             Debug.Log(targetPlayer);
             Debug.Log(playerHealth);
-            targetPlayer.configureHP();
-            targetPlayer.setHP(playerHealth.getHealth());
+            //targetPlayer.configureHP();
+            //targetPlayer.setHP(playerHealth.getHealth());
             Debug.Log("player has " + playerHealth.getHealth() + " health left");
         } else {
             BotDamageable playerDamage = target.gameObject.GetComponent<BotDamageable>();

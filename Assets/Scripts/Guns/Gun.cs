@@ -24,8 +24,9 @@ using Mirror;
 public class Gun : NetworkBehaviour
 {
 
-    private float gunDamage;
-    private float shootingSpeed;
+    [SerializeField] protected float gunDamage;
+    [SerializeField] protected float shootingSpeed;
+    [SerializeField] protected int ammo;
 
     public float getGunDamage() {
         return gunDamage;
@@ -41,6 +42,15 @@ public class Gun : NetworkBehaviour
 
     public void setShootingSpeed(float speed) {
         shootingSpeed = speed;
+    }
+
+
+    public int getAmmo() {
+        return ammo;
+    }
+
+    public void DecrementAmmo() {
+        if (ammo > 0) ammo--;
     }
 
     private void OnTriggerEnter(Collider other)

@@ -49,14 +49,14 @@ public class FPSNetworkManager : NetworkManager
     }
 
     private void Update() {
-        if(botCount < playerCount * 5) {
+        if(botCount < playerCount) {
             addBot();
             Debug.Log("Calling for backup");
         }
     }
 
     public override void OnStartServer() {
-        for(int i = 0; i < 10; i++) {
+        for(int i = 0; i < 5; i++) {
            addBot();
         }
     }
