@@ -57,22 +57,40 @@ public class PickUp : NetworkBehaviour
         if (Input.GetKeyDown(KeyCode.V) && InPickupMode) {
             if (gameObject.tag == "gun" && destination.gameObject.tag == "Player") {
                 FPSNetworkPlayer player = destination.gameObject.GetComponent<FPSNetworkPlayer>();
-                Gun playerGun = player.gun;
 
-                if (playerGun == null) {
-                    print("picking up gun");
-                    NetworkIdentity targetIdentity = destination.GetComponent<NetworkIdentity>();
-                    NetworkIdentity gunIdentity = gameObject.GetComponent<NetworkIdentity>();
-                    Gun gun = gameObject.GetComponent<Gun>();
-                    player.gun = gun;
-
-                    print(targetIdentity.netId + " picked up gun " + gunIdentity.netId);
-                    print("gun has shooting speed " + gun.getShootingSpeed());
+                if (player.gun == null) {
+                    transferParent(player);
                     IsPickedUp = true;
+                    exitPickupMode();
                 }
             }
         }
 
+    }
+
+    public void transferParent(FPSNetworkPlayer player) {
+
+        player.gun = gameObject.GetComponent<Gun>();
+
+        //Rigidbody changes
+        Rigidbody rb = gameObject.GetComponent<Rigidbody>();
+        rb.useGravity = false;
+        rb.isKinematic = true;
+        rb.angularVelocity = Vector3.zero;
+
+        //Transform changes
+        this.transform.parent = getDestination(player).transform;
+        //this.transform.position = destination.position;
+        this.transform.localPosition = Vector3.zero;
+        this.transform.localEulerAngles = new Vector3(0, 0, 0);
+    }
+
+    public GameObject getDestination(FPSNetworkPlayer player) {
+        Gun gunScript = player.gun.gameObject.GetComponent<Gun>();
+        if (gunScript is AR) {
+            return player.RifleDestination;
+        }
+        return player.PistolDestination;
     }
 
     public void drop(GameObject target) {
@@ -84,16 +102,5 @@ public class PickUp : NetworkBehaviour
     {
 
         pickUp();
-        if (IsPickedUp) {
-
-            Rigidbody rb = gameObject.GetComponent<Rigidbody>();
-            rb.useGravity = false;
-            rb.angularVelocity = Vector3.zero;
-            this.transform.position = destination.position;
-            this.transform.parent = GameObject.Find("Destination").transform;
-            this.transform.localPosition = Vector3.zero;
-            this.transform.localEulerAngles = new Vector3(0, 180, 0);
-            exitPickupMode();
-        }
     }
 }

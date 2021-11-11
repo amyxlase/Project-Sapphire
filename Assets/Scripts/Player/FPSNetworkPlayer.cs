@@ -21,6 +21,8 @@ public class FPSNetworkPlayer : NetworkBehaviour
     public bool isActive;
 
     public Gun gun;
+    public GameObject RifleDestination;
+    public GameObject PistolDestination;
 
     [AddComponentMenu("")]
 
