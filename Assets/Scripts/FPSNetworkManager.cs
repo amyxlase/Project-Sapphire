@@ -26,6 +26,8 @@ public class FPSNetworkManager : NetworkManager
         //Activate various things
         FPSNetworkPlayer playerScript = player.GetComponent<FPSNetworkPlayer>();
         playerScript.enabled = true;
+        playerScript.HUD = GameObject.Find("Canvas").transform.GetChild(6).gameObject;
+        playerScript.HUD.SetActive(true);
         Transform gunDestination = playerScript.PistolDestination.transform;
         GameObject gun = Instantiate(handGunPrefab, Vector3.zero, Quaternion.identity);
         NetworkServer.Spawn(gun);

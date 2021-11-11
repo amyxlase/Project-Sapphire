@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Mirror;
+using TMPro;
 
 public class FPSNetworkPlayer : NetworkBehaviour
 {
@@ -16,7 +17,10 @@ public class FPSNetworkPlayer : NetworkBehaviour
     public GameObject Dead;
     public GameObject leaderboard;
     public GameObject healthUI;
+    public GameObject HUD;
     public Slider HP;
+    public float startTime;
+    public TextMeshProUGUI timer;
 
     public bool isActive;
 
@@ -41,12 +45,17 @@ public class FPSNetworkPlayer : NetworkBehaviour
     public override void OnStartAuthority() {
 
         //Find leaderboard
-        leaderboard = GameObject.Find("LeaderBoard");
+        leaderboard = GameObject.Find("Canvas").transform.GetChild(3).gameObject;
 
         //Configure crosshair
         crosshair = GameObject.Find("ScopedCrosshairImage");
         crosshair2 = GameObject.Find("DefaultCrosshairImage");
         crosshair.SetActive(false);
+
+        //Configure timer
+        startTime = Time.time;
+        timer = HUD.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
+
 
         //Find dead screen
         //Dead = transform.GetChild(3).gameObject;
@@ -73,6 +82,15 @@ public class FPSNetworkPlayer : NetworkBehaviour
         ViewBoard();                // Bound to Tab
         DieOutOfBounds();
         DetectGunToAnimate();
+        UpdateTimer();
+    }
+
+    public void UpdateTimer() {
+        float delta = Time.time - startTime;
+        int minutes = (int) delta / 60 ;
+        int seconds = (int) delta - 60 * minutes;
+        string timeString = string.Format("{0:00}:{1:00}", minutes, seconds);
+        timer.text = timeString;
     }
 
     public void ScopeToggle() {
