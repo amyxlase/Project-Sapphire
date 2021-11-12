@@ -45,20 +45,30 @@ public class FPSNetworkPlayer : NetworkBehaviour
 
     public override void OnStartAuthority() {
 
+        Debug.Log("0: on start authority");
+
         //Find leaderboard
         leaderboard = GameObject.Find("Canvas").transform.GetChild(3).gameObject;
+
+        Debug.Log("1: leaderboard OK");
 
         //Configure crosshair
         crosshair = GameObject.Find("ScopedCrosshairImage");
         crosshair2 = GameObject.Find("DefaultCrosshairImage");
         crosshair.SetActive(false);
 
+        Debug.Log("2: crosshair OK");
+
         //Configure timer
         startTime = Time.time;
         timer = HUD.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
 
+        Debug.Log("3: Timer OK");
+
         //Get ammo text
         ammoCount = HUD.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
+
+        Debug.Log("4: AMMO OK");
 
         //Find dead screen
         //Dead = transform.GetChild(3).gameObject;
@@ -68,16 +78,14 @@ public class FPSNetworkPlayer : NetworkBehaviour
         fpc.GetComponent<Camera>().enabled = true;
         fpc.GetComponent<AudioListener>().enabled = true;
 
+        Debug.Log("5: done");
+
         //configureHP();
         isActive = true;
     }
 
     void Update() {
         if (!hasAuthority) return;
-
-        if (HP == null) {
-            Debug.Log("HP is null");
-        }
 
         ScopeToggle();              // Bound to Q and right click
         Shoot();                    // Bound to F and left click
@@ -148,7 +156,7 @@ public class FPSNetworkPlayer : NetworkBehaviour
     public void UpdateAmmoText() {
         float q = this.gun.getQueuedAmmo();
         float t = this.gun.getTotalAmmo();
-        this.ammoCount.text = string.Format("{0}/{1}", q, t - q);
+        this.ammoCount.text = string.Format("{0}|{1}", q, t - q);
     }
 
     public void Reload() {

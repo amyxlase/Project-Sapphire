@@ -16,6 +16,8 @@ public class FPSNetworkManager : NetworkManager
     public override void OnServerAddPlayer(NetworkConnection conn)
     {
 
+        Debug.Log("0: on server add later");
+
         //Move spawn rightward
         Transform start = playerSpawn.transform;
         start.position += Vector3.right * numPlayers;
@@ -36,6 +38,7 @@ public class FPSNetworkManager : NetworkManager
 
         Transform gunDestination = playerScript.PistolDestination.transform;
         GameObject gun = Instantiate(handGunPrefab, Vector3.zero, Quaternion.identity);
+        playerScript.gun = gun.GetComponent<Gun>();
         NetworkServer.Spawn(gun);
 
         Debug.Log("3: spawned gun");
