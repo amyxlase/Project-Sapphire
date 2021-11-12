@@ -31,7 +31,7 @@ public class FPSNetworkManager : NetworkManager
 
         Debug.Log("1: Activated fpsnetworkplayerscript");
 
-        playerScript.HUD = GameObject.Find("Canvas").transform.GetChild(6).gameObject;
+        playerScript.HUD = player.transform.GetChild(2).GetChild(0).gameObject;
         playerScript.HUD.SetActive(true);
 
         Debug.Log("2: Activated HUD");
@@ -55,8 +55,8 @@ public class FPSNetworkManager : NetworkManager
         Debug.Log("5: moved gun");
 
         //Turn off death screen
-        GameObject Dead = GameObject.Find("Death");
-        Dead.SetActive(false);
+        //GameObject Dead = GameObject.Find("Death");
+        //Dead.SetActive(false);
 
         Debug.Log("6: moved gun");
     }

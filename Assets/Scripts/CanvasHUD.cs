@@ -24,8 +24,6 @@ public class CanvasHUD : MonoBehaviour
 
         //Hide UI
         GameObject leaderboard = GameObject.Find("LeaderBoard");
-        GameObject HUD = GameObject.Find("HUD");
-        HUD.SetActive(false);
         leaderboard.SetActive(false);
 
         //Update the canvas text if you have manually changed network managers address from the game object before starting the game scene
