@@ -21,6 +21,7 @@ public class FPSNetworkPlayer : NetworkBehaviour
     public Slider HP;
     public float startTime;
     public TextMeshProUGUI timer;
+    public TextMeshProUGUI ammoCount;
 
     public bool isActive;
 
@@ -56,6 +57,8 @@ public class FPSNetworkPlayer : NetworkBehaviour
         startTime = Time.time;
         timer = HUD.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
 
+        //Get ammo text
+        ammoCount = HUD.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
 
         //Find dead screen
         //Dead = transform.GetChild(3).gameObject;
@@ -138,13 +141,20 @@ public class FPSNetworkPlayer : NetworkBehaviour
 
             //Ammo
             gun.DecrementAmmo();
-            Debug.LogFormat("TOTAL AMMO {0} aND QUEUED AMMO {1}", gun.getTotalAmmo(), gun.getQueuedAmmo());
+            UpdateAmmoText();
         }
+    }
+
+    public void UpdateAmmoText() {
+        float q = this.gun.getQueuedAmmo();
+        float t = this.gun.getTotalAmmo();
+        this.ammoCount.text = string.Format("{0}/{1}", q, t - q);
     }
 
     public void Reload() {
         if (Input.GetKey(KeyCode.R)) {
             this.gun.Reload();
+            UpdateAmmoText();
         }
     }
 

@@ -174,7 +174,7 @@ MonoBehaviour:
   shootingSpeed: 1
   ammoPerMagazine: 8
   queuedAmmo: 8
-  totalAmmo: 0
+  totalAmmo: 24
   DestinationKey: 
 --- !u!114 &8455125802043029047
 MonoBehaviour:
