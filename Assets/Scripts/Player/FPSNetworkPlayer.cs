@@ -45,40 +45,29 @@ public class FPSNetworkPlayer : NetworkBehaviour
 
     public override void OnStartAuthority() {
 
-        Debug.Log("0: on start authority");
 
         //Find leaderboard
         leaderboard = GameObject.Find("Canvas").transform.GetChild(3).gameObject;
-
-        Debug.Log("1: leaderboard OK");
 
         //Configure crosshair
         crosshair = GameObject.Find("ScopedCrosshairImage");
         crosshair2 = GameObject.Find("DefaultCrosshairImage");
         crosshair.SetActive(false);
 
-        Debug.Log("2: crosshair OK");
-
         //Configure timer
         startTime = Time.time;
-        timer = HUD.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
 
-        Debug.Log("3: Timer OK");
+        //Find HUD
+        this.HUD = this.transform.GetChild(2).GetChild(0).gameObject;
+        timer = HUD.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
 
         //Get ammo text
         ammoCount = HUD.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
-
-        Debug.Log("4: AMMO OK");
-
-        //Find dead screen
-        //Dead = transform.GetChild(3).gameObject;
 
         //Enable camera & audio listener
         Transform fpc = transform.Find("FirstPersonCharacter");
         fpc.GetComponent<Camera>().enabled = true;
         fpc.GetComponent<AudioListener>().enabled = true;
-
-        Debug.Log("5: done");
 
         //configureHP();
         isActive = true;
