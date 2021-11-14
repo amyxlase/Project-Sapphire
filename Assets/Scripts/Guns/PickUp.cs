@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 
-public class PickUp : MonoBehaviour
+public class PickUp : NetworkBehaviour
 {
     public Transform destination;
     private bool InPickupMode = false;
@@ -42,9 +42,6 @@ public class PickUp : MonoBehaviour
 
     public void pickUp()
     {
-        // to make sure you don't immediately re-equip after you drop
-        bool didSomething = false; 
-
         // press v again to unequip
         if (Input.GetKeyDown(KeyCode.V) && IsPickedUp) {
             if (gameObject.tag == "gun" && destination.gameObject.tag == "Player") {
@@ -55,28 +52,45 @@ public class PickUp : MonoBehaviour
                 player.gun = null;
                 IsPickedUp = false;
             }
-            didSomething = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.V) && InPickupMode && !didSomething) {
+        if (Input.GetKeyDown(KeyCode.V) && InPickupMode) {
             if (gameObject.tag == "gun" && destination.gameObject.tag == "Player") {
                 FPSNetworkPlayer player = destination.gameObject.GetComponent<FPSNetworkPlayer>();
-                Gun playerGun = player.gun;
 
-                if (playerGun == null) {
-                    print("picking up gun");
-                    NetworkIdentity targetIdentity = destination.GetComponent<NetworkIdentity>();
-                    NetworkIdentity gunIdentity = gameObject.GetComponent<NetworkIdentity>();
-                    Gun gun = gameObject.GetComponent<Gun>();
-                    player.gun = gun;
-
-                    print(targetIdentity.netId + " picked up gun " + gunIdentity.netId);
-                    print("gun has shooting speed " + gun.getShootingSpeed());
+                if (player.gun == null) {
+                    transferParent(player);
                     IsPickedUp = true;
+                    exitPickupMode();
                 }
             }
         }
 
+    }
+
+    public void transferParent(FPSNetworkPlayer player) {
+
+        player.gun = gameObject.GetComponent<Gun>();
+
+        //Rigidbody changes
+        Rigidbody rb = gameObject.GetComponent<Rigidbody>();
+        rb.useGravity = false;
+        rb.isKinematic = true;
+        rb.angularVelocity = Vector3.zero;
+
+        //Transform changes
+        this.transform.parent = getDestination(player).transform;
+        //this.transform.position = destination.position;
+        this.transform.localPosition = Vector3.zero;
+        this.transform.localEulerAngles = new Vector3(0, 0, 0);
+    }
+
+    public GameObject getDestination(FPSNetworkPlayer player) {
+        Gun gunScript = player.gun.gameObject.GetComponent<Gun>();
+        if (gunScript is AR) {
+            return player.RifleDestination;
+        }
+        return player.PistolDestination;
     }
 
     public void drop(GameObject target) {
@@ -86,12 +100,7 @@ public class PickUp : MonoBehaviour
 
     void Update() 
     {
+
         pickUp();
-        if (IsPickedUp) {
-            gameObject.GetComponent<Rigidbody>().useGravity = false;
-            this.transform.position = destination.position;
-            this.transform.parent = GameObject.Find("Destination").transform;
-            exitPickupMode();
-        }
     }
 }

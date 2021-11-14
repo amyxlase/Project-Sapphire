@@ -24,8 +24,15 @@ using Mirror;
 public class Gun : NetworkBehaviour
 {
 
-    private float gunDamage;
-    private float shootingSpeed;
+    [SerializeField] protected float gunDamage;
+    [SerializeField] protected float shootingSpeed;
+    [SerializeField] protected float ammoPerMagazine;
+
+    [SerializeField] protected float queuedAmmo;
+    [SerializeField] protected float totalAmmo;
+
+    [SerializeField] protected string DestinationKey;
+
 
     public float getGunDamage() {
         return gunDamage;
@@ -41,6 +48,29 @@ public class Gun : NetworkBehaviour
 
     public void setShootingSpeed(float speed) {
         shootingSpeed = speed;
+    }
+
+    public float getTotalAmmo() {
+        return totalAmmo;
+    }
+
+    public float getQueuedAmmo() {
+        return queuedAmmo;
+    }
+
+    public void DecrementAmmo() {
+
+        if (totalAmmo <= 0 || queuedAmmo <= 0) return;
+
+        totalAmmo--;
+        queuedAmmo--;
+    }
+
+    public void Reload() {
+
+        if (totalAmmo <= 0) return;
+
+        queuedAmmo = Mathf.Min(totalAmmo, ammoPerMagazine);
     }
 
     private void OnTriggerEnter(Collider other)

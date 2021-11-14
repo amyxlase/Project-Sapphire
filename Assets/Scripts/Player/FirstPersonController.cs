@@ -98,10 +98,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
 
-            //Pass input to animator
-            anim.SetFloat("Vertical", Mathf.Abs(Input.GetAxis("Vertical")));
-            
+            //Pass vertical movement input to animator
+            anim.SetFloat("Vertical", Input.GetAxis("Vertical"));
         }
+
 
 
         private void PlayLandingSound()
@@ -253,6 +253,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
             // On standalone builds, walk/run speed is modified by a key press.
             // keep track of whether or not the character is walking or running
             m_IsWalking = !Input.GetKey(KeyCode.LeftShift);
+            
+            //Pass input to animator
+            anim.SetBool("Running", !m_IsWalking);
 #endif
             // set the desired speed to be walking or running
             speed = m_IsWalking ? m_WalkSpeed : m_RunSpeed;
