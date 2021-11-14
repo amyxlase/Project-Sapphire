@@ -136,6 +136,8 @@ public class FPSNetworkPlayer : NetworkBehaviour
             networkAnimator.ResetTrigger("Shoot");
             networkAnimator.SetTrigger("Shoot");
 
+            gun.playGunSound();
+
             // Draw Raycast
             RaycastHit hit;
             Ray fromCamera =  Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));

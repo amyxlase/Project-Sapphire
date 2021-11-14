@@ -33,6 +33,9 @@ public class Gun : NetworkBehaviour
 
     [SerializeField] protected string DestinationKey;
 
+    public AudioSource m_AudioSource;
+    [SerializeField] protected AudioClip gunSound;
+
 
     public float getGunDamage() {
         return gunDamage;
@@ -71,6 +74,21 @@ public class Gun : NetworkBehaviour
         if (totalAmmo <= 0) return;
 
         queuedAmmo = Mathf.Min(totalAmmo, ammoPerMagazine);
+    }
+
+     public AudioClip getGunSound() {
+        return gunSound;
+    }
+
+    public void setGunSound(AudioClip sound) {
+        gunSound = sound;
+    }
+
+    public void playGunSound() {
+        Debug.Log(m_AudioSource);
+        Debug.Log(m_AudioSource.clip);
+        Debug.Log(gunSound);
+        m_AudioSource.PlayOneShot(m_AudioSource.clip);
     }
 
     private void OnTriggerEnter(Collider other)
