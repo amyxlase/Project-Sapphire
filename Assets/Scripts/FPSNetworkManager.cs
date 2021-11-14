@@ -30,7 +30,7 @@ public class FPSNetworkManager : NetworkManager
         playerScript.HUD = player.transform.GetChild(2).GetChild(0).gameObject;
         playerScript.HUD.SetActive(true);
 
-        Transform gunDestination = playerScript.PistolDestination.transform;
+        Transform gunDestination = playerScript.RifleDestination.transform;
         GameObject gun = Instantiate(handGunPrefab, Vector3.zero, Quaternion.identity);
         playerScript.gun = gun.GetComponent<Gun>();
         NetworkServer.Spawn(gun);

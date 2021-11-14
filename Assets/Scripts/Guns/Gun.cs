@@ -32,6 +32,7 @@ public class Gun : NetworkBehaviour
     [SerializeField] protected float totalAmmo;
 
     [SerializeField] protected string DestinationKey;
+    [SerializeField] protected ParticleSystem particleVFX;
 
 
     public float getGunDamage() {
@@ -66,6 +67,10 @@ public class Gun : NetworkBehaviour
         queuedAmmo--;
     }
 
+    public ParticleSystem getVFX() {
+        return particleVFX;
+    }
+    
     public void Reload() {
 
         if (totalAmmo <= 0) return;
