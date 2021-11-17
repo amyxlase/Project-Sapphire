@@ -128,7 +128,7 @@ public class FPSNetworkBot : NetworkBehaviour
         state = EnemyState.patrol;
         isPatrolRoutineRunning = false;
     }
-
+ 
     private void Move(Vector3 direct, float speed) {
         direct.y = 0f;
         transform.forward = direct;
