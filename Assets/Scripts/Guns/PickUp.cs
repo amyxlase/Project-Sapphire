@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 
-public class PickUp : NetworkBehaviour
+public class PickUp : MonoBehaviour
 {
     public Transform destination;
     private bool InPickupMode = false;
-    private bool IsPickedUp = false;
+
+    [SerializeField]
+    public bool IsPickedUp = false;
 
     // objects that can be picked up have two states:
     // able to be picked up and not

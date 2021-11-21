@@ -30,14 +30,14 @@ public class FPSNetworkManager : NetworkManager
         playerScript.HUD = player.transform.GetChild(2).GetChild(0).gameObject;
         playerScript.HUD.SetActive(true);
 
-        Transform gunDestination = playerScript.PistolDestination.transform;
+        /*Transform gunDestination = playerScript.PistolDestination.transform;
         GameObject gun = Instantiate(handGunPrefab, Vector3.zero, Quaternion.identity);
         playerScript.gun = gun.GetComponent<Gun>();
         NetworkServer.Spawn(gun);
 
         gun.transform.parent = gunDestination;
         gun.transform.localPosition = Vector3.zero;
-        gun.transform.localEulerAngles = Vector3.zero;
+        gun.transform.localEulerAngles = Vector3.zero;*/
 
         NetworkIdentity identity = player.GetComponent<NetworkIdentity>();
         identity.AssignClientAuthority(conn);

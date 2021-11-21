@@ -21,7 +21,7 @@ using Mirror;
 // playerDamage.dealDamage(gunDamage);
 // in this case, player will only deal damage if equipped w weapon
 
-public class Gun : NetworkBehaviour
+public class Gun : MonoBehaviour
 {
 
     [SerializeField] protected float gunDamage;
@@ -80,7 +80,7 @@ public class Gun : NetworkBehaviour
             GameObject player = other.gameObject;
             NetworkIdentity targetIdentity = player.GetComponent<NetworkIdentity>();
             PickUp pickUp = gameObject.GetComponent<PickUp>();
-            print(targetIdentity.netId + " can pick up this gun");
+            //print(targetIdentity.netId + " can pick up this gun");
             pickUp.enterPickupMode(player);
         }
     }

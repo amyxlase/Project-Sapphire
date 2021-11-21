@@ -14,9 +14,7 @@ GameObject:
   - component: {fileID: 4739390936809598485}
   - component: {fileID: 6008057611261364197}
   - component: {fileID: -2395833077334359302}
-  - component: {fileID: 2112433026755122473}
   - component: {fileID: 101633477499584113}
-  - component: {fileID: 1488357310037957519}
   m_Layer: 0
   m_Name: AR
   m_TagString: gun
@@ -106,9 +104,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94fefeced35fb4881929549218f28919, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
   destination: {fileID: 0}
+  IsPickedUp: 0
 --- !u!136 &6008057611261364197
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -139,23 +136,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2112433026755122473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2823727529076536969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneId: 0
-  serverOnly: 0
-  visible: 0
-  m_AssetId: d745eb4f79efd4e78b49ebae60e79132
-  hasSpawned: 0
 --- !u!114 &101633477499584113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,43 +148,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abeeaec60c62541878cb3f4ce9acf14a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
   gunDamage: 25
   shootingSpeed: 5
   ammoPerMagazine: 25
   queuedAmmo: 25
   totalAmmo: 100
   DestinationKey: Rifle
---- !u!114 &1488357310037957519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2823727529076536969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  clientAuthority: 0
-  sendInterval: 0.05
-  syncPosition: 1
-  syncRotation: 1
-  syncScale: 0
-  interpolatePosition: 1
-  interpolateRotation: 1
-  interpolateScale: 1
-  bufferTimeMultiplier: 3
-  bufferSizeLimit: 64
-  catchupThreshold: 6
-  catchupMultiplier: 0.1
-  showGizmos: 0
-  showOverlay: 0
-  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
 --- !u!1001 &1798724092594553097
 PrefabInstance:
   m_ObjectHideFlags: 0

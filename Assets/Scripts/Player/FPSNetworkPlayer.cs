@@ -119,7 +119,7 @@ public class FPSNetworkPlayer : NetworkBehaviour
 
         if (shootInput && gunGood) {
 
-            Debug.LogFormat(" position {1} and rotation {1}", gun.transform.position, gun.transform.rotation);
+            //Debug.LogFormat(" position {1} and rotation {1}", gun.transform.position, gun.transform.rotation);
 
             //Start animation
             networkAnimator.ResetTrigger("Shoot");
