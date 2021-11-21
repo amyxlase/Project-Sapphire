@@ -7,6 +7,9 @@ public class FPSNetworkBot : NetworkBehaviour
 {
     private CharacterController m_BotController;
     private Vector3 direction;
+    private Animator anim;
+    private Gun gun;
+    private GameObject RifleDestination;
 
     void Start() {
         m_BotController = GetComponent<CharacterController>();
@@ -25,6 +28,16 @@ public class FPSNetworkBot : NetworkBehaviour
     private void ApplyGravity() {
         float multiplier = 55;
         m_BotController.Move(Physics.gravity * multiplier * Time.deltaTime * Time.deltaTime);
+    }
+
+    //Check if gun is pistol or rifle
+    private void DetectGunToAnimate() {
+        bool truth = false;
+        if (this.gun != null) {
+            truth = this.gun.gameObject.GetComponent<AR>() != null;
+        }
+
+        anim.SetBool("Rifle", truth);
     }
 
     //Walk in a random direction & change that direction every 100 frames

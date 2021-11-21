@@ -40,7 +40,7 @@ public class PickUp : NetworkBehaviour
         InPickupMode = false;
     }
 
-    public void pickUp()
+    public void pickUp() // will need pickup without V input
     {
         // press v again to unequip
         if (Input.GetKeyDown(KeyCode.V) && IsPickedUp) {
@@ -68,7 +68,7 @@ public class PickUp : NetworkBehaviour
 
     }
 
-    public void transferParent(FPSNetworkPlayer player) {
+    public void transferParent(FPSNetworkPlayer player) { // will need parent transfer for bot
 
         player.gun = gameObject.GetComponent<Gun>();
 

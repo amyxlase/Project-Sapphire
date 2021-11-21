@@ -88,6 +88,12 @@ public class Gun : NetworkBehaviour
             print(targetIdentity.netId + " can pick up this gun");
             pickUp.enterPickupMode(player);
         }
+        else if (other.tag == "Bot") {
+            GameObject bot = other.gameObject;
+            NetworkIdentity targetIdentity = bot.GetComponent<NetworkIdentity>();
+            PickUp pickup = gameObject.GetComponent<PickUp>();
+            pickup.enterPickupMode(bot); // need a pickUp method without a prompt for input
+        }
     }
 
     void OnTriggerExit(Collider other)
