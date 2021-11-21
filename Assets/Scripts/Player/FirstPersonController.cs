@@ -46,6 +46,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool m_Jumping;
         private bool m_Jetpack;
         private AudioSource m_AudioSource;
+        private TerrainDetect m_TerrainDetect;
 
         // Use this for initialization
         private void Start()
@@ -60,6 +61,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
+            m_TerrainDetect = GetComponent<TerrainDetect>();
         }
 
 
@@ -206,9 +208,27 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 return;
             }
 
+            if (m_TerrainDetect.groundMaterial == null) return;
+
+            int n = Random.Range(1, m_FootstepSounds.Length);
+
+            // grass
+            if (m_TerrainDetect.groundMaterial == m_TerrainDetect.Materials[0])
+            {
+                n = 0;
+                if (m_IsWalking) n = 1;
+            }
+
+            // stone
+            if (m_TerrainDetect.groundMaterial == m_TerrainDetect.Materials[1])
+            {
+                n = 4;
+                if (m_IsWalking) n = 5;
+            }
+
             // pick & play a random footstep sound from the array,
             // excluding sound at index 0
-            int n = Random.Range(1, m_FootstepSounds.Length);
+            //int n = Random.Range(1, m_FootstepSounds.Length);
             m_AudioSource.clip = m_FootstepSounds[n];
             m_AudioSource.PlayOneShot(m_AudioSource.clip);
             // move picked sound to index 0 so it's not picked next time
