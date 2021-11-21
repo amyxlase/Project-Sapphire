@@ -32,6 +32,7 @@ public class Gun : MonoBehaviour
     [SerializeField] protected float totalAmmo;
 
     [SerializeField] protected string DestinationKey;
+    [SerializeField] protected ParticleSystem particleVFX;
 
     public AudioSource m_AudioSource;
     [SerializeField] protected AudioClip gunSound;
@@ -69,6 +70,10 @@ public class Gun : MonoBehaviour
         queuedAmmo--;
     }
 
+    public ParticleSystem getVFX() {
+        return particleVFX;
+    }
+    
     public void Reload() {
 
         if (totalAmmo <= 0) return;

@@ -1135,7 +1135,7 @@ MonoBehaviour:
   botSpawn: {fileID: 333669263}
   botPrefab: {fileID: 6229488266381961754, guid: c77240dafd7494115a4b176084f2df04,
     type: 3}
-  handGunPrefab: {fileID: 2823727529076536969, guid: 55ee7daf2a63c441fa4cfd91aeae4336,
+  handGunPrefab: {fileID: 2823727529076536969, guid: d745eb4f79efd4e78b49ebae60e79132,
     type: 3}
   botCount: 0
   playerCount: 0
