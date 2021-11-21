@@ -63,6 +63,7 @@ public class FPSNetworkPlayer : NetworkBehaviour
 
         //Get ammo text
         ammoCount = HUD.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
+        UpdateAmmoText();
 
         //Enable camera & audio listener
         Transform fpc = transform.Find("FirstPersonCharacter");
