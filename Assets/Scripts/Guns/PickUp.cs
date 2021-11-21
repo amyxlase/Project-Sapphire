@@ -6,8 +6,8 @@ using Mirror;
 public class PickUp : NetworkBehaviour
 {
     public Transform destination;
-    private bool InPickupMode = false;
-    private bool IsPickedUp = false;
+    public bool InPickupMode = false;
+    public bool IsPickedUp = false;
 
     // objects that can be picked up have two states:
     // able to be picked up and not

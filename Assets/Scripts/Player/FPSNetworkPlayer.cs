@@ -107,7 +107,6 @@ public class FPSNetworkPlayer : NetworkBehaviour
         }
     }
 
-    //[Command]
     public void Shoot() {
 
         bool shootInput = Input.GetKeyDown(KeyCode.F) || Input.GetMouseButtonDown(0);
@@ -119,30 +118,28 @@ public class FPSNetworkPlayer : NetworkBehaviour
             networkAnimator.ResetTrigger("Shoot");
             networkAnimator.SetTrigger("Shoot");
 
-            // Draw Raycast
-            RaycastHit hit;
-            Ray fromCamera =  Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-            if (Physics.Raycast(fromCamera, out hit, Mathf.Infinity)) {
-
-                Transform target = hit.transform;
-                if (target.gameObject.name == "FPSNetworkPlayerController(Clone)"
-                    || target.gameObject.name == "FPSNetworkBotController(Clone)") {
-
-                    //Fire shot
-                    CmdDealDamage(target);
-
-                    //Change health bar
-                    //if (target.gameObject.name == "FPSNetworkPlayerController(Clone)") {
-                    //    Health targetHealth = target.gameObject.GetComponent<Health>();
-                    //   FPSNetworkPlayer targetPlayer = target.gameObject.GetComponent<FPSNetworkPlayer>();
-                    //    targetPlayer.setHP(targetHealth.getHealth());
-                    //}                    
-                }
-            }
+            CmdShoot();
 
             //Ammo
             gun.DecrementAmmo();
             UpdateAmmoText();
+        }
+    }
+
+    [Command]
+    public void CmdShoot() {
+        // Draw Raycast
+        RaycastHit hit;
+        Ray fromCamera =  Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+        if (Physics.Raycast(fromCamera, out hit, Mathf.Infinity)) {
+
+            Transform target = hit.transform;
+            if (target.gameObject.name == "FPSNetworkPlayerController(Clone)"
+                || target.gameObject.name == "FPSNetworkBotController(Clone)") {
+
+                //Fire shot
+                CmdDealDamage(target);                 
+            }
         }
     }
 
@@ -196,15 +193,14 @@ public class FPSNetworkPlayer : NetworkBehaviour
         Debug.Log("Asked server to deal damage");
         NetworkIdentity targetIdentity = target.gameObject.GetComponent<NetworkIdentity>();
         if (target.gameObject.name == "FPSNetworkPlayerController(Clone)") {
-            Debug.Log("player target");
             Damageable playerDamage = target.gameObject.GetComponent<Damageable>();
             Health playerHealth = target.gameObject.GetComponent<Health>();
             FPSNetworkPlayer targetPlayer = target.gameObject.GetComponent<FPSNetworkPlayer>();
-            playerDamage.dealDamage(20);
+            playerDamage.dealDamage(gun.getGunDamage());
             Debug.Log("player has " + playerHealth.getHealth() + " health left");
         } else {
             BotDamageable playerDamage = target.gameObject.GetComponent<BotDamageable>();
-            playerDamage.dealDamage(20);
+            playerDamage.dealDamage(gun.getGunDamage());
 
             BotHealth botHealth = target.gameObject.GetComponent<BotHealth>();
             Debug.Log("bot has " + botHealth.getHealth() + " health left");

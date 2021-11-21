@@ -34,6 +34,7 @@ public class FPSNetworkManager : NetworkManager
         GameObject gun = Instantiate(handGunPrefab, Vector3.zero, Quaternion.identity);
         playerScript.gun = gun.GetComponent<Gun>();
         NetworkServer.Spawn(gun);
+        //gun.GetComponent<PickUp>().IsPickedUp = true; 
 
         gun.transform.parent = gunDestination;
         gun.transform.localPosition = Vector3.zero;

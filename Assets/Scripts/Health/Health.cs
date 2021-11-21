@@ -9,8 +9,7 @@ public class Health : NetworkBehaviour
     [SerializeField] private float maxHealth = 100f;
     private Slider HP;
 
-    //[SyncVar(hook = nameof(UpdateHealth))]
-    [SyncVar]
+    [SyncVar(hook = nameof(UpdateHealth))]
     private float health = 0f;
     
     public bool IsDead => health == 0f;
@@ -21,8 +20,6 @@ public class Health : NetworkBehaviour
     }
 
     void Update() {
-
-        Debug.Log("lol");
 
         if (!hasAuthority) { return; }
 
@@ -57,13 +54,12 @@ public class Health : NetworkBehaviour
 
     [Server]
     public void HandleDeath() {
-        //Dead.SetActive(true);
         NetworkServer.Destroy(gameObject);
     }
 
-   // void UpdateHealth(System.Single oldValue, System.Single newValue) {
-    //    health = newValue;
-    //    HP.value = newValue;
-    //}
+    void UpdateHealth(System.Single oldValue, System.Single newValue) {
+        health = newValue;
+        //UpdateHealthBar(newValue);
+    }
 
 }
