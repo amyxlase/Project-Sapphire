@@ -1,24 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Mirror;
 
 public class Health : NetworkBehaviour
 {
     [SerializeField] private float maxHealth = 100f;
+    private Slider HP;
 
+    //[SyncVar(hook = nameof(UpdateHealth))]
     [SyncVar]
     private float health = 0f;
-    //public GameObject Dead;
     
     public bool IsDead => health == 0f;
 
     public override void OnStartServer()
     {
         health = maxHealth;
+    }
 
-        // Find death screen
-        //Dead = transform.GetChild(3).gameObject;
+    void Update() {
+
+        Debug.Log("lol");
+
+        if (!hasAuthority) { return; }
+
+        GameObject healthUI = transform.GetChild(2).GetChild(1).gameObject;
+        HP = healthUI.gameObject.GetComponent<Slider>();
+        HP.value = health;
     }
 
     public float getHealth()
@@ -50,5 +60,10 @@ public class Health : NetworkBehaviour
         //Dead.SetActive(true);
         NetworkServer.Destroy(gameObject);
     }
+
+   // void UpdateHealth(System.Single oldValue, System.Single newValue) {
+    //    health = newValue;
+    //    HP.value = newValue;
+    //}
 
 }
