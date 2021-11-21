@@ -164,6 +164,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  state: 0
+  shootOrigin: {fileID: 660632301906139716}
+  detectionRange: 30
+  patrolDuration: 3
+  idleDuration: 1
+  yVelocity: 0
+  patrolSpeed: 2
+  shootRange: 15
+  chaseSpeed: 8
+  target: {fileID: 0}
+  gravity: -9.81
 --- !u!114 &7539142202778076202
 MonoBehaviour:
   m_ObjectHideFlags: 0
