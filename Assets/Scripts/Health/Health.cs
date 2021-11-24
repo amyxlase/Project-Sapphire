@@ -10,7 +10,7 @@ public class Health : NetworkBehaviour
 
     [SyncVar]
     private float health = 0f;
-    private Slider HP; 
+    //private Slider HP; 
     //public GameObject Dead;
     
     public bool IsDead => health == 0f;
@@ -30,7 +30,7 @@ public class Health : NetworkBehaviour
 
     public float getHealth()
     {
-        HP.value = health;
+        //HP.value = health;
         return health;
     }
 
@@ -39,7 +39,7 @@ public class Health : NetworkBehaviour
     {
         value = Mathf.Max(value, 0);
         health = Mathf.Max(health + value, 0);
-        HP.value = health;
+        //HP.value = health;
     }
 
     [Server]
@@ -47,7 +47,7 @@ public class Health : NetworkBehaviour
     {
         value = Mathf.Max(value, 0);
         health = Mathf.Max(health - value, 0);
-        HP.value = health;
+        //HP.value = health;
 
 
         if (health <= 0) 
