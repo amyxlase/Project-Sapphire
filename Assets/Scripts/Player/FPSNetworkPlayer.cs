@@ -114,6 +114,26 @@ public class FPSNetworkPlayer : NetworkBehaviour
     }
 
     public void Shoot() {
+        if (Input.GetKeyDown(KeyCode.F)) {
+
+            //Start animation
+            networkAnimator.ResetTrigger("Shoot");
+            networkAnimator.SetTrigger("Shoot");
+
+            // Draw Raycast
+            RaycastHit hit;
+            Ray fromCamera =  Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+            if (Physics.Raycast(fromCamera, out hit, Mathf.Infinity)) {
+                if (hit.transform.gameObject.name == "FPSNetworkPlayerController(Clone)"
+                    || hit.transform.gameObject.name == "FPSNetworkBotController(Clone)") {
+                    Debug.Log("Fired at object named " + hit.transform.gameObject.name);
+                    CmdDealDamage(hit.transform);
+                }
+            }
+        }
+    }
+/*
+    public void Shoot() {
 
         bool shootInput = Input.GetKeyDown(KeyCode.F) || Input.GetMouseButtonDown(0);
         bool gunGood = this.gun != null && gun.getQueuedAmmo() > 0;
@@ -144,7 +164,7 @@ public class FPSNetworkPlayer : NetworkBehaviour
             gun.DecrementAmmo();
             UpdateAmmoText();
         }
-    }
+    }*/
 
     public void UpdateAmmoText() {
         float q = this.gun.getQueuedAmmo();
@@ -198,14 +218,7 @@ public class FPSNetworkPlayer : NetworkBehaviour
         if (target.gameObject.name == "FPSNetworkPlayerController(Clone)") {
             Debug.Log("player target");
             Damageable playerDamage = target.gameObject.GetComponent<Damageable>();
-            Health playerHealth = target.gameObject.GetComponent<Health>();
-            FPSNetworkPlayer targetPlayer = target.gameObject.GetComponent<FPSNetworkPlayer>();
             playerDamage.dealDamage(20);
-            Debug.Log(targetPlayer);
-            Debug.Log(playerHealth);
-            //targetPlayer.configureHP();
-            //targetPlayer.setHP(playerHealth.getHealth());
-            Debug.Log("player has " + playerHealth.getHealth() + " health left");
         } else {
             BotDamageable playerDamage = target.gameObject.GetComponent<BotDamageable>();
             playerDamage.dealDamage(20);

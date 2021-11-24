@@ -21,7 +21,7 @@ public class FPSNetworkBot : NetworkBehaviour
     public float gravity = -9.81f;
 
     void Start() {
-        state = EnemyState.patrol;
+        //state = EnemyState.patrol;
         m_BotController = GetComponent<CharacterController>();
         //direction = Vector3.zero;
         gravity *= Time.fixedDeltaTime * Time.fixedDeltaTime;
@@ -32,7 +32,7 @@ public class FPSNetworkBot : NetworkBehaviour
     private void FixedUpdate() {
         
         ApplyGravity();
-        AI();
+        //AI();
 
         //Temporary for beta
         //BadAI();

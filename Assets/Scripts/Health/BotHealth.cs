@@ -52,5 +52,4 @@ public class BotHealth : NetworkBehaviour
         FPSNetworkManager manager = GameObject.Find("Network Manager").GetComponent("FPSNetworkManager") as FPSNetworkManager;
         manager.botCount--;
     }
-
 }
