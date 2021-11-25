@@ -71,7 +71,7 @@ public class FPSNetworkPlayer : NetworkBehaviour
         Debug.Log("4: AMMO OK");
 
         //Find dead screen
-        //Dead = transform.GetChild(3).gameObject;
+        Dead = GameObject.Find("Canvas").transform.GetChild(5).GetChild(3).gameObject;
 
         //Enable camera & audio listener
         Transform fpc = transform.Find("FirstPersonCharacter");
