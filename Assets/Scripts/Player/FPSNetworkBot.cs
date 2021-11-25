@@ -161,8 +161,8 @@ public class FPSNetworkBot : NetworkBehaviour
             Vector3 enemyToPlayer = target.transform.position - transform.position;
             transform.forward = new Vector3(enemyToPlayer.x, 0f, enemyToPlayer.z);
 
-            if(enemyToPlayer.magnitude <= shootRange) {
-                //Shoot();
+            if(enemyToPlayer.magnitude <= shootRange && Time.frameCount % 5 == 0) {
+                Shoot();
             }
             else {
                 Move(enemyToPlayer, chaseSpeed);
@@ -175,22 +175,23 @@ public class FPSNetworkBot : NetworkBehaviour
     }
 
     public void Shoot() {
-        RaycastHit hit;
-        Ray fromCamera =  Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-        if (Physics.Raycast(fromCamera, out hit, Mathf.Infinity)) {
+        if(Physics.Raycast(shootOrigin.position, target.transform.position - transform.position, out RaycastHit hit , detectionRange)) {
             if (hit.transform.gameObject.name == "FPSNetworkPlayerController(Clone)") {
-                CmdDealDamage(hit.transform);
+
+                uint botID = this.gameObject.GetComponent<NetworkIdentity>().netId;
+                uint playerID = hit.transform.gameObject.GetComponent<NetworkIdentity>().netId;
+                Debug.Log("Bot " + botID + " shooting player " + playerID);
+                DealDamage(hit.transform);
             }
         }
     }
 
-    [Command]
-    public void CmdDealDamage(Transform target) {
+    public void DealDamage(Transform target) {
         NetworkIdentity targetIdentity = target.gameObject.GetComponent<NetworkIdentity>();
         Damageable playerDamage = target.gameObject.GetComponent<Damageable>();
         Health playerHealth = target.gameObject.GetComponent<Health>();
         Shield playerShield = target.gameObject.GetComponent<Shield>();
-        playerDamage.dealDamage(20);
+        playerDamage.dealDamage(5);
     }
 
     private bool CanSeeTarget() {
