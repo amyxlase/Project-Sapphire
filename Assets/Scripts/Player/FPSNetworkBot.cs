@@ -21,9 +21,9 @@ public class FPSNetworkBot : NetworkBehaviour
     public float gravity = -9.81f;
 
     void Start() {
-        //state = EnemyState.patrol;
+        state = EnemyState.patrol;
         m_BotController = GetComponent<CharacterController>();
-        //direction = Vector3.zero;
+        direction = Vector3.zero;
         gravity *= Time.fixedDeltaTime * Time.fixedDeltaTime;
         patrolSpeed *= Time.fixedDeltaTime;
         chaseSpeed *= Time.fixedDeltaTime;
@@ -32,7 +32,7 @@ public class FPSNetworkBot : NetworkBehaviour
     private void FixedUpdate() {
         
         ApplyGravity();
-        //AI();
+        AI();
 
         //Temporary for beta
         //BadAI();
@@ -116,8 +116,6 @@ public class FPSNetworkBot : NetworkBehaviour
 
     private IEnumerator StartPatrol() {
         isPatrolRoutineRunning = true;
-        //float x = Random.Range(-1f, 1f);
-        //float z = Random.Range(-1f, 1f);
         Vector2 randomPatrolDirection = Random.insideUnitCircle.normalized;
         transform.forward = new Vector3(randomPatrolDirection.x, 0f, randomPatrolDirection.y);
        

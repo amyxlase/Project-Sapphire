@@ -65,7 +65,7 @@ public class CanvasHUD : MonoBehaviour
     public void ButtonHostLocal()
     {
         NetworkManager.singleton.networkAddress = "localhost";
-        NetworkManager.singleton.StartHost();
+        NetworkManager.singleton.StartServer();
         SetupCanvas();
     }
 

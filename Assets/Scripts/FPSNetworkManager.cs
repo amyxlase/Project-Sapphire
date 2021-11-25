@@ -45,7 +45,6 @@ public class FPSNetworkManager : NetworkManager
         //Turn off death screen
         //GameObject Dead = GameObject.Find("Death");
         //Dead.SetActive(false);
-
     }
 
     public override void OnServerDisconnect(NetworkConnection conn)
@@ -61,6 +60,8 @@ public class FPSNetworkManager : NetworkManager
         GameObject bot = Instantiate(botPrefab, botStart.position + positionOffset, botStart.rotation);
         NetworkServer.Spawn(bot);
         botCount++;
+        FPSNetworkBot script = bot.GetComponent<FPSNetworkBot>();
+        script.enabled = true;
     }
 
     private void Update() {
