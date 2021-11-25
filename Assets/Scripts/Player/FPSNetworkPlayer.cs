@@ -45,7 +45,6 @@ public class FPSNetworkPlayer : NetworkBehaviour
 
     public override void OnStartAuthority() {
 
-
         //Find leaderboard
         leaderboard = GameObject.Find("Canvas").transform.GetChild(3).gameObject;
 

@@ -18,14 +18,14 @@ public class Health : NetworkBehaviour
     public override void OnStartServer()
     {
         health = maxHealth;
+    }
 
-        // Configure health bar
-        //HP = GameObject.Find("HealthSystem").GetComponent<Slider>();
-        //HP.maxValue = maxHealth;
-        //HP.value = health;
+    void Update() {
 
-        // Find death screen
-        //Dead = transform.GetChild(3).gameObject;
+        if (!isLocalPlayer) { return;}
+
+        Slider HP = this.transform.GetChild(2).GetChild(1).gameObject.GetComponent<Slider>();
+        HP.value = health;
     }
 
     public float getHealth()
