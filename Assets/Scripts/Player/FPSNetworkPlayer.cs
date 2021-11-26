@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Mirror;
 using TMPro;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class FPSNetworkPlayer : NetworkBehaviour
 {
@@ -63,6 +64,9 @@ public class FPSNetworkPlayer : NetworkBehaviour
         //Get ammo text
         ammoCount = HUD.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
         UpdateAmmoText();
+
+        //Find death screen
+        Dead = GameObject.Find("Canvas").transform.GetChild(4).GetChild(3).gameObject;
 
         //Enable camera & audio listener
         Transform fpc = transform.Find("FirstPersonCharacter");
@@ -166,10 +170,16 @@ public class FPSNetworkPlayer : NetworkBehaviour
          }
     }
 
+    public void Die() {
+        Dead.SetActive(true);
+        FirstPersonController controller = this.gameObject.GetComponent<FirstPersonController>();
+        controller.m_MouseLook.SetCursorLock(false);
+        NetworkServer.Destroy(this.gameObject);
+    }
+
     public void DieOutOfBounds() {
         if (this.transform.position.y < -10) {
-            Dead.SetActive(true);
-            Destroy(this.gameObject);
+            Die();
         }
     }
 

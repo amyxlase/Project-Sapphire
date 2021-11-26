@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Mirror;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class Health : NetworkBehaviour
 {
@@ -58,8 +59,19 @@ public class Health : NetworkBehaviour
 
     [Server]
     public void HandleDeath() {
-        //Dead.SetActive(true);
-        NetworkServer.Destroy(gameObject);
+        DeathUI();
+        NetworkServer.Destroy(this.gameObject);
+    }
+
+    [ClientRpc]
+    public void DeathUI() {
+
+        if (!hasAuthority) { return; }
+        
+        FPSNetworkPlayer player = this.gameObject.GetComponent<FPSNetworkPlayer>();
+        player.Dead.SetActive(true);
+        FirstPersonController controller = this.gameObject.GetComponent<FirstPersonController>();
+        controller.m_MouseLook.SetCursorLock(false);
     }
 
 }

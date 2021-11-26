@@ -98,9 +98,8 @@ public class CanvasHUD : MonoBehaviour
 
     public void ButtonReconnect()
     {
-        //do not change networkAddress since it stays the same
-        NetworkManager.singleton.StartClient();
-        SetupCanvas();
+        ButtonStop();
+        ButtonClientLocal(); //needs to be changed
     }
 
 
