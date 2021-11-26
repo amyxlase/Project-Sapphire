@@ -175,6 +175,9 @@ public class FPSNetworkPlayer : NetworkBehaviour
         FirstPersonController controller = this.gameObject.GetComponent<FirstPersonController>();
         controller.m_MouseLook.SetCursorLock(false);
         NetworkServer.Destroy(this.gameObject);
+        crosshair.SetActive(true);
+        crosshair2.SetActive(true);
+
     }
 
     public void DieOutOfBounds() {

@@ -69,9 +69,7 @@ public class Health : NetworkBehaviour
         if (!hasAuthority) { return; }
         
         FPSNetworkPlayer player = this.gameObject.GetComponent<FPSNetworkPlayer>();
-        player.Dead.SetActive(true);
-        FirstPersonController controller = this.gameObject.GetComponent<FirstPersonController>();
-        controller.m_MouseLook.SetCursorLock(false);
+        player.Die();
     }
 
 }
