@@ -113,11 +113,17 @@ public class FPSNetworkPlayer : NetworkBehaviour
     }
 
     public void Shoot() {
-        if (Input.GetKeyDown(KeyCode.F)) {
 
-            //Start animation
+        bool shootInput = Input.GetKeyDown(KeyCode.F) || Input.GetMouseButtonDown(0);
+        bool gunGood = this.gun != null && gun.getQueuedAmmo() > 0;
+
+        if (shootInput && gunGood) {
+
+            //Art
             networkAnimator.ResetTrigger("Shoot");
             networkAnimator.SetTrigger("Shoot");
+            gun.getVFX().Play();
+            gun.playGunSound();
 
             // Draw Raycast
             RaycastHit hit;
@@ -132,41 +138,12 @@ public class FPSNetworkPlayer : NetworkBehaviour
                     Debug.Log("Missed targets " + colliders.Length);
                 }
             }
-        }
-    }
-/*
-    public void Shoot() {
-
-        bool shootInput = Input.GetKeyDown(KeyCode.F) || Input.GetMouseButtonDown(0);
-        bool gunGood = this.gun != null && gun.getQueuedAmmo() > 0;
-
-        if (shootInput && gunGood) {
-
-            //Debug.LogFormat(" position {1} and rotation {1}", gun.transform.position, gun.transform.rotation);
-
-            //Start animation
-            networkAnimator.ResetTrigger("Shoot");
-            networkAnimator.SetTrigger("Shoot");
-            gun.getVFX().Play();
-
-            gun.playGunSound();
-
-            // Draw Raycast
-            RaycastHit hit;
-            Ray fromCamera =  Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-            if (Physics.Raycast(fromCamera, out hit, Mathf.Infinity)) {
-                if (hit.transform.gameObject.name == "FPSNetworkPlayerController(Clone)"
-                    || hit.transform.gameObject.name == "FPSNetworkBotController(Clone)") {
-                    Debug.Log("Fired at object named " + hit.transform.gameObject.name);
-                    CmdDealDamage(hit.transform);
-                }
-            }
 
             //Ammo
             gun.DecrementAmmo();
             UpdateAmmoText();
         }
-    }*/
+    }
 
     public void UpdateAmmoText() {
         float q = this.gun.getQueuedAmmo();

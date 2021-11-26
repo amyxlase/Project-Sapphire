@@ -60,6 +60,8 @@ public class CanvasHUD : MonoBehaviour
         NetworkManager.singleton.networkAddress = "localhost";
         NetworkManager.singleton.StartClient();
         SetupCanvas();
+        PanelStop.SetActive(false);
+        Background.SetActive(false);
     }
 
     public void ButtonHostLocal()
