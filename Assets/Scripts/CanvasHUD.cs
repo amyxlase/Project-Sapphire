@@ -6,9 +6,10 @@ public class CanvasHUD : MonoBehaviour
 {
 	public GameObject PanelStart;
 	public GameObject PanelStop;
+    public GameObject PanelEnd;
     public GameObject Background;
 
-	public Button buttonHost, buttonServer, buttonClient, buttonStop;
+	public Button buttonHost, buttonServer, buttonClient, buttonStop, buttonReconnect, buttonHome;
 
 	public InputField inputFieldAddress;
 
@@ -37,6 +38,9 @@ public class CanvasHUD : MonoBehaviour
         buttonServer.onClick.AddListener(ButtonHostLocal);
         buttonClient.onClick.AddListener(ButtonClientLocal);
         buttonStop.onClick.AddListener(ButtonStop);
+        buttonReconnect.onClick.AddListener(ButtonReconnect);
+        //buttonStop returns to home screen, buttonHome should too
+        buttonHome.onClick.AddListener(ButtonStop);
 
         //This updates the Unity canvas, we have to manually call it every change, unlike legacy OnGUI.
         SetupCanvas();
@@ -92,6 +96,14 @@ public class CanvasHUD : MonoBehaviour
         SetupCanvas();
     }
 
+    public void ButtonReconnect()
+    {
+        //do not change networkAddress since it stays the same
+        NetworkManager.singleton.StartClient();
+        SetupCanvas();
+    }
+
+
     public void SetupCanvas()
     {
         // Here we will dump majority of the canvas UI that may be changed.
@@ -101,18 +113,21 @@ public class CanvasHUD : MonoBehaviour
             {
                 PanelStart.SetActive(false);
                 PanelStop.SetActive(true);
+                PanelEnd.SetActive(false);
                 clientText.text = "Connecting to " + NetworkManager.singleton.networkAddress + "..";
             }
             else
             {
                 PanelStart.SetActive(true);
                 PanelStop.SetActive(false);
+                PanelEnd.SetActive(false);
             }
         }
         else
         {
             PanelStart.SetActive(false);
             PanelStop.SetActive(false);
+            PanelEnd.SetActive(false);
             Background.SetActive(false);
 
             // server / client status message
@@ -131,8 +146,11 @@ public class CanvasHUD : MonoBehaviour
 
         //Hide in game
         if (Input.GetKeyDown(KeyCode.Escape)) {
-            PanelStop.SetActive(!PanelStop.gameObject.activeInHierarchy);
-            Background.SetActive(!Background.activeInHierarchy);
+            if (!PanelEnd.gameObject.activeInHierarchy)
+            {
+                PanelStop.SetActive(!PanelStop.gameObject.activeInHierarchy);
+                Background.SetActive(!Background.activeInHierarchy);
+            }
         }
     }
 }
