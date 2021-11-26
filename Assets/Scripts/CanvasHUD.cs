@@ -9,7 +9,7 @@ public class CanvasHUD : MonoBehaviour
     public GameObject PanelEnd;
     public GameObject Background;
 
-	public Button buttonHost, buttonServer, buttonClient, buttonStop, buttonReconnect, buttonHome;
+	public Button buttonHost, buttonServer, buttonClient, buttonStop, buttonHome;
 
 	public InputField inputFieldAddress;
 
@@ -38,7 +38,6 @@ public class CanvasHUD : MonoBehaviour
         buttonServer.onClick.AddListener(ButtonHostLocal);
         buttonClient.onClick.AddListener(ButtonClientLocal);
         buttonStop.onClick.AddListener(ButtonStop);
-        buttonReconnect.onClick.AddListener(ButtonReconnect);
         //buttonStop returns to home screen, buttonHome should too
         buttonHome.onClick.AddListener(ButtonStop);
 
@@ -95,13 +94,6 @@ public class CanvasHUD : MonoBehaviour
 
         SetupCanvas();
     }
-
-    public void ButtonReconnect()
-    {
-        ButtonStop();
-        ButtonClientLocal(); //needs to be changed
-    }
-
 
     public void SetupCanvas()
     {
