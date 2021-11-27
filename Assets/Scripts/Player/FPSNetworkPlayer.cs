@@ -19,31 +19,33 @@ public class FPSNetworkPlayer : NetworkBehaviour
     public GameObject leaderboard;
     public GameObject healthUI;
     public GameObject HUD;
-    public Slider HP;
     public float startTime;
     public TextMeshProUGUI timer;
     public TextMeshProUGUI ammoCount;
 
     public bool isActive;
 
+
+    [SyncVar(hook = nameof(OnChangeGun))]
+    public GunType gunType;
     public Gun gun;
     public GameObject RifleDestination;
     public GameObject PistolDestination;
+    public GameObject RiflePrefab;
+    public GameObject PistolPrefab;
 
     [AddComponentMenu("")]
 
-    public void configureHP() {
-        // Configure health bar
-        healthUI = transform.GetChild(4).gameObject;
-        healthUI.SetActive(true);
-        HP = healthUI.transform.GetChild(0).gameObject.GetComponent<Slider>();
-        HP.maxValue = 100f;
-        HP.value = 100f;
-        Debug.Log(HP);
-        Debug.Log(HP.maxValue);
-        Debug.Log(HP.value);
-    }
+    void OnChangeGun(GunType oldGun, GunType newGun) {
+        Destroy(gun.gameObject);
 
+        if (newGun == GunType.Rifle) {
+            Instantiate(RiflePrefab, RifleDestination.transform);
+        } else {
+            Instantiate(PistolPrefab, PistolDestination.transform);
+        }
+    }
+    
     public override void OnStartAuthority() {
 
         //Find leaderboard
@@ -73,7 +75,6 @@ public class FPSNetworkPlayer : NetworkBehaviour
         fpc.GetComponent<Camera>().enabled = true;
         fpc.GetComponent<AudioListener>().enabled = true;
 
-        //configureHP();
         isActive = true;
     }
 
@@ -186,13 +187,6 @@ public class FPSNetworkPlayer : NetworkBehaviour
         }
     }
 
-    public void setHP(float newValue) {
-        if (HP == null) {
-            Debug.Log("HP is null");
-        }
-        HP.value = newValue;
-    }
-
     //Check if gun is pistol or rifle
     private void DetectGunToAnimate() {
         bool truth = false;
@@ -216,6 +210,41 @@ public class FPSNetworkPlayer : NetworkBehaviour
             Debug.Log("bot has " + health.getHealth() + " health left");
         }
         
+    }
+
+    [Command]
+    void SwapGuns() {
+        
+    }
+
+    [Command]
+    void CmdDropItem()
+    {
+        //initialize gun container
+        Vector3 pos = rightHand.transform.position;
+        Quaternion rot = rightHand.transform.rotation;
+        GameObject newGunContainer = Instantiate(sceneObjectPrefab, pos, rot);
+
+        //configure guncontainer
+        newGunContainer.GetComponent<Rigidbody>().isKinematic = false;
+        GunContainer script = newGunContainer.GetComponent<SceneObject>();
+        script.equippedItem = equippedItem;
+
+        // Spawn the scene object on the network for all to see
+        NetworkServer.Spawn(newSceneObject);
+    }
+
+    [Command]
+    public void CmdPickupGun(GameObject sceneObject)
+    {
+        this.gunType = sceneObject.GetComponent<SceneObject>().equippedItem;
+        NetworkServer.Destroy(sceneObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        GunType otherGun = other.gameObject.GetComponent<Gun>().gunType;
+        CmdPickupGun(otherGun);
     }
 
 }

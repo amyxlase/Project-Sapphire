@@ -21,6 +21,11 @@ using Mirror;
 // playerDamage.dealDamage(gunDamage);
 // in this case, player will only deal damage if equipped w weapon
 
+public enum GunType : byte
+{
+    Rifle, Pistol
+}
+
 public class Gun : MonoBehaviour
 {
 
@@ -36,6 +41,8 @@ public class Gun : MonoBehaviour
 
     public AudioSource m_AudioSource;
     [SerializeField] protected AudioClip gunSound;
+
+    [SerializeField] public GunType gunType;
 
 
     public float getGunDamage() {

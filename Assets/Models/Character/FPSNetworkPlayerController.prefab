@@ -322,14 +322,18 @@ MonoBehaviour:
   leaderboard: {fileID: 0}
   healthUI: {fileID: 0}
   HUD: {fileID: 5408845006219673984}
-  HP: {fileID: 3975141418266634934}
   startTime: 0
   timer: {fileID: 5408845007187060184}
   ammoCount: {fileID: 5408845007302365819}
   isActive: 0
+  gunType: 0
   gun: {fileID: 4226538110797325879}
   RifleDestination: {fileID: 2310727104758526795}
   PistolDestination: {fileID: 4258972755760242647}
+  RiflePrefab: {fileID: 2823727529076536969, guid: d745eb4f79efd4e78b49ebae60e79132,
+    type: 3}
+  PistolPrefab: {fileID: 2823727529076536969, guid: 55ee7daf2a63c441fa4cfd91aeae4336,
+    type: 3}
 --- !u!114 &-2682138738644088490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1145,18 +1149,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 5586592201382339266}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3975141418266634934 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8839750287068825716, guid: f54461245ef3d496da0c83cc4c830d9d,
-    type: 3}
-  m_PrefabInstance: {fileID: 5586592201382339266}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &5935500534369506674
 PrefabInstance:
   m_ObjectHideFlags: 0
