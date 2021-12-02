@@ -19,32 +19,29 @@ public class FPSNetworkPlayer : NetworkBehaviour
     public GameObject leaderboard;
     public GameObject healthUI;
     public GameObject HUD;
-    public Slider HP;
     public float startTime;
     public TextMeshProUGUI timer;
     public TextMeshProUGUI ammoCount;
 
     public bool isActive;
 
+    [SyncVar]
     public Gun gun;
     public GameObject RifleDestination;
     public GameObject PistolDestination;
 
     [AddComponentMenu("")]
 
-    public void configureHP() {
-        // Configure health bar
-        healthUI = transform.GetChild(4).gameObject;
-        healthUI.SetActive(true);
-        HP = healthUI.transform.GetChild(0).gameObject.GetComponent<Slider>();
-        HP.maxValue = 100f;
-        HP.value = 100f;
-        Debug.Log(HP);
-        Debug.Log(HP.maxValue);
-        Debug.Log(HP.value);
-    }
 
     public override void OnStartAuthority() {
+
+        //Configure gun
+        uint playerNetId = this.gameObject.GetComponent<NetworkIdentity>().netId;
+        GameObject gunObject = NetworkIdentity.spawned[playerNetId - 1].gameObject;
+        this.gun = gunObject.GetComponent<Gun>();
+        PickUp gunPickup = gun.GetComponent<PickUp>();
+        gunPickup.transferParent(this);
+
 
         //Find leaderboard
         leaderboard = GameObject.Find("Canvas").transform.GetChild(3).gameObject;
@@ -184,13 +181,6 @@ public class FPSNetworkPlayer : NetworkBehaviour
         if (this.transform.position.y < -10) {
             Die();
         }
-    }
-
-    public void setHP(float newValue) {
-        if (HP == null) {
-            Debug.Log("HP is null");
-        }
-        HP.value = newValue;
     }
 
     //Check if gun is pistol or rifle

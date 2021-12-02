@@ -21,15 +21,15 @@ using Mirror;
 // playerDamage.dealDamage(gunDamage);
 // in this case, player will only deal damage if equipped w weapon
 
-public class Gun : MonoBehaviour
+public class Gun : NetworkBehaviour
 {
 
     [SerializeField] protected float gunDamage;
     [SerializeField] protected float shootingSpeed;
     [SerializeField] protected float ammoPerMagazine;
 
-    [SerializeField] protected float queuedAmmo;
-    [SerializeField] protected float totalAmmo;
+    [SerializeField] [SyncVar] protected float queuedAmmo;
+    [SerializeField] [SyncVar] protected float totalAmmo;
 
     [SerializeField] protected string DestinationKey;
     [SerializeField] protected ParticleSystem particleVFX;

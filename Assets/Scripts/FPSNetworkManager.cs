@@ -16,7 +16,11 @@ public class FPSNetworkManager : NetworkManager
     public override void OnServerAddPlayer(NetworkConnection conn)
     {
 
-        //Move spawn rightward
+        //Spawn gun
+        GameObject gun = Instantiate(handGunPrefab, Vector3.zero, Quaternion.identity);
+        NetworkServer.Spawn(gun);
+
+        //Spawn player
         Transform start = playerSpawn.transform;
         start.position += Vector3.right * numPlayers;
         GameObject player = Instantiate(playerPrefab, start.position, start.rotation);
@@ -29,6 +33,10 @@ public class FPSNetworkManager : NetworkManager
 
         playerScript.HUD = player.transform.GetChild(2).GetChild(0).gameObject;
         playerScript.HUD.SetActive(true);
+
+        playerScript.gun = gun.GetComponent<Gun>();
+        PickUp gunPickup = gun.GetComponent<PickUp>();
+        gunPickup.transferParent(playerScript);
 
         /*Transform gunDestination = playerScript.PistolDestination.transform;
         GameObject gun = Instantiate(handGunPrefab, Vector3.zero, Quaternion.identity);

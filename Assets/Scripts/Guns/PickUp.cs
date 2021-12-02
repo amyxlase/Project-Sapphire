@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Animations;
 using UnityEngine;
 using Mirror;
 
-public class PickUp : MonoBehaviour
+public class PickUp : NetworkBehaviour
 {
     public Transform destination;
+    public ParentConstraint constraint;
     private bool InPickupMode = false;
 
     [SerializeField]
@@ -81,10 +83,21 @@ public class PickUp : MonoBehaviour
         rb.angularVelocity = Vector3.zero;
 
         //Transform changes
-        this.transform.parent = getDestination(player).transform;
-        //this.transform.position = destination.position;
-        this.transform.localPosition = Vector3.zero;
-        this.transform.localEulerAngles = new Vector3(0, 0, 0);
+        //this.transform.parent = getDestination(player).transform;
+        //this.transform.localPosition = Vector3.zero;
+        //this.transform.localEulerAngles = new Vector3(0, 0, 0);
+
+        //Configure parent constraint
+        constraint.constraintActive = true;
+        if (constraint.sourceCount > 0){
+            constraint.RemoveSource(0);
+        }
+
+        //Add source
+        ConstraintSource source = new ConstraintSource();
+        source.sourceTransform = this.getDestination(player).transform;
+        source.weight = 1;
+        constraint.AddSource(source);
     }
 
     public GameObject getDestination(FPSNetworkPlayer player) {
