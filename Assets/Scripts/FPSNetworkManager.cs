@@ -42,7 +42,6 @@ public class FPSNetworkManager : NetworkManager
         GameObject gun = Instantiate(handGunPrefab, Vector3.zero, Quaternion.identity);
         playerScript.gun = gun.GetComponent<Gun>();
         NetworkServer.Spawn(gun);
-
         gun.transform.parent = gunDestination;
         gun.transform.localPosition = Vector3.zero;
         gun.transform.localEulerAngles = Vector3.zero;*/
@@ -63,13 +62,25 @@ public class FPSNetworkManager : NetworkManager
 
     [Server]
     public void addBot() {
+
+        //Spawn gun
+        GameObject gun = Instantiate(handGunPrefab, Vector3.zero, Quaternion.identity);
+        NetworkServer.Spawn(gun);
+
+        //Spawn bot
         Transform botStart = botSpawn.transform;
         Vector3 positionOffset = new Vector3(Random.Range(1, 20), Random.Range(1, 20), Random.Range(1, 20));
         GameObject bot = Instantiate(botPrefab, botStart.position + positionOffset, botStart.rotation);
         NetworkServer.Spawn(bot);
+
+        //Configure bot
         botCount++;
         FPSNetworkBot script = bot.GetComponent<FPSNetworkBot>();
         script.enabled = true;
+
+        //Configure gun
+        PickUp gunPickup = gun.GetComponent<PickUp>();
+        gunPickup.transferParentBot(script);
     }
 
     private void Update() {

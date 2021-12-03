@@ -19,6 +19,8 @@ public class FPSNetworkBot : NetworkBehaviour
     public float chaseSpeed = 8f;
     public FPSNetworkPlayer target;
     public float gravity = -9.81f;
+    [SerializeField] public GameObject RifleDestination;
+    [SerializeField] public GameObject PistolDestination;
 
     void Start() {
         state = EnemyState.patrol;
@@ -177,10 +179,8 @@ public class FPSNetworkBot : NetworkBehaviour
     public void Shoot() {
         if(Physics.Raycast(shootOrigin.position, target.transform.position - transform.position, out RaycastHit hit , detectionRange)) {
             if (hit.transform.gameObject.name == "FPSNetworkPlayerController(Clone)") {
-
                 uint botID = this.gameObject.GetComponent<NetworkIdentity>().netId;
                 uint playerID = hit.transform.gameObject.GetComponent<NetworkIdentity>().netId;
-                Debug.Log("Bot " + botID + " shooting player " + playerID);
                 DealDamage(hit.transform);
             }
         }
