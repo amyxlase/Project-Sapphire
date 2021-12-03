@@ -23,6 +23,10 @@ public class PickUp : NetworkBehaviour
 
         player.gun = gameObject.GetComponent<Gun>();
 
+        //Turn collider off
+        Collider collider = gameObject.GetComponent<Collider>();
+        collider.enabled = false;
+
         //Rigidbody changes
         Rigidbody rb = gameObject.GetComponent<Rigidbody>();
         rb.useGravity = false;

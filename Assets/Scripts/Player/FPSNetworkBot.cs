@@ -164,7 +164,7 @@ public class FPSNetworkBot : NetworkBehaviour
             transform.forward = new Vector3(enemyToPlayer.x, 0f, enemyToPlayer.z);
 
             if(enemyToPlayer.magnitude <= shootRange && Time.frameCount % 5 == 0) {
-                Shoot();
+                //Shoot();
             }
             else {
                 Move(enemyToPlayer, chaseSpeed);

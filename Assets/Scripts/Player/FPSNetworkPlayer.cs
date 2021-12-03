@@ -134,9 +134,10 @@ public class FPSNetworkPlayer : NetworkBehaviour
                     || hit.transform.gameObject.name == "FPSNetworkBotController(Clone)") {
                     Debug.Log("Fired at object named " + hit.transform.gameObject.name);
                     CmdDealDamage(hit.transform);
-                } else {
-                    CapsuleCollider[] colliders = FindObjectsOfType<CapsuleCollider>();
-                    Debug.Log("Missed targets " + colliders.Length);
+                }
+
+                if (hit.transform != null) {
+                    Debug.Log("Fired at object named " + hit.transform.gameObject.name);
                 }
             }
 
