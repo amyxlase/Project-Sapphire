@@ -6,70 +6,17 @@ using Mirror;
 
 public class PickUp : NetworkBehaviour
 {
-    public Transform destination;
     public ParentConstraint constraint;
-    private bool InPickupMode = false;
 
-    [SerializeField]
-    public bool IsPickedUp = false;
+    public void drop() {
+        //Unconstrain
+        constraint.RemoveSource(0);
 
-    // objects that can be picked up have two states:
-    // able to be picked up and not
-
-    // pickup-able state:
-    // if it's not equipped by anyone &
-    // if someone within the pickup radius &
-    // if the player is not holding anything (implemented in player, not here)
-
-    // not pickup-able state:
-    // is already equipped or
-    // no one is around
-
-    // once object is picked up:
-    // it goes into not pickup-able state
-    // it follows the thing that picked it up
-
-    // once object is dropped: 
-    // it goes into pickup mode for players near it
-    // it just sits there
-
-    public void enterPickupMode(GameObject player)
-    {
-        destination = player.GetComponent<Transform>();
-        InPickupMode = true;
-    }
-
-    public void exitPickupMode()
-    {
-        InPickupMode = false;
-    }
-
-    public void pickUp()
-    {
-        // press v again to unequip
-        if (Input.GetKeyDown(KeyCode.V) && IsPickedUp) {
-            if (gameObject.tag == "gun" && destination.gameObject.tag == "Player") {
-                FPSNetworkPlayer player = destination.gameObject.GetComponent<FPSNetworkPlayer>();
-                Gun playerGun = player.gun;
-                print("dropping current gun");
-                drop(playerGun.gameObject);
-                player.gun = null;
-                IsPickedUp = false;
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.V) && InPickupMode) {
-            if (gameObject.tag == "gun" && destination.gameObject.tag == "Player") {
-                FPSNetworkPlayer player = destination.gameObject.GetComponent<FPSNetworkPlayer>();
-
-                if (player.gun == null) {
-                    transferParent(player);
-                    IsPickedUp = true;
-                    exitPickupMode();
-                }
-            }
-        }
-
+        //Configure rigidbody
+        Rigidbody rb = gameObject.GetComponent<Rigidbody>();
+        rb.useGravity = true;
+        rb.isKinematic = false;
+        rb.angularVelocity = Vector3.zero;
     }
 
     public void transferParent(FPSNetworkPlayer player) {
@@ -82,10 +29,34 @@ public class PickUp : NetworkBehaviour
         rb.isKinematic = true;
         rb.angularVelocity = Vector3.zero;
 
-        //Transform changes
-        //this.transform.parent = getDestination(player).transform;
-        //this.transform.localPosition = Vector3.zero;
-        //this.transform.localEulerAngles = new Vector3(0, 0, 0);
+        //Configure parent constraint
+        constraint.constraintActive = true;
+        if (constraint.sourceCount > 0){
+            constraint.RemoveSource(0);
+        }
+
+        //Find destination
+        GameObject destination;
+        Gun gunScript = this.gameObject.GetComponent<Gun>();
+        if (gunScript is AR) {
+            destination = player.RifleDestination;
+        }
+        destination = player.PistolDestination;
+
+        //Add source
+        ConstraintSource source = new ConstraintSource();
+        source.sourceTransform = destination.transform;
+        source.weight = 1;
+        constraint.AddSource(source);
+    }
+
+    public void transferParentBot(FPSNetworkBot bot) {
+
+        //Rigidbody changes
+        Rigidbody rb = gameObject.GetComponent<Rigidbody>();
+        rb.useGravity = false;
+        rb.isKinematic = true;
+        rb.angularVelocity = Vector3.zero;
 
         //Configure parent constraint
         constraint.constraintActive = true;
@@ -93,28 +64,18 @@ public class PickUp : NetworkBehaviour
             constraint.RemoveSource(0);
         }
 
+        //Find destination
+        GameObject destination;
+        Gun gunScript = this.gameObject.GetComponent<Gun>();
+        if (gunScript is AR) {
+            destination = bot.RifleDestination;
+        }
+        destination = bot.PistolDestination;
+
         //Add source
         ConstraintSource source = new ConstraintSource();
-        source.sourceTransform = this.getDestination(player).transform;
+        source.sourceTransform = destination.transform;
         source.weight = 1;
         constraint.AddSource(source);
-    }
-
-    public GameObject getDestination(FPSNetworkPlayer player) {
-        Gun gunScript = player.gun.gameObject.GetComponent<Gun>();
-        if (gunScript is AR) {
-            return player.RifleDestination;
-        }
-        return player.PistolDestination;
-    }
-
-    public void drop(GameObject target) {
-        target.transform.parent = null;
-        gameObject.GetComponent<Rigidbody>().useGravity = true;
-    }
-
-    void Update() 
-    {
-        pickUp();
     }
 }

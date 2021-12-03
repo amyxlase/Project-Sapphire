@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &345679987027465007
+--- !u!1 &2614730962477616040
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,28 +8,58 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6259299999424587815}
+  - component: {fileID: 5899520250461346860}
   m_Layer: 0
-  m_Name: GunHeavy (Missing Prefab)
+  m_Name: Rifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6259299999424587815
+--- !u!4 &5899520250461346860
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 345679987027465007}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 2614730962477616040}
+  m_LocalRotation: {x: 0.45451948, y: -0.54167527, z: -0.54167527, w: 0.45451948}
+  m_LocalPosition: {x: 0.249, y: -0.1, z: 0.085}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2267337958803860939}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Father: {fileID: 460990504073830185}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -10, y: -90, z: -90}
+--- !u!1 &5062411176660988815
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1756350646332258560}
+  m_Layer: 0
+  m_Name: Pistol
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1756350646332258560
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5062411176660988815}
+  m_LocalRotation: {x: 0.70575, y: -0.04378374, z: 0.04378374, w: 0.70575}
+  m_LocalPosition: {x: 0.399, y: -0.04, z: 0.035}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 460990504073830185}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 90, y: 0.8, z: 7.9}
 --- !u!1 &6229488266381961754
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,6 +205,8 @@ MonoBehaviour:
   chaseSpeed: 8
   target: {fileID: 0}
   gravity: -9.81
+  RifleDestination: {fileID: 2614730962477616040}
+  PistolDestination: {fileID: 5062411176660988815}
 --- !u!114 &7539142202778076202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,7 +265,7 @@ CapsuleCollider:
   m_Height: 1.97
   m_Direction: 1
   m_Center: {x: 0, y: 0.83, z: 0}
---- !u!1 &8795231351944303345
+--- !u!1 &6410485663126862220
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -241,25 +273,28 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5777238199530026756}
+  - component: {fileID: 460990504073830185}
   m_Layer: 0
-  m_Name: GunHeavy (Missing Prefab)
+  m_Name: Destination
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5777238199530026756
+--- !u!4 &460990504073830185
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8795231351944303345}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GameObject: {fileID: 6410485663126862220}
+  m_LocalRotation: {x: 0.00000003725289, y: 0.00000011920925, z: 0.00000009918582,
+    w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 5899520250461346860}
+  - {fileID: 1756350646332258560}
   m_Father: {fileID: 2267337958803860939}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

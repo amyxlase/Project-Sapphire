@@ -322,7 +322,6 @@ MonoBehaviour:
   leaderboard: {fileID: 0}
   healthUI: {fileID: 0}
   HUD: {fileID: 5408845006219673984}
-  HP: {fileID: 3975141418266634934}
   startTime: 0
   timer: {fileID: 5408845007187060184}
   ammoCount: {fileID: 5408845007302365819}
@@ -866,6 +865,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4afe980a44f994073b19ae08c2adc59d, type: 3}
+--- !u!114 &5408845007187060184 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6679231301828818319, guid: 4afe980a44f994073b19ae08c2adc59d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1702772544037883991}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5408845006219673984 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6679231302739431895, guid: 4afe980a44f994073b19ae08c2adc59d,
@@ -881,18 +892,6 @@ RectTransform:
 --- !u!114 &5408845007302365819 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6679231301688328748, guid: 4afe980a44f994073b19ae08c2adc59d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1702772544037883991}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5408845007187060184 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6679231301828818319, guid: 4afe980a44f994073b19ae08c2adc59d,
     type: 3}
   m_PrefabInstance: {fileID: 1702772544037883991}
   m_PrefabAsset: {fileID: 0}
@@ -1144,18 +1143,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 5586592201382339266}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3975141418266634934 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8839750287068825716, guid: f54461245ef3d496da0c83cc4c830d9d,
-    type: 3}
-  m_PrefabInstance: {fileID: 5586592201382339266}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &5935500534369506674
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1232,6 +1219,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Particle_System
+      objectReference: {fileID: 0}
+    - target: {fileID: 7658738554619621490, guid: cda9b09892d2496eb908895bc99c3eac,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cda9b09892d2496eb908895bc99c3eac, type: 3}

@@ -20,6 +20,9 @@ public class FPSNetworkBot : NetworkBehaviour
     public FPSNetworkPlayer target;
     public float gravity = -9.81f;
 
+    public GameObject RifleDestination;
+    public GameObject PistolDestination;
+
     void Start() {
         state = EnemyState.patrol;
         m_BotController = GetComponent<CharacterController>();

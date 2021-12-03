@@ -96,22 +96,4 @@ public class Gun : NetworkBehaviour
         m_AudioSource.PlayOneShot(m_AudioSource.clip);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "Player")
-        {
-            GameObject player = other.gameObject;
-            NetworkIdentity targetIdentity = player.GetComponent<NetworkIdentity>();
-            PickUp pickUp = gameObject.GetComponent<PickUp>();
-            //print(targetIdentity.netId + " can pick up this gun");
-            pickUp.enterPickupMode(player);
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        PickUp pickUp = gameObject.GetComponent<PickUp>();
-        pickUp.exitPickupMode();
-    }
-
 }

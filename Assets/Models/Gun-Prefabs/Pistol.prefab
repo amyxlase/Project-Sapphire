@@ -96,9 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  destination: {fileID: 0}
   constraint: {fileID: 5176515922488615169}
-  IsPickedUp: 1
 --- !u!136 &6008057611261364197
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -107,7 +105,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2823727529076536969}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 3
   m_Height: 2
