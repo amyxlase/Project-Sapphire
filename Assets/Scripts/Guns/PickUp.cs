@@ -8,7 +8,7 @@ public class PickUp : NetworkBehaviour
 {
     public ParentConstraint constraint;
     public Rigidbody rb;
-    public Collider collider;
+    public Collider col;
 
     public void drop() {
         
@@ -21,7 +21,7 @@ public class PickUp : NetworkBehaviour
         rb.angularVelocity = Vector3.zero;
 
         //Turn collider on
-        collider.enabled = true;
+        col.enabled = true;
     }
 
     public void transferParent(FPSNetworkPlayer player) {
@@ -29,7 +29,7 @@ public class PickUp : NetworkBehaviour
         player.gun = gameObject.GetComponent<Gun>();
 
         //Turn collider off
-        collider.enabled = false;
+        col.enabled = false;
 
         //Rigidbody changes
         rb.useGravity = false;
@@ -60,7 +60,7 @@ public class PickUp : NetworkBehaviour
     public void transferParentBot(FPSNetworkBot bot) {
 
         //Turn collider off
-        collider.enabled = false;
+        col.enabled = false;
 
         //Rigidbody changes
         rb.useGravity = false;

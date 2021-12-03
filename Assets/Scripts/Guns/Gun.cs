@@ -90,9 +90,6 @@ public class Gun : NetworkBehaviour
     }
 
     public void playGunSound() {
-        Debug.Log(m_AudioSource);
-        Debug.Log(m_AudioSource.clip);
-        Debug.Log(gunSound);
         m_AudioSource.PlayOneShot(m_AudioSource.clip);
     }
 }

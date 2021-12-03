@@ -130,14 +130,13 @@ public class FPSNetworkPlayer : NetworkBehaviour
             RaycastHit hit;
             Ray fromCamera =  Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
             if (Physics.Raycast(fromCamera, out hit, Mathf.Infinity)) {
-                if (hit.transform.gameObject.name == "FPSNetworkPlayerController(Clone)"
-                    || hit.transform.gameObject.name == "FPSNetworkBotController(Clone)") {
-                    Debug.Log("Fired at object named " + hit.transform.gameObject.name);
-                    CmdDealDamage(hit.transform);
-                }
 
-                if (hit.transform != null) {
-                    Debug.Log("Fired at object named " + hit.transform.gameObject.name);
+                bool validTarget = hit.transform.gameObject.name == "FPSNetworkPlayerController(Clone)"
+                    || hit.transform.gameObject.name == "FPSNetworkBotController(Clone)";
+                bool shotSelf = GameObject.ReferenceEquals(hit.transform.gameObject, this.gameObject);
+
+                if (validTarget && !shotSelf) {
+                    CmdDealDamage(hit.transform);
                 }
             }
 
@@ -204,23 +203,40 @@ public class FPSNetworkPlayer : NetworkBehaviour
             BotDamageable playerDamage = target.gameObject.GetComponent<BotDamageable>();
             playerDamage.dealDamage(20);
             BotHealth health = target.gameObject.GetComponent<BotHealth>();
-            Debug.Log("bot has " + health.getHealth() + " health left");
         }
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (Input.GetKeyDown(KeyCode.V) && other.tag == "gun") {
+        if (Input.GetKeyDown(KeyCode.V)) {
 
-            //drop old gun
-            PickUp oldScript = gun.gameObject.GetComponent<PickUp>();
-            oldScript.drop();
+            Debug.Log(other.tag);
 
-            //pick up new gun
-            PickUp newScript = gun.gameObject.GetComponent<PickUp>();
-            newScript.transferParent(this);
+            if (other.tag == "gun") {
+                Debug.Log("Swapping guns");
+                SwapGuns(other.gameObject);
+            }
         }
+    }
+
+    [Server]
+    void SwapGuns(GameObject other) {
+        //drop old gun
+        PickUp oldScript = gun.gameObject.GetComponent<PickUp>();
+        oldScript.drop();
+
+        //pick up new gun
+        PickUp newScript = other.GetComponent<PickUp>();
+        newScript.transferParent(this);
+    }
+
+    public override void OnStopServer() {
+        //Drop gun
+        uint playerNetId = this.gameObject.GetComponent<NetworkIdentity>().netId;
+        GameObject gunObject = NetworkIdentity.spawned[playerNetId - 1].gameObject;
+        PickUp gunPickup = gunObject.GetComponent<PickUp>();
+        gunPickup.drop();
     }
 
 }
