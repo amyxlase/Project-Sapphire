@@ -25,7 +25,7 @@ public class FPSNetworkPlayer : NetworkBehaviour
 
     public bool isActive;
 
-    [SyncVar]
+    [SyncVar(hook = nameof(SwapGuns))]
     public Gun gun;
     public GameObject RifleDestination;
     public GameObject PistolDestination;
@@ -39,8 +39,8 @@ public class FPSNetworkPlayer : NetworkBehaviour
         uint playerNetId = this.gameObject.GetComponent<NetworkIdentity>().netId;
         GameObject gunObject = NetworkIdentity.spawned[playerNetId - 1].gameObject;
         this.gun = gunObject.GetComponent<Gun>();
-        PickUp gunPickup = gun.GetComponent<PickUp>();
-        gunPickup.transferParent(this);
+        //PickUp gunPickup = gun.GetComponent<PickUp>();
+        //gunPickup.transferParent(this);
 
 
         //Find leaderboard
@@ -218,10 +218,43 @@ public class FPSNetworkPlayer : NetworkBehaviour
             PickUp oldScript = other.gameObject.GetComponent<PickUp>();
             oldScript.drop();
 
+<<<<<<< Updated upstream
             //Set new gun parent
             PickUp newScript = gun.gameObject.GetComponent<PickUp>();
             newScript.transferParent(this);
         }
     }*/
+=======
+            if (other.tag == "gun") {
+                Debug.Log("Swapping guns");
+                CmdSetGun(other.gameObject);
+            }
+        }
+    }
+
+    [Command]
+    public void CmdSetGun(GameObject other) {
+        this.gun = other.GetComponent<Gun>();
+    }
+
+    void SwapGuns(Gun oldGun, Gun newGun) {
+
+        //drop old gun
+        if (oldGun != null) {
+            PickUp oldScript = oldGun.GetComponent<PickUp>();
+            oldScript.drop();
+        }
+
+        //pick up new gun
+        if (newGun != null) {
+            PickUp newScript = newGun.GetComponent<PickUp>();
+            newScript.transferParent(this);
+        }
+    }
+
+    public override void OnStopServer() {
+        CmdSetGun(null);
+    }
+>>>>>>> Stashed changes
 
 }
