@@ -7,16 +7,21 @@ using Mirror;
 public class PickUp : NetworkBehaviour
 {
     public ParentConstraint constraint;
+    public Rigidbody rb;
+    public Collider collider;
 
     public void drop() {
+        
         //Unconstrain
         constraint.RemoveSource(0);
 
         //Configure rigidbody
-        Rigidbody rb = gameObject.GetComponent<Rigidbody>();
         rb.useGravity = true;
         rb.isKinematic = false;
         rb.angularVelocity = Vector3.zero;
+
+        //Turn collider on
+        collider.enabled = true;
     }
 
     public void transferParent(FPSNetworkPlayer player) {
@@ -24,11 +29,9 @@ public class PickUp : NetworkBehaviour
         player.gun = gameObject.GetComponent<Gun>();
 
         //Turn collider off
-        Collider collider = gameObject.GetComponent<Collider>();
         collider.enabled = false;
 
         //Rigidbody changes
-        Rigidbody rb = gameObject.GetComponent<Rigidbody>();
         rb.useGravity = false;
         rb.isKinematic = true;
         rb.angularVelocity = Vector3.zero;
@@ -56,8 +59,10 @@ public class PickUp : NetworkBehaviour
 
     public void transferParentBot(FPSNetworkBot bot) {
 
+        //Turn collider off
+        collider.enabled = false;
+
         //Rigidbody changes
-        Rigidbody rb = gameObject.GetComponent<Rigidbody>();
         rb.useGravity = false;
         rb.isKinematic = true;
         rb.angularVelocity = Vector3.zero;

@@ -209,4 +209,18 @@ public class FPSNetworkPlayer : NetworkBehaviour
         
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (Input.GetKeyDown(KeyCode.V) && other.tag == "gun") {
+
+            //drop old gun
+            PickUp oldScript = gun.gameObject.GetComponent<PickUp>();
+            oldScript.drop();
+
+            //pick up new gun
+            PickUp newScript = gun.gameObject.GetComponent<PickUp>();
+            newScript.transferParent(this);
+        }
+    }
+
 }

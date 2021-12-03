@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: -2933671948203336886}
   - component: {fileID: 8971697785896603156}
   - component: {fileID: 1554921899372389803}
+  - component: {fileID: 7702773726383930817}
   m_Layer: 0
   m_Name: FPSNetworkPlayerController
   m_TagString: Player
@@ -418,6 +419,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+--- !u!65 &7702773726383930817
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 1, z: 5}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &100002
 GameObject:
   m_ObjectHideFlags: 0
@@ -1150,6 +1164,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 400000}
     m_Modifications:
+    - target: {fileID: 3940026499880941505, guid: cda9b09892d2496eb908895bc99c3eac,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3940026499880941505, guid: cda9b09892d2496eb908895bc99c3eac,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3940026499880941505, guid: cda9b09892d2496eb908895bc99c3eac,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6360191309329768537, guid: cda9b09892d2496eb908895bc99c3eac,
         type: 3}
       propertyPath: m_RootOrder

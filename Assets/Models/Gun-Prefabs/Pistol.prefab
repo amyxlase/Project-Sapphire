@@ -97,6 +97,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   constraint: {fileID: 5176515922488615169}
+  rb: {fileID: -2395833077334359302}
+  collider: {fileID: 6008057611261364197}
 --- !u!136 &6008057611261364197
 CapsuleCollider:
   m_ObjectHideFlags: 0
