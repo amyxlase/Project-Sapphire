@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Mirror;
+using TMPro;
 
 public class FPSNetworkPlayer : NetworkBehaviour
 {
@@ -16,11 +17,17 @@ public class FPSNetworkPlayer : NetworkBehaviour
     public GameObject Dead;
     public GameObject leaderboard;
     public GameObject healthUI;
+    public GameObject HUD;
     public Slider HP;
+    public float startTime;
+    public TextMeshProUGUI timer;
+    public TextMeshProUGUI ammoCount;
 
     public bool isActive;
 
     public Gun gun;
+    public GameObject RifleDestination;
+    public GameObject PistolDestination;
 
     [AddComponentMenu("")]
 
@@ -38,22 +45,40 @@ public class FPSNetworkPlayer : NetworkBehaviour
 
     public override void OnStartAuthority() {
 
+        Debug.Log("0: on start authority");
+
+        //Find leaderboard
+        leaderboard = GameObject.Find("Canvas").transform.GetChild(3).gameObject;
+
+        Debug.Log("1: leaderboard OK");
+
         //Configure crosshair
         crosshair = GameObject.Find("ScopedCrosshairImage");
         crosshair2 = GameObject.Find("DefaultCrosshairImage");
         crosshair.SetActive(false);
 
-        //Configure leaderboard
-        leaderboard = GameObject.Find("LeaderBoard");
-        leaderboard.SetActive(false);
+        Debug.Log("2: crosshair OK");
+
+        //Configure timer
+        startTime = Time.time;
+        timer = HUD.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
+
+        Debug.Log("3: Timer OK");
+
+        //Get ammo text
+        ammoCount = HUD.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
+
+        Debug.Log("4: AMMO OK");
 
         //Find dead screen
-        Dead = transform.GetChild(3).gameObject;
+        //Dead = transform.GetChild(3).gameObject;
 
         //Enable camera & audio listener
         Transform fpc = transform.Find("FirstPersonCharacter");
         fpc.GetComponent<Camera>().enabled = true;
         fpc.GetComponent<AudioListener>().enabled = true;
+
+        Debug.Log("5: done");
 
         //configureHP();
         isActive = true;
@@ -62,16 +87,21 @@ public class FPSNetworkPlayer : NetworkBehaviour
     void Update() {
         if (!hasAuthority) return;
 
-        if (HP == null) {
-            Debug.Log("HP is null");
-        }
-
         ScopeToggle();              // Bound to Q and right click
         Shoot();                    // Bound to F and left click
         Reload();                   // Bound to R
         ViewBoard();                // Bound to Tab
         DieOutOfBounds();
         DetectGunToAnimate();
+        UpdateTimer();
+    }
+
+    public void UpdateTimer() {
+        float delta = Time.time - startTime;
+        int minutes = (int) delta / 60 ;
+        int seconds = (int) delta - 60 * minutes;
+        string timeString = string.Format("{0:00}:{1:00}", minutes, seconds);
+        timer.text = timeString;
     }
 
     public void ScopeToggle() {
@@ -100,6 +130,8 @@ public class FPSNetworkPlayer : NetworkBehaviour
 
         if (shootInput && gunGood) {
 
+            Debug.LogFormat(" position {1} and rotation {1}", gun.transform.position, gun.transform.rotation);
+
             //Start animation
             networkAnimator.ResetTrigger("Shoot");
             networkAnimator.SetTrigger("Shoot");
@@ -117,13 +149,20 @@ public class FPSNetworkPlayer : NetworkBehaviour
 
             //Ammo
             gun.DecrementAmmo();
-            Debug.LogFormat("TOTAL AMMO {0} aND QUEUED AMMO {1}", gun.getTotalAmmo(), gun.getQueuedAmmo());
+            UpdateAmmoText();
         }
+    }
+
+    public void UpdateAmmoText() {
+        float q = this.gun.getQueuedAmmo();
+        float t = this.gun.getTotalAmmo();
+        this.ammoCount.text = string.Format("{0}|{1}", q, t - q);
     }
 
     public void Reload() {
         if (Input.GetKey(KeyCode.R)) {
             this.gun.Reload();
+            UpdateAmmoText();
         }
     }
 

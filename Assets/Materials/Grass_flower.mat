@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Grass
+  m_Name: Grass_flower
   m_Shader: {fileID: -6465566751694194690, guid: ae3bf80ddd78f3e4aa77c149858aab01,
     type: 3}
   m_ShaderKeywords: 
@@ -47,8 +47,8 @@ Material:
     m_Colors:
     - Color_16b94d8427784e2d8c4342a1b82cb4df: {r: 0.24705875, g: 0.39999998, b: 0.45882344,
         a: 0}
-    - Color_4f43676fc65342d6b8c5d13f5bf918b7: {r: 0.28924882, g: 0.44537237, b: 0.49056602,
-        a: 0}
+    - Color_4f43676fc65342d6b8c5d13f5bf918b7: {r: 0.468216, g: 0.504, b: 0.471198,
+        a: 1}
     - _MainColor: {r: 1, g: 1, b: 1, a: 0}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
     - _Tiling: {r: 1, g: 1, b: 0, a: 0}
