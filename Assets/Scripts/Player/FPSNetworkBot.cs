@@ -230,4 +230,12 @@ public class FPSNetworkBot : NetworkBehaviour
         gunPickup.owner = null;
     }
 
+    public void DieOutOfBounds() {
+        if (this.transform.position.y < -10) {
+            NetworkServer.Destroy(this.gameObject);
+            FPSNetworkManager manager = GameObject.Find("Network Manager").GetComponent("FPSNetworkManager") as FPSNetworkManager;
+            manager.botCount--;
+        }
+    }
+
 }
