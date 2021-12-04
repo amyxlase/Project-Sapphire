@@ -209,27 +209,32 @@ public class FPSNetworkPlayer : NetworkBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (!hasAuthority) return;
 
+        //if (!hasAuthority) return;
+        
         if (Input.GetKeyDown(KeyCode.V) && other.tag == "gun") {
             Debug.Log("Swapping guns");
+
+            //Drop old gun
             DropGun();
+
+            //Pick up new gun
+            this.gun = other.gameObject.GetComponent<Gun>();
             PickupGun();
         }
     }
 
-    [Command]
     void PickupGun() {
+        Debug.Log("pickcing up gun during switch");
         PickUp gunPickup = this.gun.gameObject.GetComponent<PickUp>();
         gunPickup.transferParent(this);
-        gunPickup.owner = this.gameObject;
+        gunPickup.playerPickUp(this.gameObject);
     }
 
-    [Command]
     void DropGun() {
         PickUp gunPickup = this.gun.GetComponent<PickUp>();
         gunPickup.drop();
-        gunPickup.owner = null;
+        gunPickup.playerDrop();
     }
 
     public override void OnStopServer() {

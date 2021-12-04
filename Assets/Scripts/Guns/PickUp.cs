@@ -14,21 +14,7 @@ public class PickUp : NetworkBehaviour
     public GameObject owner = null;
 
     void OnOwnerChanged(GameObject oldOwner, GameObject newOwner) {
-
-
-        Debug.Log("--");
-        if (oldOwner != null) {
-            Debug.Log(oldOwner.name);
-        } else {
-            Debug.Log("oldowner null");
-        }
-
-        if (newOwner != null) {
-            Debug.Log(newOwner.name);
-        } else {
-            Debug.Log("newOwner null");
-        }
-
+        Debug.LogFormat("Syncvar called on {0}, {1}", oldOwner, newOwner);
 
         if (newOwner == null) {
             drop();
@@ -124,5 +110,17 @@ public class PickUp : NetworkBehaviour
         source.sourceTransform = destination.transform;
         source.weight = 1;
         constraint.AddSource(source);
+    }
+
+    [Server]
+    public void playerPickUp(GameObject player) {
+        this.transferParent(player.GetComponent<FPSNetworkPlayer>());
+        this.owner = player;
+    }
+
+    [Server]
+    public void playerDrop() {
+        this.drop();
+        this.owner = null;
     }
 }

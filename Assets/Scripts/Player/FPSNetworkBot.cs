@@ -213,13 +213,16 @@ public class FPSNetworkBot : NetworkBehaviour
         attack
     }
 
-    public override void OnStopServer() {
-        DropGun();
+    public override void OnStartClient() {
+        //Configure gun
+        uint playerNetId = this.gameObject.GetComponent<NetworkIdentity>().netId;
+        GameObject gunObject = NetworkIdentity.spawned[playerNetId - 1].gameObject;
+        PickUp gunPickup = gunObject.GetComponent<PickUp>();
+        gunPickup.transferParentBot(this);
+        gunPickup.owner = this.gameObject;
     }
 
-    [Server]
-    void DropGun() {
-        Debug.Log("dropping gun");
+    public override void OnStopServer() {
         uint botNetId = this.gameObject.GetComponent<NetworkIdentity>().netId;
         GameObject gunObject = NetworkIdentity.spawned[botNetId - 1].gameObject;
         PickUp gunPickup = gunObject.GetComponent<PickUp>();
