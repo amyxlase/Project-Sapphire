@@ -68,11 +68,12 @@ public class PickUp : NetworkBehaviour
 
         //Find destination
         GameObject destination;
-        Gun gunScript = this.gameObject.GetComponent<Gun>();
-        if (gunScript is AR) {
+        AR rifle = this.gameObject.GetComponent<AR>();
+        if (rifle != null) {
             destination = player.RifleDestination;
+        } else {
+            destination = player.PistolDestination;
         }
-        destination = player.PistolDestination;
 
         //Add source
         ConstraintSource source = new ConstraintSource();
@@ -98,12 +99,7 @@ public class PickUp : NetworkBehaviour
         }
 
         //Find destination
-        GameObject destination;
-        Gun gunScript = this.gameObject.GetComponent<Gun>();
-        if (gunScript is AR) {
-            destination = bot.RifleDestination;
-        }
-        destination = bot.PistolDestination;
+        GameObject destination = bot.RifleDestination;
 
         //Add source
         ConstraintSource source = new ConstraintSource();
@@ -115,14 +111,14 @@ public class PickUp : NetworkBehaviour
     [Command(requiresAuthority = false)]
     public void playerPickUp(GameObject player) {
         Debug.Log("server gun pickup");
-        this.transferParent(player.GetComponent<FPSNetworkPlayer>());
         this.owner = player;
+        this.transferParent(player.GetComponent<FPSNetworkPlayer>());
     }
 
     [Command(requiresAuthority = false)]
     public void playerDrop() {
         Debug.Log("server gun drop");
-        this.drop();
         this.owner = null;
+        this.drop();
     }
 }

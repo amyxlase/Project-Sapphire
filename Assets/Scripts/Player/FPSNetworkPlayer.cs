@@ -227,12 +227,14 @@ public class FPSNetworkPlayer : NetworkBehaviour
     void PickupGun() {
         Debug.Log("pickcing up gun during switch");
         PickUp gunPickup = this.gun.gameObject.GetComponent<PickUp>();
+        gunPickup.owner = this.gameObject;
         gunPickup.transferParent(this);
         gunPickup.playerPickUp(this.gameObject);
     }
 
     void DropGun() {
         PickUp gunPickup = this.gun.GetComponent<PickUp>();
+        gunPickup.owner = null;
         gunPickup.drop();
         gunPickup.playerDrop();
     }
