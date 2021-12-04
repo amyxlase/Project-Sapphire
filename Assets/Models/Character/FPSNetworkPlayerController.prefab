@@ -329,7 +329,7 @@ MonoBehaviour:
   ammoCount: {fileID: 5408845007302365819}
   isActive: 0
   gun: {fileID: 0}
-  RifleDestination: {fileID: 628602760986646118}
+  RifleDestination: {fileID: 0}
   PistolDestination: {fileID: 3070854854687922798}
 --- !u!114 &-2682138738644088490
 MonoBehaviour:
@@ -819,36 +819,6 @@ Transform:
   m_Children:
   - {fileID: 9187908237367039809}
   m_Father: {fileID: 3083632335546799126}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &628602760986646118
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6204700882311314449}
-  m_Layer: 0
-  m_Name: Rifle
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6204700882311314449
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 628602760986646118}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4248829298049103152}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &752110366509934968
@@ -1632,11 +1602,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3203195540002681609}
-  m_LocalRotation: {x: -0.10499011, y: -0.34759417, z: -0.35349625, w: 0.862088}
-  m_LocalPosition: {x: -0, y: 40.728794, z: 0.000010162592}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 6204700882311314449}
+  - {fileID: 3791945422894935431}
   - {fileID: 749057296065690871}
   m_Father: {fileID: 886355682345939409}
   m_RootOrder: 1
@@ -2252,7 +2222,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5786277095434834465}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.83, z: 0.031}
+  m_LocalPosition: {x: 0, y: 0.05, z: 0.031}
   m_LocalScale: {x: 0.005, y: 0.005, z: 0.005}
   m_Children:
   - {fileID: 2906247104839934866}
@@ -3002,6 +2972,36 @@ Transform:
   m_Father: {fileID: 7943323935920882172}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &9209169441864043459
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3791945422894935431}
+  m_Layer: 0
+  m_Name: Rifle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3791945422894935431
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9209169441864043459}
+  m_LocalRotation: {x: 0.121121876, y: -0.73615104, z: 0.458001, w: 0.48336977}
+  m_LocalPosition: {x: 12.9, y: 83, z: -6.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4248829298049103152}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 52.317, y: -100.67, z: 25.632}
 --- !u!1001 &1702772544037883991
 PrefabInstance:
   m_ObjectHideFlags: 0

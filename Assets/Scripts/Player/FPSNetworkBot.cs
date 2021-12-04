@@ -21,6 +21,8 @@ public class FPSNetworkBot : NetworkBehaviour
     public float gravity = -9.81f;
     [SerializeField] public GameObject RifleDestination;
     [SerializeField] public GameObject PistolDestination;
+    [SerializeField] private Animator anim;
+    [SerializeField] public NetworkAnimator networkAnimator;
 
     void Start() {
         state = EnemyState.patrol;
@@ -36,6 +38,10 @@ public class FPSNetworkBot : NetworkBehaviour
         ApplyGravity();
         AI();
         DieOutOfBounds();
+
+        //Pass vertical movement input to animator
+        anim.SetFloat("Vertical", Input.GetAxis("Vertical"));
+        anim.SetBool("Rifle", true);
     }
 
     private void ApplyGravity() {
@@ -175,6 +181,11 @@ public class FPSNetworkBot : NetworkBehaviour
     }
 
     public void Shoot() {
+
+        //Art
+        networkAnimator.ResetTrigger("Shoot");
+        networkAnimator.SetTrigger("Shoot");
+        
         if(Physics.Raycast(shootOrigin.position, target.transform.position - transform.position, out RaycastHit hit , detectionRange)) {
             if (hit.transform.gameObject.name == "FPSNetworkPlayerController(Clone)") {
                 uint botID = this.gameObject.GetComponent<NetworkIdentity>().netId;
