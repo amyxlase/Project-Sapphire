@@ -33,7 +33,6 @@ public class Intensity : MonoBehaviour
     public void Update() {
 
         intensityValue = calculateIntensity();
-        Debug.Log("intensity: " + intensityValue);
 
         // switching track if necessary
         if (getIntensityTrack() != null) {
