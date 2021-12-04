@@ -71,7 +71,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HorizonLineContribution: 0.339
+    - _HorizonLineContribution: 0.22
     - _HorizonLineExponent: 4
     - _ImageType: 0
     - _Intensity: 1
@@ -83,7 +83,7 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _Rotation: 0
-    - _SkyGradientExponent: 2.5
+    - _SkyGradientExponent: 10
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -98,11 +98,11 @@ Material:
     - _Color1: {r: 1, g: 1, b: 1, a: 0}
     - _Color2: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _HorizonLineColor: {r: 0.9044118, g: 0.8872592, b: 0.7913603, a: 1}
-    - _SkyGradientBottom: {r: 0.8867924, g: 0.5861474, b: 0.11294055, a: 1}
+    - _HorizonLineColor: {r: 0.25023136, g: 0.41882256, b: 0.9339623, a: 1}
+    - _SkyGradientBottom: {r: 0.58786047, g: 0.9245283, b: 0.9016961, a: 1}
     - _SkyGradientTop: {r: 0.46431112, g: 0.7368605, b: 0.8867924, a: 1}
     - _SunDiscColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SunHaloColor: {r: 0.8970588, g: 0.7760561, b: 0.6661981, a: 1}
+    - _SunHaloColor: {r: 1, g: 0.42737097, b: 0.2584905, a: 1}
     - _Tint: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
     - _UpVector: {r: 0, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

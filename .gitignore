@@ -53,3 +53,11 @@ Assets/Plugins/**
 Assets/Plugins.meta
 heu_session.txt
 heu_settings.ini
+<<<<<<< Updated upstream
+=======
+Assets/Scenes/Development/Hanke.unity.meta
+Assets/Scenes/Development/Hanke.unity
+Assets/Scenes/Master/Main-Hanke.unity.meta
+Assets/Scenes/Master/Main-Hanke.unity
+Assets/Models/Character/FPSNetworkPlayerController.prefab
+>>>>>>> Stashed changes
