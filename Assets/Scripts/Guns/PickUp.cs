@@ -112,14 +112,16 @@ public class PickUp : NetworkBehaviour
         constraint.AddSource(source);
     }
 
-    [Server]
+    [Command(requiresAuthority = false)]
     public void playerPickUp(GameObject player) {
+        Debug.Log("server gun pickup");
         this.transferParent(player.GetComponent<FPSNetworkPlayer>());
         this.owner = player;
     }
 
-    [Server]
+    [Command(requiresAuthority = false)]
     public void playerDrop() {
+        Debug.Log("server gun drop");
         this.drop();
         this.owner = null;
     }
