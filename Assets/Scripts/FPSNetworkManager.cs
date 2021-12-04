@@ -37,6 +37,7 @@ public class FPSNetworkManager : NetworkManager
         playerScript.gun = gun.GetComponent<Gun>();
         PickUp gunPickup = gun.GetComponent<PickUp>();
         gunPickup.transferParent(playerScript);
+        gunPickup.owner = player;
 
         /*Transform gunDestination = playerScript.PistolDestination.transform;
         GameObject gun = Instantiate(handGunPrefab, Vector3.zero, Quaternion.identity);
@@ -81,6 +82,7 @@ public class FPSNetworkManager : NetworkManager
         //Configure gun
         PickUp gunPickup = gun.GetComponent<PickUp>();
         gunPickup.transferParentBot(script);
+        gunPickup.owner = bot;
     }
 
     private void Update() {

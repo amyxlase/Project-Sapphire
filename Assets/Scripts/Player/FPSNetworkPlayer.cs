@@ -40,7 +40,7 @@ public class FPSNetworkPlayer : NetworkBehaviour
         GameObject gunObject = NetworkIdentity.spawned[playerNetId - 1].gameObject;
         this.gun = gunObject.GetComponent<Gun>();
         PickUp gunPickup = gun.GetComponent<PickUp>();
-        gunPickup.transferParent(this);
+        SetGunOwner(this.gameObject);
 
 
         //Find leaderboard
@@ -212,31 +212,27 @@ public class FPSNetworkPlayer : NetworkBehaviour
         if (Input.GetKeyDown(KeyCode.V)) {
 
             Debug.Log(other.tag);
-
             if (other.tag == "gun") {
                 Debug.Log("Swapping guns");
-                SwapGuns(other.gameObject);
+
+                //Drop old gun
+                SetGunOwner(null);
+
+                //Pick up new gun
+                this.gun = other.gameObject.GetComponent<Gun>();
+                SetGunOwner(this.gameObject);
             }
         }
     }
 
     [Server]
-    void SwapGuns(GameObject other) {
-        //drop old gun
-        PickUp oldScript = gun.gameObject.GetComponent<PickUp>();
-        oldScript.drop();
-
-        //pick up new gun
-        PickUp newScript = other.GetComponent<PickUp>();
-        newScript.transferParent(this);
+    void SetGunOwner(GameObject owner) {
+        PickUp gunPickup = gun.gameObject.GetComponent<PickUp>();
+        gunPickup.owner = owner;
     }
 
     public override void OnStopServer() {
-        //Drop gun
-        uint playerNetId = this.gameObject.GetComponent<NetworkIdentity>().netId;
-        GameObject gunObject = NetworkIdentity.spawned[playerNetId - 1].gameObject;
-        PickUp gunPickup = gunObject.GetComponent<PickUp>();
-        gunPickup.drop();
+        SetGunOwner(null);
     }
 
 }

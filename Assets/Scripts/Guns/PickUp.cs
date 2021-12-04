@@ -10,10 +10,48 @@ public class PickUp : NetworkBehaviour
     public Rigidbody rb;
     public Collider col;
 
+    [SyncVar(hook = nameof(OnOwnerChanged))]
+    public GameObject owner = null;
+
+    void OnOwnerChanged(GameObject oldOwner, GameObject newOwner) {
+
+
+        Debug.Log("--");
+        if (oldOwner != null) {
+            Debug.Log(oldOwner.name);
+        } else {
+            Debug.Log("oldowner null");
+        }
+
+        if (newOwner != null) {
+            Debug.Log(newOwner.name);
+        } else {
+            Debug.Log("newOwner null");
+        }
+
+
+        if (newOwner == null) {
+            drop();
+            return;
+        }
+
+        FPSNetworkPlayer ownerPlayer = newOwner.GetComponent<FPSNetworkPlayer>();
+        FPSNetworkBot ownerBot = newOwner.GetComponent<FPSNetworkBot>();
+
+        if (ownerPlayer != null) {
+            transferParent(ownerPlayer);
+        } else if (ownerBot != null) {
+            transferParentBot(ownerBot);
+        }
+    }
+
     public void drop() {
         
         //Unconstrain
-        constraint.RemoveSource(0);
+        if (constraint.sourceCount > 0) {
+            constraint.RemoveSource(0);
+        }
+        constraint.constraintActive = false;
 
         //Configure rigidbody
         rb.useGravity = true;
