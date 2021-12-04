@@ -35,9 +35,7 @@ public class FPSNetworkBot : NetworkBehaviour
         
         ApplyGravity();
         AI();
-
-        //Temporary for beta
-        //BadAI();
+        DieOutOfBounds();
     }
 
     private void ApplyGravity() {
