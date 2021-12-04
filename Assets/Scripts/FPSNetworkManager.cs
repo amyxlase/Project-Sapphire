@@ -23,7 +23,7 @@ public class FPSNetworkManager : NetworkManager
 
         //Spawn player
         Transform start = playerSpawn.transform;
-        start.position += Vector3.right * numPlayers;
+        start.position += Vector3.right * 3 * (numPlayers % 5);
         GameObject player = Instantiate(playerPrefab, start.position, start.rotation);
         NetworkServer.AddPlayerForConnection(conn, player);
         playerCount++;
