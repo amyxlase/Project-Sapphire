@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.5
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.3498668, g: 0.2797133, b: 0.19020802, a: 0.5}
+  m_IndirectSpecularColor: {r: 0.30299547, g: 0.39095673, b: 0.48560014, a: 0.5}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1161,7 +1161,9 @@ MonoBehaviour:
   botSpawn: {fileID: 333669263}
   botPrefab: {fileID: 6229488266381961754, guid: c77240dafd7494115a4b176084f2df04,
     type: 3}
-  handGunPrefab: {fileID: 2823727529076536969, guid: d745eb4f79efd4e78b49ebae60e79132,
+  pistolPrefab: {fileID: 2823727529076536969, guid: 55ee7daf2a63c441fa4cfd91aeae4336,
+    type: 3}
+  riflePrefab: {fileID: 2823727529076536969, guid: d745eb4f79efd4e78b49ebae60e79132,
     type: 3}
   botCount: 0
   playerCount: 0

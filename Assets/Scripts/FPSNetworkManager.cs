@@ -7,7 +7,8 @@ public class FPSNetworkManager : NetworkManager
     public GameObject playerSpawn;
     public GameObject botSpawn;
     public GameObject botPrefab;
-    public GameObject handGunPrefab;
+    public GameObject pistolPrefab;
+    public GameObject riflePrefab;
 
     public int botCount = 0;
     public int playerCount = 0;
@@ -17,7 +18,7 @@ public class FPSNetworkManager : NetworkManager
     {
 
         //Spawn gun
-        GameObject gun = Instantiate(handGunPrefab, Vector3.zero, Quaternion.identity);
+        GameObject gun = Instantiate(pistolPrefab, Vector3.zero, Quaternion.identity);
         NetworkServer.Spawn(gun);
 
         //Spawn player
@@ -39,20 +40,8 @@ public class FPSNetworkManager : NetworkManager
         gunPickup.transferParent(playerScript);
         gunPickup.owner = player;
 
-        /*Transform gunDestination = playerScript.PistolDestination.transform;
-        GameObject gun = Instantiate(handGunPrefab, Vector3.zero, Quaternion.identity);
-        playerScript.gun = gun.GetComponent<Gun>();
-        NetworkServer.Spawn(gun);
-        gun.transform.parent = gunDestination;
-        gun.transform.localPosition = Vector3.zero;
-        gun.transform.localEulerAngles = Vector3.zero;*/
-
         NetworkIdentity identity = player.GetComponent<NetworkIdentity>();
         identity.AssignClientAuthority(conn);
-
-        //Turn off death screen
-        //GameObject Dead = GameObject.Find("Death");
-        //Dead.SetActive(false);
     }
 
     public override void OnServerDisconnect(NetworkConnection conn)
@@ -65,7 +54,7 @@ public class FPSNetworkManager : NetworkManager
     public void addBot() {
 
         //Spawn gun
-        GameObject gun = Instantiate(handGunPrefab, Vector3.zero, Quaternion.identity);
+        GameObject gun = Instantiate(riflePrefab, Vector3.zero, Quaternion.identity);
         NetworkServer.Spawn(gun);
 
         //Spawn bot

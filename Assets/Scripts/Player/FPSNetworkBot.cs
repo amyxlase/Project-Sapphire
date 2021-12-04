@@ -219,6 +219,7 @@ public class FPSNetworkBot : NetworkBehaviour
 
     [Server]
     void DropGun() {
+        Debug.Log("dropping gun");
         uint botNetId = this.gameObject.GetComponent<NetworkIdentity>().netId;
         GameObject gunObject = NetworkIdentity.spawned[botNetId - 1].gameObject;
         PickUp gunPickup = gunObject.GetComponent<PickUp>();
