@@ -75,7 +75,7 @@ public class FPSNetworkManager : NetworkManager
     }
 
     private void Update() {
-        if(playerCount > 0 && botCount < 2 * playerCount + 5) {
+        if(playerCount > 0 && botCount < playerCount + 5) {
             addBot();
         }
     }
