@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.5
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.30299547, g: 0.39095673, b: 0.48560014, a: 0.5}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2285,6 +2285,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -176.00003
       objectReference: {fileID: 0}
+    - target: {fileID: 2820737791723944653, guid: 8d332a20644529e4d8210e55169088e7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.0000019073486
+      objectReference: {fileID: 0}
+    - target: {fileID: 4473718283477629326, guid: 8d332a20644529e4d8210e55169088e7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121553675342493970, guid: 8d332a20644529e4d8210e55169088e7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5121553675749457536, guid: 8d332a20644529e4d8210e55169088e7,
         type: 3}
       propertyPath: m_Pivot.x
@@ -2394,6 +2409,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CanvasHUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121553675749457537, guid: 8d332a20644529e4d8210e55169088e7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121553676353953965, guid: 8d332a20644529e4d8210e55169088e7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5268233116917676043, guid: 8d332a20644529e4d8210e55169088e7,
         type: 3}
@@ -9257,10 +9282,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1968654917}
     m_Modifications:
+    - target: {fileID: 3608575129872464794, guid: 02e1f4c5e2b4945e592977bbf7c85056,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 17405ef5c8ec14272990b42cb5ae4426,
+        type: 3}
+    - target: {fileID: 3608575129872464794, guid: 02e1f4c5e2b4945e592977bbf7c85056,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3608575129872464795, guid: 02e1f4c5e2b4945e592977bbf7c85056,
         type: 3}
       propertyPath: m_Name
       value: ScopedCrosshairImage
+      objectReference: {fileID: 0}
+    - target: {fileID: 3608575129872464795, guid: 02e1f4c5e2b4945e592977bbf7c85056,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3608575130859883149, guid: 02e1f4c5e2b4945e592977bbf7c85056,
         type: 3}
